@@ -1,0 +1,129 @@
+{{ define "title"}} {{ .Title }} {{ end }}
+
+{{ define "style"}}
+<link rel="stylesheet" href="/css/blog-post.css">
+<link rel="stylesheet" href="/css/code-highlighting/dark.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
+
+{{ end }}
+
+{{ define "header"}} {{ partial "menu" .}}
+
+<header class="post-header">
+
+    <div class="hero">
+        <div class="hero-body">
+            <div class="container">
+                {{ partial "breadcrumb" . }}
+                <div class="container has-text-centered">
+                    {{ partial "profile/title" . }}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{{ end }}
+
+{{ define "main" }}
+
+<div class="container" itemscope itemtype="http://schema.org/BlogPosting">
+    {{ template "_internal/schema.html" . }}
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8">
+
+
+                    <div class="is-divider" data-content="ARTICLE"></div>
+
+                    <div class="content blog-post section" itemprop="articleBody">
+                        {{.Content}}
+                    </div>
+
+                    <p>{{ partial "post/meta" . }}</p>
+                    <!-- {{ partial "post/byauthor" . }} -->
+
+                    {{ partial "utterances-comments.html" . }}
+
+
+                </div>
+                <div class="column is-4">
+
+                    {{ if .Params.notes }}
+                    <div class="is-divider" data-content="NOTES"></div>
+
+
+                    <div class="box is-size-7">
+                        <article class="media">
+                            <div class="media-content">
+                                <div class="content">
+                                    {{ range $note := .Params.notes }}
+
+                                    <p><i class="far fa-clipboard" style="margin-right: 0.5em;"></i> <a
+                                           href="{{ $note.link }}" class="tag is-warning is-light">{{ $note.name }}</a> </p>
+                                    {{end}}
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.author }}
+                    <div class="is-divider" data-content="AUTHORS"></div>
+                    {{ $author := .Params.author }}
+                    <div class="box is-size-7">
+                        <article class="media">
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>{{ $author }}</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {{end}}
+
+                    {{ if .Params.references }}
+                    <div class="is-divider" data-content="REFERENCES"></div>
+                    <article class="message">
+                        <div class="message-header">
+                            <p>References:</p>
+                        </div>
+                        <div class="message-body">
+                            <ol>
+                                {{ range $ref := .Params.references }}
+                                <li><a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
+                                {{ end }}
+                            </ol>
+                        </div>
+                    </article>
+                    {{ end }}
+
+                    {{ partial "utterances-comments.html" . }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+{{ partial "nav-buttons.html" . }}
+
+{{ end }}
+
+{{ define "footer"}}
+{{ partial "footer.html" .}}
+
+
+<script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+<script>
+    bulmaCarousel.attach('#carousel-demo', {
+        slidesToScroll: 1,
+        slidesToShow: 1
+    });
+</script> -->
+{{ end }}

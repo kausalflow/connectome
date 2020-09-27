@@ -1,0 +1,18 @@
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                Created and maintained by <a href="https://neuronstar.cc">NeuronStar</a>.
+                Acknowledgement: <a href="https://gohugo.io/">Hugo</a>,
+                <a href="https://themes.gohugo.io/bulma/">Bulma</a>.
+                {{ if .Site.Params.powered_by }}
+                  <strong>{{.Site.Params.powered_by}}</strong>.
+                {{ end }}
+                <br>
+                <a class="tag" href="/index.xml">Feed</a>
+                <a class="tag" href="/algolia.json">JSON Data</a>
+                <a class="tag" href="/search">Search</a>
+            </p>
+        </div>
+    </div>
+</footer>
