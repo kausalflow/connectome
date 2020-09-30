@@ -1,10 +1,11 @@
 ---
 layout: notes
-title: "01.Neuron Biological Properties"
+title: "Neuron Biological Properties"
 date: 2016-03-18
 author: ErbB4
 summary: Neuron biological properties
 type: project
+weight: 2
 ---
 
 

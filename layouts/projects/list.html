@@ -33,7 +33,9 @@
 
     <div class="columns">
         <div class="column">
+            {{ if gt .Paginator.TotalPages 1 }}
             {{ partial "pagination" . }}
+            {{ end }}
         </div>
     </div>
 

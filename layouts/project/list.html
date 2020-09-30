@@ -24,7 +24,7 @@
         <section class="hero is-default is-bold">
             <div class="hero-body">
                 <div class="container">
-                    {{ range .Paginator.Pages }} {{ partial "page-summary" . }} {{ end }}
+                    {{ range (.Paginate ( .Pages.ByWeight.Reverse )).Pages }} {{ partial "page-summary" . }} {{ end }}
                 </div>
                 <br>
                 <div class="container">

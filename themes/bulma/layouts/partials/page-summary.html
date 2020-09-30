@@ -7,7 +7,7 @@
         {{ end }}
     </h1>
     <h1 class="title">
-        <a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
+        {{if .Params.weight }} <sup>{{.Params.weight}}</sup> {{end}}<a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
     </h1>
     {{ if .Description }}
     <blockquote itemprop="about">{{ .Description }}</blockquote>

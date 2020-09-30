@@ -50,6 +50,14 @@
       <div class="navbar-item">
         {{ $currentPage := . }}
 
+        {{ if .Site.Menus.topright }}
+        {{ range .Site.Menus.topright }}
+        <a class="navbar-item" target="blank" href="{{ .URL }}">
+            {{ .Name }}
+        </a>
+        {{ end }}
+        {{ end }}
+
 
         {{ if .Site.Params.github}}
         <a class="navbar-item" target="blank" href="https://github.com/{{.Site.Params.github}}">

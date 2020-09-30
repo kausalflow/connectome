@@ -1,10 +1,11 @@
 ---
 layout: notes
-title: "02.Review of Last Week's Reading"
+title: "Review of Last Week's Reading"
 date: 2016-03-18
 author: OctoMiao
 summary: Review of Last Week's Reading
 type: project
+weight: 3
 ---
 
 

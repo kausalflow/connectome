@@ -16,9 +16,14 @@ menu:
       weight: 1
       identifier: about
       url: /about/
+  topright:
+    - name: Posts
+      weight: 1
+      identifier: posts
+      url: /posts/
 
 params:
-  theme_variant: "minty" # possible value for the theme_variant `cerulean,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,yeti`
+  theme_variant: "lux" # possible value for the theme_variant `cerulean,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,yeti`
   description: "This is a hugo theme"
   project_indicator: "Notebooks"
   splash: "/img/splash/undraw_to_the_moon_v1mv.svg"
