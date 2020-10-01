@@ -1,51 +1,115 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
     <a class="navbar-item" href="{{.Site.BaseURL | relURL}}">
-      <img src="/img/bulma.png" alt="Bulma logo">
+      {{.Site.Title}}
     </a>
-    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+    <div class="navbar-burger burger" data-target="navMenu">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </div>
-  
-  <div class="navbar-menu">
-    <div class="navbar-start">
-      {{ if .Site.Params.github}}
-      <a class="navbar-item" target="blank" href="https://github.com/{{.Site.Params.github}}">
-        <span class="icon">
-          <i class="fa fa-github"></i>
-        </span>
-      </a>
-      {{end}}
 
-      {{ if .Site.Params.twitter}}
-      <a class="navbar-item" target="blank" href="https://twitter.com/{{.Site.Params.twitter}}">
-        <span class="icon">
-          <i class="fa fa-twitter"></i>
-        </span>
-      </a>
-      {{end}}
+  <div class="navbar-menu" id="navMenu">
+    <div class="navbar-start">
+
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a href="/projects" class="navbar-link">
+          {{ .Site.Params.project_indicator }}
+        </a>
+        <div class="navbar-dropdown">
+          {{ range ($.Site.Pages.ByParam "type") }}
+           {{ if and (eq .Page.Params.type "project") (eq .Kind "section") }}
+              <a href="{{ .Page.Permalink }}" class="navbar-item">
+                {{ .Page.Title }}
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+
+
     </div>
-    
+
+
+
     <!-- This "navbar-burger" hamburger menu is only visible on mobile -->
     <!-- You need JavaScript to toggle the "is-active" class on "nav-menu" -->
     <span class="navbar-burger">
-        <span></span>
-        <span></span>
-        <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </span>
-    
+
     <!-- This "nav-menu" is hidden on mobile -->
     <!-- Add the modifier "is-active" to display it on mobile -->
     <div class="navbar-end">
+
       <div class="navbar-item">
         {{ $currentPage := . }}
-        {{ range .Site.Menus.main }}
-          <a itemprop="url" class="navbar-item {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} is-active{{end}}" href="{{.URL}}"><span itemprop="name">{{ .Name }}</span></a>
+
+        {{ if .Site.Menus.topright }}
+        {{ range .Site.Menus.topright }}
+        <a class="navbar-item" target="blank" href="{{ .URL }}">
+            {{ .Name }}
+        </a>
         {{ end }}
-      </div> 
+        {{ end }}
+
+
+        {{ if .Site.Params.github}}
+        <a class="navbar-item" target="blank" href="https://github.com/{{.Site.Params.github}}">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+        </a>
+        {{end}}
+        {{ if .Site.Params.twitter}}
+        <a class="navbar-item" target="blank" href="https://twitter.com/{{.Site.Params.twitter}}">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+        </a>
+        {{end}}
+        {{ if .Site.Params.facebook }}
+        <a class="navbar-item" target="blank" href="https://www.facebook.com/{{.Site.Params.facebook}}">
+          <span class="icon">
+            <i class="fab fa-facebook"></i>
+          </span>
+        </a>
+        {{end}}
+
+
+      </div>
     </div>
   </div>
 </nav>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach(el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+</script>
