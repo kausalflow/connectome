@@ -2,8 +2,12 @@
 layout: notes
 title: "Review of Last Week's Reading"
 date: 2016-03-18
-author: OctoMiao
+authors:
+  - OctoMiao
+  - octo
 summary: Review of Last Week's Reading
+references:
+  - name: References 1
 type: project
 weight: 3
 ---

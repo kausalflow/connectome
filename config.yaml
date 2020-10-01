@@ -32,9 +32,9 @@ params:
   images: # Suggested, controls default OpenGraph images controls author name display on meta tag
   github: "neuronstar" # Optional, to display link to github account in menu bar
   twitter: "" # Optional, to display link to twitter account in menu bar
-  author: "NeuronStar"
+  author: "KausalFlow"
   editURL: "https://github.com/neurnstar/neuronstar.github.io/edit/master/content/"
-  algolia:
+  data:
     vars:
       - "title"
       - "summary"
@@ -60,8 +60,8 @@ params:
 
 
 outputFormats:
-  Algolia:
-    baseName: "algolia"
+  data:
+    baseName: "data"
     isPlainText: true
     mediaType: "application/json"
     notAlternative: true
@@ -70,4 +70,4 @@ outputs:
   home:
     - "HTML"
     - "RSS"
-    - "Algolia"
+    - "data"
