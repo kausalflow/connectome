@@ -1,0 +1,11 @@
+{{ define "response" }}
+	[{{ range $i, $hit := .Site.AllPages }}
+		{{ if $i }}, {{ end }}{
+			"title": {{ $hit.Params.title | jsonify }},
+			"authors": {{ $hit.Params.authors | jsonify }},
+			"summary": {{ $hit.Params.summary | jsonify }},
+			"date": {{ $hit.Params.date | jsonify }},
+			"references": {{ $hit.Params.references | jsonify }}
+		}
+	{{ end }}]
+{{ end }}

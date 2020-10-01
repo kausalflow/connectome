@@ -1,0 +1,17 @@
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                Created and maintained by <a href="{{ .Site.BaseURL }}">{{ .Site.Params.author }}</a>.
+                Acknowledgement: <a href="https://gohugo.io/">Hugo</a>,
+                <a href="https://themes.gohugo.io/bulma/">Bulma</a>, <a href="https://kausalflow.com">KausalFlow</a>.
+                {{ if .Site.Params.powered_by }}
+                  <strong>{{.Site.Params.powered_by}}</strong>.
+                {{ end }}
+                <br>
+                <a class="tag" href="/index.xml">Feed</a>
+                <a class="tag" href="/data.json">JSON Data</a>
+            </p>
+        </div>
+    </div>
+</footer>
