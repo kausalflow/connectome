@@ -1,5 +1,4 @@
 ---
-layout: notes
 title: "Review of Last Week's Reading"
 date: 2016-03-18
 authors:

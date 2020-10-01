@@ -1,5 +1,4 @@
-<div class="tabs">
-    <p class="control">
+<nav class="pagination is-centered" role="navigation" aria-label="pagination">
         {{if .Paginator.HasPrev }}
         <a class="button is-primary" href="{{ .Paginator.Prev.URL }}">
             <span class="icon is-small">
@@ -8,13 +7,12 @@
             <span>Previous</span>
         </a>
         {{ end }}
-    </p>
-    <p class="control">
+
         <a class="button">
            Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
         </a>
-    </p>
-    <p class="control">
+
+
         {{ if .Paginator.HasNext }}
         <a class="button is-primary" href="{{ .Paginator.Next.URL }}">
             <span class=" icon is-small ">
@@ -23,5 +21,5 @@
             <span>Next</span>
         </a>
         {{ end }}
-    </p>
-</div>
+
+</nav>
