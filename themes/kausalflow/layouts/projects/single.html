@@ -40,10 +40,8 @@
                         {{.Content}}
                     </div>
 
-                    <p>{{ partial "post/meta" . }}</p>
+                    <!-- <p>{{ partial "post/meta" . }}</p> -->
                     <!-- {{ partial "post/byauthor" . }} -->
-
-                    {{ partial "utterances-comments.html" . }}
 
 
                 </div>
@@ -60,7 +58,7 @@
                                     {{ range $note := .Params.notes }}
 
                                     <p><i class="far fa-clipboard" style="margin-right: 0.5em;"></i> <a
-                                           href="{{ $note.link }}" class="tag is-warning is-light">{{ $note.name }}</a> </p>
+                                           href="{{ $note.link }}" class="tag is-warning is-light is-bold has-text-weight-bold">{{ $note.name }}</a> </p>
                                     {{end}}
                                 </div>
                             </div>
@@ -83,6 +81,44 @@
                         </article>
                     </div>
                     {{end}}
+
+                    {{ if .Params.coordinators }}
+                    <div class="is-divider" data-content="MEMBERS"></div>
+
+
+                    <div class="box is-size-7">
+                        <article class="media">
+                            <div class="media-content">
+                                <div class="content">
+                                    {{ range $coordinator := .Params.coordinators }}
+
+                                    <p><i class="fas fa-user-ninja" style="margin-right: 0.5em;"></i> <a
+                                           href="{{ $coordinator.link }}" class="tag is-info is-light is-bold has-text-weight-bold">{{ $coordinator.name }}</a> </p>
+                                    {{end}}
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {{ end }}
+
+                    {{ if .Params.members }}
+                    <div class="is-divider" data-content="MEMBERS"></div>
+
+
+                    <div class="box is-size-7">
+                        <article class="media">
+                            <div class="media-content">
+                                <div class="content">
+                                    {{ range $member := .Params.members }}
+
+                                    <p><i class="fas fa-user-ninja" style="margin-right: 0.5em;"></i> <a
+                                           href="{{ $member.link }}" class="tag is-info is-light is-bold has-text-weight-bold">{{ $member.name }}</a> </p>
+                                    {{end}}
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {{ end }}
 
                     {{ if .Params.references }}
                     <div class="is-divider" data-content="REFERENCES"></div>

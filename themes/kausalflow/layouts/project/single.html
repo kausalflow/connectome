@@ -84,19 +84,87 @@
 
                         {{ if .Params.references }}
                         <div class="is-divider" data-content="REFERENCES"></div>
-                        <article class="message">
-                            <div class="message-header">
-                                <p>References:</p>
-                            </div>
-                            <div class="message-body">
-                                <ol>
-                                    {{ range $ref := .Params.references }}
-                                    <li><a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
-                                    {{ end }}
-                                </ol>
-                            </div>
-                        </article>
+                        <div class="box is-size-7">
+                            <article class="media">
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>References: </strong><br>
+                                            <ol>
+                                                {{ range $ref := .Params.references }}
+                                                <li class="has-text-weight-bold"><a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
+                                                {{ end }}
+                                            </ol>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
                         {{ end }}
+
+                        <div class="is-divider" data-content="CONNECTUME"></div>
+                        {{ $fileReference := lower (replace $.File "\\" "/") }}
+                        <div class="box is-size-7">
+                            <article class="media">
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>Current Ref: </strong><br>
+                                            <ul><li style="list-style: none;"><span class="tag is-primary is-light has-text-weight-bold">{{ $fileReference }}</span></li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        {{ with .Params.links }}
+                        <div class="box is-size-7">
+                            <article class="media">
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+
+                                        <strong>Links to: </strong>
+                                            <ul>
+                                            {{ range . }}
+                                            {{ with $.Site.GetPage . }}
+                                                <li class="has-text-weight-bold"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                            {{ end }}
+                                            {{ end }}
+                                            </ul>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        {{ end }}
+
+                        {{ with .Site.Taxonomies.links }}
+                        {{ $linkedFrom := index . $fileReference }}
+                                                {{ with $linkedFrom }}
+                        <div class="box is-size-7">
+                            <article class="media">
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>Links from: </strong>
+                                                <ul>
+                                                {{ range . }}
+                                                    <li class="has-text-weight-bold"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                                {{ end }}
+                                                </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        {{ end }}
+                        {{ end }}
+
+
+
                         {{ partial "utterances-comments.html" . }}
 
                     </div>
@@ -110,6 +178,8 @@
 {{ partial "nav-buttons.html" . }}
 
 {{ end }}
+
+
 
 {{ define "footer"}}
 {{ partial "footer.html" .}}
