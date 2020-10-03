@@ -6,7 +6,7 @@ theme: "kausalflow" # to use as default theme
 
 enableRobotsTXT: true # Suggested, it generates a robots.txt
 googleAnalytics: "" # Optional, add tracking Id for analytics
-disqusShortname: "" # Optional, add Disqus shortname for comments
+# disqusShortname: "" # Optional, add Disqus shortname for comments
 SectionPagesMenu: "main" # Enable menu system for lazy bloggers
 
 
@@ -25,6 +25,8 @@ menu:
 params:
   theme_variant: "lux" # possible value for the theme_variant `cerulean,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,yeti`
   description: "Connectume is a hugo theme for online communities such as reading clubs."
+  favicon: "/logos/logo-square.png" # Path to favicon
+  logo: "/logos/logo-square.png" # logo of the website
   project_indicator: "Notebooks" # This is the menu item for the list of projects and the title of project list page
   splash: "/img/splash/undraw_to_the_moon_v1mv.svg" # This is the splash image for the landing page. The image is shown in the top left of the page.
   powered_by: "love" # Optional, controls name display on footer
@@ -34,6 +36,10 @@ params:
   twitter: "" # Optional, to display link to twitter account in menu bar
   author: "KausalFlow" # Default author name and the name to be shown in the footer
   editURL: "https://github.com/kausalflow/connectume/edit/master/content/"
+  utterances: # comment system: utterances (https://utteranc.es/) parameters
+    repo: "neuronstar/comments"  # repo="[ENTER REPO HERE]", the comments will appear as issues in this repository on github.
+    term: pathname               # issue-term="pathname"
+    theme: github-light          # theme="github-light"
 
 
 outputFormats:
