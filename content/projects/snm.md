@@ -9,10 +9,11 @@ links:
   - name:
     link:
 summary: Reading club for the book Spiking Neuron Models
-fields:
+images:
+  - "/projects/srm.png"
 members: # the makers of the tool
-  - name:
-    link:
+  - name: Member AA
+    link: https://google.com
     description:
 coordinators:
   - name: LM
@@ -20,10 +21,14 @@ coordinators:
     description:
 date: 2020-04-27T13:22:46+02:00
 status: Done
-draft: false
 notes:
   - name: Spiking Neuron Models
     link: /snm
+references:
+  - name: "Spiking Neuron Models: Single Neurons, Populations,Plasticity by Wulfram Gerstner and Werner M. Kistler."
+    link: http://lcn.epfl.ch/~gerstner/SPNM/SPNM.html
+  - name: "An Introduction to the Theory of Point Processes by D.J. Daley and D. Vere-Jones."
+    link: https://github.com/neuronstar/spiking-neuron-models/issues/12
 ---
 
 ## What books are we reading?

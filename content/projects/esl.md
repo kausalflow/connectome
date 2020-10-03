@@ -1,7 +1,7 @@
 ---
 title: "The Elements of Statistical Learning"
-images: # Create a folder in /static/images/tools that has the same name as this current markdown file and place the images there. We only need the file name here. If this is not clear, please refer to existing tools as references.
-  - path: academicons-landing.png
+images:
+  - "/projects/esl.png"
 categories:
   - Statistical Learning
 tags:
@@ -10,8 +10,7 @@ tags:
 links:
   - name:
     link:
-summary: Read the book
-fields:
+summary: "Just read the book"
 members: # the makers of the tool
   - name:
     link:
@@ -25,7 +24,6 @@ status: Done
 notes:
   - name: ESL Notes
     link: /esl
-draft: false
 ---
 
 ## What books are we reading?
