@@ -24,39 +24,16 @@ menu:
 
 params:
   theme_variant: "lux" # possible value for the theme_variant `cerulean,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,yeti`
-  description: "This is a hugo theme"
-  project_indicator: "Notebooks"
-  splash: "/img/splash/undraw_to_the_moon_v1mv.svg"
+  description: "Connectume is a hugo theme for online communities such as reading clubs."
+  project_indicator: "Notebooks" # This is the menu item for the list of projects and the title of project list page
+  splash: "/img/splash/undraw_to_the_moon_v1mv.svg" # This is the splash image for the landing page. The image is shown in the top left of the page.
   powered_by: "love" # Optional, controls name display on footer
   hide_author: false # Optional, set true to hide author name on posts
   images: # Suggested, controls default OpenGraph images controls author name display on meta tag
-  github: "neuronstar" # Optional, to display link to github account in menu bar
+  github: "kausalflow" # Optional, to display link to github account in menu bar
   twitter: "" # Optional, to display link to twitter account in menu bar
-  author: "KausalFlow"
-  editURL: "https://github.com/neurnstar/neuronstar.github.io/edit/master/content/"
-  data:
-    vars:
-      - "title"
-      - "summary"
-      - "date"
-      - "publishdate"
-      - "expirydate"
-      - "permalink"
-      - "images"
-      - "author"
-      - "fields"
-      - "platforms"
-      - "file"
-    params:
-      - "categories"
-      - "tags"
-    options:
-      appId: "NQED3STBQT"
-      apiKey: "5b7ac3f0c287018586467528f312e255"
-      indexName: "kausalflow-research-tools"
-      hitsPerPage: 12
-      routing: true
-
+  author: "KausalFlow" # Default author name and the name to be shown in the footer
+  editURL: "https://github.com/kausalflow/connectume/edit/master/content/"
 
 
 outputFormats:
