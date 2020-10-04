@@ -1,0 +1,41 @@
+{{ define "header" }} {{ partial "menu" . }} {{ end }}
+
+{{ define "main" }}
+
+<!-- Hero content: will be in the middle -->
+<section>
+    <div class="hero is-primary is-medium">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title is-1">
+                    {{ .Title }}
+                </h1>
+                <h2 class="subtitle is-3">
+                    {{ .Description }}
+                </h2>
+              </div>
+        </div>
+    </div>
+
+    </section>
+
+<div class="columns is-fullheight">
+    <div class="column">
+        <section class="hero is-default is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    {{ range .Paginator.Pages }} {{ partial "page-summary" . }} {{ end }}
+                </div>
+                <br>
+                <div class="container">
+                    {{ partial "pagination" . }}
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+{{ end }}
+{{ define "footer" }}
+  {{ partial "footer" . }}
+{{ end }}

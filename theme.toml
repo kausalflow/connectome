@@ -1,0 +1,24 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Connectome"
+license = "MIT"
+licenselink = "https://github.com/kausalflow/connectome/master/LICENSE.md"
+description = "Connectome is a Hugo theme for sharing community notes with backlinks"
+homepage = "http://kausalflow.com"
+tags = ["backlinks", "academia", "notes", "responsive", "bulma", "blog", "themes"]
+features = [
+  "articles with backlinks",
+  "multi-notebooks"
+]
+min_version = 0.59.0
+
+[author]
+  name = "kausalflow"
+  homepage = "http://kausalflow.com/"
+
+# If porting an existing theme
+[original]
+  name = "Bulma"
+  homepage = "http://blog.elemnts.org/"
+  repo = "https://github.com/jeblister/bulma/"
