@@ -1,27 +1,36 @@
 {{ if not ( isset .Params "toc") | or (eq .Params.toc true) }}
-<style>#TableOfContents > ul {
-    list-style-type: lower-greek;
-    padding-left: 0;
-  }
-  #TableOfContents > ul > li ul {
-    list-style-type: none;
-    padding-left: 1em;
-  }</style>
+<style>
+    #TableOfContents>ul {
+        list-style-type: lower-greek;
+        padding-left: 0;
+    }
+
+    #TableOfContents>ul>li ul {
+        list-style-type: none;
+        padding-left: 1em;
+    }
+</style>
 <div class="is-divider" data-content="ToC"></div>
-<details>
-  <summary>Table of Contents</summary>
-    <div class="card">
-
-        <div class="card-content">
-            {{ .TableOfContents }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <details>
+                    <summary>Table of Contents</summary>
+                    <div class="card">
+                        <div class="card-content">
+                            {{ .TableOfContents }}
+                        </div>
+                    </div>
+                </details>
+            </div>
         </div>
-
-    </div>
-</details>
+    </article>
+</div>
 <script>
     const el = document.querySelector('details summary')
     el.onclick = () => {
-        (function(l, o, a, d, e, r) {
+        (function (l, o, a, d, e, r) {
             e = o.createElement(a), r = o.getElementsByTagName(a)[0];
             e.async = 1;
             e.src = d;
