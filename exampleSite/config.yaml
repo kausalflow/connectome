@@ -6,7 +6,6 @@ theme: "connectome" # to use as default theme
 
 enableRobotsTXT: true # Suggested, it generates a robots.txt
 googleAnalytics: "" # Optional, add tracking Id for analytics
-# disqusShortname: "" # Optional, add Disqus shortname for comments
 SectionPagesMenu: "main" # Enable menu system for lazy bloggers
 
 
