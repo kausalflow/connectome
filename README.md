@@ -2,6 +2,8 @@
 
 A [Hugo](http://gohugo.io/) theme for online community notes with backlinks.
 
+![](static/demo/connectome-demo-backlinks.png)
+
 ## How to Use
 
 ### Starting from Scratch
