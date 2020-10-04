@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-content">
+                <a href="{{ .Permalink }}">
+                    <p class="title is-4">{{.Title}}</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <p>
+                <!-- <div class="tags">
+                    {{ range $cat := .Params.categories }}
+                    <a href="{{ "/categories/" | relLangURL }}{{ $cat | urlize }}"><span class="tag is-link is-light">[ {{$cat}} ]</span></a>
+                    {{ end }}
+                </div> -->
+                <div class="tags is-small">
+                    {{ range $tag := .Params.tags }}
+                    <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}"><span class="tag is-warning is-small is-light">#{{$tag}}</span></a>
+                    {{ end }}
+                </div>
+            </p>
+
+            <div class="is-divider"
+                style="border-top:.1rem dashed #dbdbdb57 !important;margin: 1rem 0 !important;">
+            </div>
+            <p>{{ .Params.summary }}</p>
+            <div class="is-divider"
+                style="border-top:.1rem dashed #dbdbdb57 !important;margin: 1rem 0 !important;">
+            </div>
+
+            <!-- <time datetime="{{.Lastmod}}">{{.Lastmod}}</time> -->
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+{{ define "header" }}
+{{ partial "menu" . }}
+{{ end }}
+{{ define "main" }}
+
+
+<!-- Hero content: will be in the middle -->
+<section>
+  <div class="hero is-warning is-medium">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title is-1">
+          {{ .Title }}
+        </h1>
+        <h2 class="subtitle is-3">
+          {{ .Description }}
+        </h2>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<div class="columns is-fullheight">
+  <div class="column">
+    <section class="hero is-default is-bold">
+      <div class="hero-body">
+        <div class="container">
+          {{ range $key, $value := .Data.Terms }}
+                <span class="tag is-light"><i class="far fa-bookmark" style="margin-right: 0.5em;"></i>
+                    <a href="{{ $key | urlize }}" itemprop="headline">{{ $key }}</a> ({{ len $value }})
+                </span>
+          {{ end }}
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+
+</div>
+
+{{ end }}
+{{ define "footer" }}
+{{ partial "footer" . }}
+{{ end }}
