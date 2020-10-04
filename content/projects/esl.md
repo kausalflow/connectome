@@ -12,8 +12,8 @@ links:
     link:
 summary: "Just read the book"
 members: # the makers of the tool
-  - name:
-    link:
+  - name: Member BB
+    link: https://github.com
     description:
 coordinators:
   - name: LM
