@@ -1,0 +1,11 @@
+{{ $class := (.Get "class") }}
+<article class="message is-{{ if $class }}{{$class}}{{else}}light{{ end }} is-light">
+    {{ with (.Get "title") | markdownify }}
+    <div class="message-header">
+      <p>{{ . | markdownify }}</p>
+    </div>
+    {{ end }}
+    <div class="message-body">
+      {{ .Inner | markdownify}}
+    </div>
+  </article>
