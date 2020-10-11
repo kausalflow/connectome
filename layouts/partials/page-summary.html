@@ -9,12 +9,22 @@
     <h1 class="title">
         {{if .Params.weight }} <sup>{{.Params.weight}}</sup> {{end}}<a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
     </h1>
+    {{if .Params.tags }}
+    <div class="tags is-small">
+        {{ range $tag := .Params.tags }}
+        <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}" style="margin-right: 0.5em;"><span class="tag is-warning is-small is-light">#{{$tag}}</span></a>
+        {{ end }}
+    </div>
+    {{ end }}
     {{ if .Description }}
     <blockquote itemprop="about">{{ .Description }}</blockquote>
-    {{ end }}
-    <h2 class="content" itemprop="description">
+    {{ else }}
+    <!-- <h2 class="content" itemprop="description"> -->
+    <blockquote itemprop="about">
         {{ .Summary }}
-    </h2>
+    </blockquote>
+    <!-- </h2> -->
+    {{ end }}
 </div>
 
 <div class="is-divider" style="border-top:.05rem dashed #dbdbdb !important; margin: 1em 0 1em 0!important;"></div>

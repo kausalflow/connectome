@@ -1,4 +1,4 @@
-<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+<nav class="pagination has-text-centered" role="navigation" aria-label="pagination">
         {{if .Paginator.HasPrev }}
         <a class="button is-primary" href="{{ .Paginator.Prev.URL }}">
             <span class="icon is-small">
@@ -8,9 +8,11 @@
         </a>
         {{ end }}
 
-        <a class="button">
+        {{ if gt .Paginator.TotalPages 0 }}
+        <a class="button is-outlined is-primary">
            Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
         </a>
+        {{ end }}
 
 
         {{ if .Paginator.HasNext }}
