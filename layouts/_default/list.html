@@ -24,6 +24,7 @@
         <section class="hero is-default is-bold">
             <div class="hero-body">
                 <div class="container">
+                    {{ partial "breadcrumb" . }}
                     {{ range .Paginator.Pages }} {{ partial "page-summary" . }} {{ end }}
                 </div>
                 <br>
