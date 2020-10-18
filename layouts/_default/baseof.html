@@ -49,9 +49,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.css">
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
@@ -63,6 +60,15 @@
 <body>
   <header>{{ block "header" . }}{{ end }}</header>
   <main>{{ block "main" . }}{{ end }}</main>
+
+  <!-- <div id="fastSearch">
+    <input id="searchInput" tabindex="0">
+    <ul id="searchResults">
+    </ul>
+  </div>
+  <script src="/js/fuse.min.js"></script>
+  <script src="/js/fastsearch.js"></script> -->
+
   <footer>{{ block "footer" . }}{{ end }}</footer>
 
   <script async type="text/javascript" src="/js/bulma.js"></script>

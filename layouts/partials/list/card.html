@@ -6,14 +6,14 @@
                 {{ $cardimage := index (.Params.images) 0}}
 
                 {{ if (fileExists (printf "static%s" $cardimage)) }}
-                <img src="{{$cardimage}}" alt="{{.Title}}">
+                <img src="{{ $cardimage }}" style="max-height: 200px;" alt="{{.Title}}">
                 {{ else }}
                 {{ $cardimagedefault := "/img/projects/default.svg"}}
-                <img src="{{$cardimagedefault}}" alt="{{.Title}}">
+                <img src="{{$cardimagedefault}}" style="max-height: 200px;" alt="{{.Title}}">
                 {{ end }}
                 {{else}}
                 {{ $cardimage := "/img/projects/default.svg"}}
-                <img src="{{$cardimage}}" alt="{{.Title}}">
+                <img src="{{$cardimage}}" style="max-height: 200px;" alt="{{.Title}}">
                 {{ end }}
             </figure>
         </a>
@@ -35,9 +35,9 @@
                     <a href="{{ "/categories/" | relLangURL }}{{ $cat | urlize }}"><span class="tag is-link is-light">[ {{$cat}} ]</span></a>
                     {{ end }}
                 </div> -->
-                <div class="tags is-small">
+                <div class="tags is-small" style="min-height: 5em;">
                     {{ range $tag := .Params.tags }}
-                    <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}"><span class="tag is-warning is-small is-light">#{{$tag}}</span></a>
+                    <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}"><span class="tag is-warning is-small is-light" style="margin-right: 0.5em">#{{$tag}}</span></a>
                     {{ end }}
                 </div>
             </p>
@@ -45,7 +45,7 @@
             <div class="is-divider"
                 style="border-top:.1rem dashed #dbdbdb57 !important;margin: 1rem 0 !important;">
             </div>
-            <p>{{ .Params.summary }}</p>
+            <p style="min-height: 5em;">{{ .Params.summary }}</p>
             <div class="is-divider"
                 style="border-top:.1rem dashed #dbdbdb57 !important;margin: 1rem 0 !important;">
             </div>

@@ -45,6 +45,15 @@
                         </div>
                         {{ end }}
 
+                        {{ if .Params.notify }}
+                        <div class="is-divider" data-content="NOTIFICATION"></div>
+                        <div class="notification is-warning is-light">
+                            <p>
+                                {{ .Params.notify }}
+                            </p>
+                        </div>
+                        {{ end }}
+
                         <div class="is-divider" data-content="ARTICLE"></div>
 
                         <div class="content blog-post section" itemprop="articleBody">
@@ -52,6 +61,18 @@
                         </div>
 
                         <p>{{ partial "post/meta" . }}</p>
+
+                        <div class="is-divider"></div>
+                        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                            {{ if .NextPage }}
+                            <a  href="{{ .NextPage.Permalink }}?ref=footer" class="pagination-previous">« {{ .NextPage.Title | truncate 50 "..." }}</a>
+                            {{ end }}
+
+                            {{ if .PrevPage }}
+                            <a class="pagination-next" href="{{ .PrevPage.Permalink }}?ref=footer">{{ .PrevPage.Title | truncate 50 "..."}} »</a>
+                            {{ end }}
+
+                          </nav>
                         <!-- {{ partial "post/byauthor" . }} -->
 
 

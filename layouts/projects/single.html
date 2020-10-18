@@ -53,12 +53,15 @@
 
                     <div class="box is-size-7">
                         <article class="media">
+                            <div class="media-left is-vcentered" style="vertical-align: middle;">
+                                <i class="fas fa-feather fa-2x has-text-primary" style="margin-right: 0.5em;"></i>
+                              </div>
                             <div class="media-content">
                                 <div class="content">
                                     {{ range $note := .Params.notes }}
-
-                                    <p><i class="far fa-clipboard" style="margin-right: 0.5em;"></i> <a
-                                           href="{{ $note.link }}" class="tag is-warning is-light is-bold has-text-weight-bold">{{ $note.name }}</a> </p>
+                                    <p>
+                                           <a href="{{ $note.link }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $note.name }} </a>
+                                        </p>
                                     {{end}}
                                 </div>
                             </div>
@@ -71,11 +74,16 @@
                     {{ $author := .Params.author }}
                     <div class="box is-size-7">
                         <article class="media">
+                            <div class="media-left is-vcentered" style="vertical-align: middle;">
+                                <i class="fas fa-at fa-2x has-text-primary" style="margin-right: 0.5em;"></i>
+                            </div>
                             <div class="media-content">
                                 <div class="content">
+                                    {{ range $author := .Params.author }}
                                     <p>
-                                        <strong>{{ $author }}</strong>
-                                    </p>
+                                           <a href="{{ $author.link }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $author.name }} </a>
+                                        </p>
+                                    {{end}}
                                 </div>
                             </div>
                         </article>
@@ -88,12 +96,14 @@
 
                     <div class="box is-size-7">
                         <article class="media">
+                            <div class="media-left is-vcentered" style="vertical-align: middle;">
+                                <i class="fas fa-user-secret fa-2x has-text-primary" style="margin-right: 0.5em;"></i>
+                              </div>
                             <div class="media-content">
                                 <div class="content">
                                     {{ range $coordinator := .Params.coordinators }}
-
-                                    <p><i class="fas fa-user-secret" style="margin-right: 0.5em;"></i> <a
-                                           href="{{ $coordinator.link }}" class="tag is-info is-light is-bold has-text-weight-bold">{{ $coordinator.name }}</a> </p>
+                                    <p> <a
+                                           href="{{ $coordinator.link }}" class="button is-info is-outlined is-bold has-text-weight-bold is-small">{{ $coordinator.name }}</a> </p>
                                     {{end}}
                                 </div>
                             </div>
@@ -103,7 +113,6 @@
 
                     {{ if .Params.members }}
                     <div class="is-divider" data-content="MEMBERS"></div>
-
 
                     <div class="box is-size-7">
                         <article class="media">
