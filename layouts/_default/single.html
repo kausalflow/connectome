@@ -64,12 +64,12 @@
 
                         <div class="is-divider"></div>
                         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-                            {{ if .NextPage }}
-                            <a  href="{{ .NextPage.Permalink }}?ref=footer" class="pagination-previous">« {{ .NextPage.Title | truncate 50 "..." }}</a>
+                            {{ if .NextInSection }}
+                            <a  href="{{ .NextInSection.Permalink }}?ref=footer" class="pagination-previous">« {{ .NextInSection.Title | truncate 50 "..." }}</a>
                             {{ end }}
 
-                            {{ if .PrevPage }}
-                            <a class="pagination-next" href="{{ .PrevPage.Permalink }}?ref=footer">{{ .PrevPage.Title | truncate 50 "..."}} »</a>
+                            {{ if .PrevInSection }}
+                            <a class="pagination-next" href="{{ .PrevInSection.Permalink }}?ref=footer">{{ .PrevInSection.Title | truncate 50 "..."}} »</a>
                             {{ end }}
 
                           </nav>
