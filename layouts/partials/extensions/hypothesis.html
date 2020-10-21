@@ -1,0 +1,10 @@
+{{ if ne ($.Site.Params.hypothesis) true }}
+<script type="application/json" class="js-hypothesis-config">
+    {
+        "openSidebar": false,
+        "theme": "clean",
+        "enableExperimentalNewNoteButton": true
+    }
+</script>
+<script async src="https://hypothes.is/embed.js"></script>
+{{ end }}

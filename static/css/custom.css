@@ -2,6 +2,18 @@ body {
     line-height: 2 !important;
 }
 
+.card-toggle:before {
+  content: "\2660 \A0\A0\A0";
+}
+.card-header:after {
+  content: " \A0\A0\A0 \21B5 \A0\A0\A0 ";
+  transform: scale(1);
+  padding-top: 0.5em;
+}
+.card {
+  margin-bottom: 2em;
+}
+
 #fastSearch {
     visibility: hidden;
     position: absolute;
