@@ -8,8 +8,7 @@ tags:
   - Introduction
   - Machine Learning
 links:
-  - name:
-    link:
+  -
 summary: "Just read the book"
 members: # the makers of the tool
   - name: Member BB

@@ -6,8 +6,7 @@ tags:
   - Introduction
   - Neuroscience
 links:
-  - name:
-    link:
+  -
 summary: Reading club for the book Spiking Neuron Models
 images:
   - "/projects/srm.png"
