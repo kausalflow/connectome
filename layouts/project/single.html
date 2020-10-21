@@ -42,12 +42,14 @@
                 <div class="columns">
                     <div class="column is-8">
 
+                        {{ if .Params.summary }}
                         <div class="is-divider" data-content="SUMMARY"></div>
                         <div class="notification is-light">
                             <p>
                                 {{ .Params.summary }}
                             </p>
                         </div>
+                        {{ end }}
 
                         <div class="is-divider" data-content="ARTICLE"></div>
 
