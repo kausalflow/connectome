@@ -20,9 +20,8 @@ coordinators:
     description:
 date: 2020-04-27T13:22:46+02:00
 status: Done
-notes:
-  - name: Spiking Neuron Models
-    link: /snm
+sections:
+  - snm
 references:
   - name: "Spiking Neuron Models: Single Neurons, Populations,Plasticity by Wulfram Gerstner and Werner M. Kistler."
     link: http://lcn.epfl.ch/~gerstner/SPNM/SPNM.html

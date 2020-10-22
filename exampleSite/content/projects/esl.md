@@ -20,9 +20,8 @@ coordinators:
     description:
 date: 2020-04-27T13:22:46+02:00
 status: Done
-notes:
-  - name: ESL Notes
-    link: /esl
+sections:
+  - esl
 ---
 
 ## What books are we reading?

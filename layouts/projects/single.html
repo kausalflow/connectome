@@ -40,6 +40,36 @@
                         {{.Content}}
                     </div>
 
+                    {{ if .Params.sections }}
+                    <div class="is-divider" data-content="PAGES"></div>
+                    <div class="content blog-post section" itemprop="articleBody">
+                        {{ range .Params.sections }}
+                        <h3>{{ ($.GetPage .).Title }} ({{ len (where $.Site.Pages "Section" .) }} pages)</h3>
+                        <ul>
+                            {{ $sec := where $.Site.Pages "Section" . }}
+                                {{ range $sec.GroupBy "Dir" }}
+                                    <li>
+                                        {{ range .Pages.ByParam "Parent" }}
+                                            {{ if eq .Kind "section" }}
+                                                <a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
+                                            {{ end }}
+                                        {{ end }}
+                                        <ul>
+                                            {{ range .Pages.ByParam "Parent" }}
+                                                {{ if ne .Kind "section" }}
+                                                <li>
+                                                    <a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
+                                                </li>
+                                                {{ end }}
+                                            {{ end }}
+                                        </ul>
+                                    </li>
+                                {{ end }}
+                        </ul>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+
                     <!-- <p>{{ partial "post/meta" . }}</p> -->
                     <!-- {{ partial "post/byauthor" . }} -->
 
@@ -47,7 +77,7 @@
                 </div>
                 <div class="column is-4">
 
-                    {{ if .Params.notes }}
+                    {{ if .Params.sections }}
                     <div class="is-divider" data-content="NOTES"></div>
 
 
@@ -58,9 +88,10 @@
                               </div>
                             <div class="media-content">
                                 <div class="content">
-                                    {{ range $note := .Params.notes }}
+                                    {{ range $note := .Params.sections }}
+                                    {{ $note := $.GetPage . }}
                                     <p>
-                                           <a href="{{ $note.link }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $note.name }} </a>
+                                           <a href="{{ $note.Permalink }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $note.Title }} </a>
                                         </p>
                                     {{end}}
                                 </div>
