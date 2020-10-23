@@ -18,6 +18,14 @@ body {
   background-color: rgb(249, 247, 247, 0.8);
 }
 
+.modal-close::before {
+  background-color: black;
+}
+
+.modal-close::after {
+  background-color: black;
+}
+
 #fastSearch {
     visibility: hidden;
     position: absolute;
