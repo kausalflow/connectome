@@ -1,0 +1,42 @@
+
+<button class="button" id="showModal">Graph</button>
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div id="network-graph" style="margin-left: calc(50% - 50vw);width: 100vw;height: 100vh;"></div>
+    </div>
+    <button class="modal-close" style="color: black;">Close</button>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<link href="/assets/network/netjsongraph.css" rel="stylesheet">
+<link href="/assets/network/netjsongraph-theme.css" rel="stylesheet">
+<script src="/assets/network/netjsongraph.js"></script>
+
+<script>
+    d3.netJsonGraph("/network.json", {
+        el: "#network-graph",
+        metadata: false,
+        linkDistance: 30,
+        linkStrength: 6,
+        charge: -1000,
+        circleRadius: 12,
+        defaultStyle: false,
+        linkClassProperty: "type",
+        nodeClassProperty: "style",
+        labelDy: "-1.8em"
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$("#showModal").click(function() {
+    $(".modal").addClass("is-active");
+  });
+
+  $(".modal-close").click(function() {
+     $(".modal").removeClass("is-active");
+  });
+</script>

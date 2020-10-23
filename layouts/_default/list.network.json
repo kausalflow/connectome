@@ -1,0 +1,49 @@
+{{ $nodes := slice }}
+{{ range $taxonomy_term, $taxonomy := $.Site.Taxonomies }}
+	{{ if eq $taxonomy_term "links" }}
+		{{ with $.Site.GetPage (printf "/%s" $taxonomy_term) }}
+			{{ range $key, $value := $taxonomy }}
+				{{ $nodes = $nodes | append $key }}
+					{{ range $value.Pages }}
+						{{ $nodes = $nodes | append .File }}
+					{{ end }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+{{ end }}
+{
+	"type": "NetworkGraph",
+    "protocol": "BGP",
+    "version": "",
+    "revision": null,
+    "metric": "eBGP",
+	"nodes": [{{ range $i, $node := $nodes }}
+		{{ if $i }}, {{ end }}{
+			"id": "{{ $node }}"
+		}
+	{{ end }}],
+	"links": [
+		{{ range $taxonomy_term, $taxonomy := $.Site.Taxonomies }}
+			{{ if eq $taxonomy_term "links" }}
+				{{ with $.Site.GetPage (printf "/%s" $taxonomy_term) }}
+					{{ $keys := slice }}
+					{{ range $key, $value := $taxonomy }}
+						{{ $keys = $keys | append $key }}
+					{{ end }}
+					{{ $last := index $keys (sub (len $keys) 1) }}
+					{{ range $key, $value := $taxonomy }}
+							{{ range $i, $page := $value.Pages }}
+								{{if $i}},{{end}}{
+									"source": "{{ $page.File }}",
+									"target": "{{$key}}"
+								}
+							{{ end }}{{ if ne $key $last }},{{end}}
+					{{ end }}
+				{{ end }}
+			{{ end }}
+		{{ end }}
+	]
+}
+
+
+

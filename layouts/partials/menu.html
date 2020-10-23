@@ -58,7 +58,13 @@
         {{ end }}
         {{ end }}
 
-
+        {{ if .Site.Params.graphbutton }}
+        <a class="navbar-item" id="showModal">
+          <span class="icon">
+            <i class="fas fa-project-diagram"></i>
+          </span>
+        </a>
+        {{end}}
         {{ if .Site.Params.github}}
         <a class="navbar-item" target="blank" href="https://github.com/{{.Site.Params.github}}">
           <span class="icon">
