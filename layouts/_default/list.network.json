@@ -19,7 +19,8 @@
     "metric": "eBGP",
 	"nodes": [{{ range $i, $node := $nodes }}
 		{{ if $i }}, {{ end }}{
-			"id": "{{ $node }}"
+			"id": "{{ $node }}",
+			"label": {{ $nodepage := $.Site.GetPage (printf "/%s" $node) }} {{ if $nodepage }}"{{ $nodepage.Title }}" {{ else }} "" {{ end }}
 		}
 	{{ end }}],
 	"links": [
