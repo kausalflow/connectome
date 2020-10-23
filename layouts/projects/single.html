@@ -44,7 +44,7 @@
                     <div class="is-divider" data-content="PAGES"></div>
                     <div class="content blog-post section" itemprop="articleBody">
                         {{ range .Params.sections }}
-                        <h3>{{ ($.GetPage .).Title }} ({{ len (where $.Site.Pages "Section" .) }} pages)</h3>
+                        <h3>{{ ($.GetPage (printf "/%s" .)).Title }} ({{ len (where $.Site.Pages "Section" .) }} pages)</h3>
                         <ul>
                             {{ $sec := where $.Site.Pages "Section" . }}
                                 {{ range $sec.GroupBy "Dir" }}
@@ -89,7 +89,7 @@
                             <div class="media-content">
                                 <div class="content">
                                     {{ range $note := .Params.sections }}
-                                    {{ $note := $.GetPage . }}
+                                    {{ $note := $.GetPage (printf "/%s" .) }}
                                     <p>
                                            <a href="{{ $note.Permalink }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $note.Title }} </a>
                                         </p>
