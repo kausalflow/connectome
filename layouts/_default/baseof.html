@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="https://jenil.github.io/bulmaswatch/{{.Site.Params.theme_variant}}/bulmaswatch.min.css">
   {{else}}
   {{end}}
+  <link rel="stylesheet" href="/css/custom.css">
   {{ block "style" .}} {{end}} {{ $lazylist := findRE "class=\".*?\\blazyload\\b.*?\"|class=lazyload\b" .Content }}
   <!-- http://regexr.com/3f9d1 -->
   {{ if ge (len $lazylist) 1 }}
