@@ -2,7 +2,9 @@
 
 A [Hugo](http://gohugo.io/) theme for online community notes with backlinks.
 
+![](images/note-graph.png)
 ![](images/screenshot.png)
+
 
 ## How to Use
 
