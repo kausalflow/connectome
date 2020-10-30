@@ -1,0 +1,26 @@
+{{ $id := (.Get "id") }}
+<div class="figure">
+    <div class="figure-plot" id="{{ $id }}">
+        Please specify a param called id to be the id of the div
+    </div>
+    <script type="text/javascript">
+      function draw(){
+        test = document.getElementById("{{ $id }}");
+        if (test == null){
+            console.log("Please define the id of the plot")
+            return
+        }
+
+        fig = null
+        {{ .Inner | safeJS }}
+
+        if (!fig) {
+            test.innerText = "Please specify fig Param"
+            return
+        }
+        test.innerText = null
+        Plotly.plot(test ,fig);
+      }
+      draw()
+    </script>
+</div>

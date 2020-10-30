@@ -10,12 +10,10 @@
 {{ end }}
 
 {{ define "header"}} {{ partial "menu" .}}
-
+{{ partial "extensions/plotlyjs.html" . }}
 {{ end }}
 
 {{ define "main" }}
-
-
 
 <div class="container" itemscope itemtype="http://schema.org/BlogPosting">
     {{ template "_internal/schema.html" . }}
@@ -45,7 +43,7 @@
                         <div class="is-divider" data-content="NOTIFICATION"></div>
                         <div class="notification is-warning is-light">
                             <p>
-                                {{ .Params.notify }}
+                                {{ .Params.notify | markdownify }}
                             </p>
                         </div>
                         {{ end }}
@@ -54,7 +52,7 @@
                         <div class="is-divider" data-content="SUMMARY"></div>
                         <div class="notification is-light">
                             <p>
-                                {{ .Params.summary }}
+                                {{ .Params.summary | markdownify }}
                             </p>
                         </div>
                         {{ end }}
@@ -225,8 +223,8 @@
 {{ end }}
 
 {{ define "footer"}}
+{{ partial "extensions/plotly.html" . }}
 {{ partial "footer.html" .}}
-
 
 <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
 {{ end }}

@@ -46,7 +46,7 @@
                         <div class="is-divider" data-content="NOTIFICATION"></div>
                         <div class="notification is-warning is-light">
                             <p>
-                                {{ .Params.notify }}
+                                {{ .Params.notify | markdownify }}
                             </p>
                         </div>
                         {{ end }}
@@ -55,7 +55,7 @@
                         <div class="is-divider" data-content="SUMMARY"></div>
                         <div class="notification is-light">
                             <p>
-                                {{ .Params.summary }}
+                                {{ .Params.summary | markdownify }}
                             </p>
                         </div>
                         {{ end }}

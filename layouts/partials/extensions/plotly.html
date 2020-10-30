@@ -1,0 +1,10 @@
+{{ if .Params.charts }}
+{{ range .Params.charts }}
+<script type="text/javascript">
+    var data = {{ .data }};
+    var layout = {{ .layout }}
+    Plotly.newPlot('{{ .target }}', data, Object.assign({}, layout, {displaylogo: false}));
+</script>
+{{ end }}
+{{ end }}
+
