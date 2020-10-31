@@ -86,7 +86,11 @@
                             <div class="message-body">
                                 <ol>
                                     {{ range $ref := .Params.references }}
-                                    <li><a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
+                                    <li>{{ if $ref.key }}
+                                        <a name="{{ $ref.key }}" href="#{{ $ref.key }}" style="text-decoration:none;">
+                                          <span class="tag is-link is-light">{{$ref.key}}</span>
+                                        </a>
+                                        {{ end }}<a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
                                     {{ end }}
                                 </ol>
                             </div>
