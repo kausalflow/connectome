@@ -27,10 +27,10 @@
     <section class="hero is-default is-bold">
       <div class="hero-body">
         <div class="container">
-          {{ range $key, $value := .Data.Terms }}
-                <span class="tag is-light"><i class="far fa-bookmark" style="margin-right: 0.5em;"></i>
-                    <a href="{{ $key | urlize }}" itemprop="headline">{{ $key }}</a> ({{ len $value }})
-                </span>
+          {{ range .Data.Terms.ByCount }}
+          <span class="tag is-light is-medium" style="margin: 0.5em 0.5em 0.5em 0.5em;"><i class="far fa-bookmark" style="margin-right: 0.5em;"></i>
+              <a href="{{ .Page.Permalink }}" itemprop="headline">{{ .Page.Title }}</a>  ({{ .Count }})
+          </span>
           {{ end }}
         </div>
       </div>
