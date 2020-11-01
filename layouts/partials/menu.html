@@ -15,17 +15,27 @@
 
 
       <div class="navbar-item has-dropdown is-hoverable">
-        <a href="/projects" class="navbar-link">
-          {{ .Site.Params.project_indicator }}
+        <a href="/{{.Site.Params.projects.section}}" class="navbar-link">
+          {{ .Site.Params.projects.indicator }}
         </a>
         <div class="navbar-dropdown">
-          {{ range ($.Site.Pages.ByParam "type") }}
-           {{ if and (eq .Page.Params.type "project") (eq .Kind "section") }}
-              <a href="{{ .Page.Permalink }}" class="navbar-item">
-                {{ .Page.Title }}
-              </a>
+          {{ $list_sections := slice }}
+          {{ range (where $.Site.RegularPages.ByTitle "Section" $.Site.Params.projects.section ) }}
+          {{ if .Params.sections }}
+            {{ range .Params.sections }}
+              {{ $list_sections = $list_sections | append . }}
             {{ end }}
           {{ end }}
+          {{ end }}
+
+          {{ range $.Site.Sections.ByTitle }}
+              {{ if and (or (in $list_sections .Section) (in $.Site.Params.projects.add_section_in_projects_menu .Section ) ) (eq .Kind "section") }}
+                <a href="{{ .Page.Permalink }}" class="navbar-item">
+                  {{ .Page.Title }}
+                </a>
+              {{ end }}
+          {{ end }}
+
         </div>
       </div>
 

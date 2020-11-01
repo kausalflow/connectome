@@ -20,7 +20,10 @@
 	"nodes": [{{ range $i, $node := $nodes }}
 		{{ if $i }}, {{ end }}{
 			"id": "{{ $node }}",
-			"label": {{ $nodepage := $.Site.GetPage (printf "/%s" $node) }} {{ if $nodepage }}"{{ $nodepage.Title }}" {{ else }} "" {{ end }}
+			"label": {{ $nodepage := $.Site.GetPage (printf "/%s" $node) }} {{ if $nodepage }}"{{ $nodepage.Title }}" {{ else }} "" {{ end }},
+			"properties":{
+				"link": {{ $nodepage := $.Site.GetPage (printf "/%s" $node) }} {{ if $nodepage }}"{{ $nodepage.Permalink }}" {{ else }} "" {{ end }}
+			}
 		}
 	{{ end }}],
 	"links": [

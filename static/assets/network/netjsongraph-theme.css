@@ -11,10 +11,10 @@
     max-width: 400px;
     min-width: 200px;
     padding: 0 15px;
-    right: 10px;
+    right: 40%;
     top: 10px;
     width: auto;
-    visibility:hidden;
+    /* visibility:hidden; */
 }
 
 .njg-metadata{
@@ -74,7 +74,7 @@
 }
 
 .njg-overlay{
-    display: none;
+    /* display: none; */
     position: absolute;
     z-index: 11;
 }
