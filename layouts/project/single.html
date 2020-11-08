@@ -179,7 +179,7 @@
                                             <ul>
                                             {{ range . }}
                                             {{ with $.Site.GetPage . }}
-                                                <li class="has-text-weight-bold"><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                                {{ partial "network/linkcard" . }}
                                             {{ end }}
                                             {{ end }}
                                             </ul>

@@ -1,0 +1,14 @@
+<a class="box" href="{{ .Permalink }}">
+    <div class="media-content">
+        <div class="content">
+            <h6>{{ .Title }}</h6>
+            <p>
+                {{ if .Params.description }}
+                {{ .Params.description | safeHTML | truncate 100 }}
+                {{ else }}
+                {{ .Summary | safeHTML | truncate 100 }}
+                {{ end }}
+            </p>
+        </div>
+    </div>
+</a>
