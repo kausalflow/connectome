@@ -1,0 +1,33 @@
+<div class="card" style="min-height: 15em;">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-content">
+                <a href="{{ .Permalink }}" itemprop="headline">
+                    <h2 class="title is-4">{{if .Params.weight }} <sup>{{.Params.weight}}</sup> {{end}}{{.Title}}</h2>
+                </a>
+            </div>
+        </div>
+
+        <div class="content">
+            {{if .Params.tags }}
+            <div class="tags is-small">
+                {{ range $tag := .Params.tags }}
+                <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}" style="margin-right: 0.5em;"><span class="tag is-warning is-small is-light">#{{$tag}}</span></a>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            {{ if .Description }}
+            <p itemprop="about">{{ .Description }}</p>
+            {{ else }}
+            <!-- <h2 class="content" itemprop="description"> -->
+            <p itemprop="about">
+                {{ .Summary }}
+            </p>
+            <!-- </h2> -->
+            {{ end }}
+
+        </div>
+    </div>
+
+</div>

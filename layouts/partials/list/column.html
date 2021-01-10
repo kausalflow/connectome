@@ -1,0 +1,95 @@
+<div class="column is-half is-multiline" itemscope itemtype="http://schema.org/CreativeWork">
+    <h1 class="blog-timestamp">
+        {{ if eq .Type "post" }}
+        <h1 class="">
+            {{ partial "post/meta" . }}
+        </h1>
+        {{ end }}
+    </h1>
+    <h1 class="title">
+        {{if .Params.weight }} <sup>{{.Params.weight}}</sup> {{end}}<a href="{{ .Permalink }}"
+            itemprop="headline"> {{ .Title }}</a>
+    </h1>
+
+
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;"><i class="far fa-calendar-alt"></i>
+        {{ if .PublishDate.IsZero }}
+        Published: <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">{{ .Date.Format "2006-01-02" }}</time>
+        {{ else if lt .PublishDate .Lastmod }}
+        Modified: <time datetime="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+        {{ else }}
+        Published: <time datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" }}">{{ .PublishDate.Format "2006-01-02" }}</time>
+        {{ end }}
+        </span>
+    </div>
+
+    {{ if .Params.category }}
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;"><i class="far fa-folder" aria-hidden="true"></i> Category: { {{ delimit .Params.category " } { " }} }
+        </span>
+    </div>
+    {{ end }}
+
+    {{ if .Params.tags }}
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;"><i class="fa fa-hashtag" aria-hidden="true"></i> Tags: <div
+                class="tags is-small" style="display: inline;">
+                {{ range $tag := .Params.tags }}
+                <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}" style="margin-right: 0.5em;"><span
+                        class="tag is-warning is-small is-light">#{{$tag}}</span></a>
+                {{ end }}
+            </div>
+        </span>
+    </div>
+    {{ end }}
+
+
+    {{ if .Params.status }}
+    {{ $done_texts := slice "Done" "done" "Finished" "finished" "100%"  }}
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;"><i class="fas fa-tasks" aria-hidden="true"></i> Status:
+            {{ if in $done_texts .Params.status }}
+            <i class="fas fa-check has-text-success"></i>
+            {{ else }}
+            {{ .Params.status }}
+            {{ end }}
+        </span>
+    </div>
+    {{ end }}
+
+    {{ if .Params.references }}
+    <div style="margin-left:2em;"><span style="display:block;font-size:90%;">
+            <i class="fa fa-paperclip" aria-hidden="true"></i> References:</span>
+        {{ range .Params.references }}
+        {{ if .link }}
+        <span style="display:block;font-size:90%;padding-left:1em;"> - <a href="{{ .link }}">{{ .name }}</a></span>
+        {{ else }}
+        <span style="display:block;font-size:90%;padding-left:1em;"> - {{ .name }}</span>
+        {{ end }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+    {{ if .Params.description }}
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;">
+            <i class="far fa-star"></i> Summary: {{ .Params.description }}</span>
+    </div>
+    {{ else }}
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;">
+            <i class="far fa-star"></i> Summary: {{ .Summary }}</span>
+    </div>
+    {{ end }}
+
+    {{ with .CurrentSection.RegularPagesRecursive }}
+    <div style="margin-left:2em;">
+        <span style="display:block;font-size:90%;">
+            <i class="far fa-list-alt"></i> Pages: {{ len . }}</span>
+    </div>
+    {{ end }}
+
+</div>
+
+<div class="is-divider" style="border-top:.05rem dashed #dbdbdb !important; margin: 1em 0 1em 0!important;"></div>
