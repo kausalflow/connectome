@@ -1,0 +1,48 @@
+{{ define "header" }} {{ partial "menu" . }} {{ end }}
+
+{{ define "main" }}
+
+<!-- Hero content: will be in the middle -->
+<section>
+<div class="hero is-primary is-medium">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">
+                {{ .Page.Title }}
+            </h1>
+            <h2 class="subtitle is-3">
+                {{ .Page.Description }}
+            </h2>
+            {{ $projectpage := (printf "/%s/%s" .Site.Params.projects.section .Section) }}
+            {{ with .Site.GetPage $projectpage }}
+            <a href="{{ .Permalink }}" style="margin-right: 0.5em;"><span class="tag is-warning is-large is-light"><i class="far fa-list-alt"></i></span></a>
+            {{ end }}
+          </div>
+    </div>
+</div>
+
+</section>
+
+<div class="columns is-fullheight">
+    <div class="column">
+        <section class="hero is-default is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    {{ partial "network/graph" }}
+                    {{ partial "list-pages-by-cards" . }}
+                </div>
+                <br>
+                <div class="container">
+                    {{ if gt .Paginator.TotalPages 1 }}
+                    {{ partial "pagination" . }}
+                    {{ end }}
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+{{ end }}
+{{ define "footer" }}
+    {{ partial "footer" . }}
+{{ end }}

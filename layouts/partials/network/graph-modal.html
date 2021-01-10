@@ -1,6 +1,10 @@
 
-<div>
-  <div id="network-graph" style="margin-left: calc(50% - 45vw);width: 90vw;height: 90vh;"></div>
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <div id="network-graph" style="margin-left: calc(50% - 50vw);width: 100vw;height: 100vh;"></div>
+    </div>
+    <button class="modal-close" style="color: black;">Close</button>
 </div>
 
 
@@ -13,7 +17,7 @@
 <script>
     d3.netJsonGraph("/network.json", {
         el: "#network-graph",
-        metadata: false,
+        metadata: true,
         linkDistance: 100,
         linkStrength: 1,
         charge: -1000,
@@ -70,3 +74,12 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$("#showModal").click(function() {
+    $(".modal").addClass("is-active");
+  });
+
+  $(".modal-close").click(function() {
+     $(".modal").removeClass("is-active");
+  });
+</script>

@@ -63,7 +63,7 @@
         {{ if .Site.Menus.topright }}
         {{ range .Site.Menus.topright }}
         <a class="navbar-item" target="blank" href="{{ .URL }}">
-            {{ .Name }}
+          {{ with .Pre }} {{ . }} {{ end }}  {{ with .Name }} {{ . }} {{ end }}
         </a>
         {{ end }}
         {{ end }}
