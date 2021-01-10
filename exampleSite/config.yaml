@@ -20,6 +20,16 @@ menu:
       weight: 1
       identifier: posts
       url: /posts/
+    - name:
+      weight: 2
+      identifier: tags
+      url: /tags/
+      pre: '<i class="fas fa-tags"></i>'
+    - name:
+      weight: 3
+      identifier: graph
+      url: /graph
+      pre: '<i class="fas fa-project-diagram"></i>'
 
 taxonomies:
     tag: "tags"
@@ -30,7 +40,9 @@ params:
   description: "Connectume is a hugo theme for online communities such as reading clubs."
   favicon: "/logos/logo-square.png" # Path to favicon
   logo: "/logos/logo-square.png" # logo of the website
-  project_indicator: "Notebooks" # This is the menu item for the list of projects and the title of project list page
+  projects: # This is the menu item for the list of projects and the title of project list page
+    section: projects # The section where we list all the projects
+    indicator: "Notebooks"
   splash: "/img/splash/undraw_to_the_moon_v1mv.svg" # This is the splash image for the landing page. The image is shown in the top left of the page.
   powered_by: "love" # Optional, controls name display on footer
   hide_author: false # Optional, set true to hide author name on posts
