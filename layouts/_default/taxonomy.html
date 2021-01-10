@@ -4,7 +4,7 @@
     <div class="hero-body">
         <div class="container">
             <div class="container has-text-centered">
-                <i class="fas fa-tags" style="margin-right: 0.5em;"></i>
+                <a href="{{ .Parent.Permalink }}"><i class="fas fa-tags" style="margin-right: 0.5em;"></i></a>
                 <h1 class="title is-2 has-text-centered">{{ .Title }}</h1>
             </div>
         </div>
@@ -18,9 +18,11 @@
   <main class="container" aria-label="Content">
 
     <div class="columns is-multiline">
+
+
         {{ range .Paginator.Pages }}
         <div class="column is-one-third">
-            {{ partial "list/card-simple.html" . }}
+            {{ partial "list/card-wiki" . }}
         </div>
         {{ end }}
 
@@ -30,9 +32,11 @@
     <div class="container">
         <div class="columns">
             <div class="column" style="margin-bottom: 2em;padding-bottom:1em;">
-        {{ partial "pagination" . }}
-    </div>
-    </div>
+                {{ if gt .Paginator.TotalPages 1 }}
+                    {{ partial "pagination" . }}
+                {{ end }}
+            </div>
+        </div>
     </div>
 </main>
 {{ end }}

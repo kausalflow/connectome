@@ -33,7 +33,9 @@
                 </div>
                 <br>
                 <div class="container">
+                    {{ if gt .Paginator.TotalPages 1 }}
                     {{ partial "pagination" . }}
+                    {{ end }}
                 </div>
             </div>
         </section>

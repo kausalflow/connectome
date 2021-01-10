@@ -18,11 +18,10 @@
             {{ end }}
 
             {{ if .Description }}
-            <p itemprop="about">{{ .Description }}</p>
+            <p itemprop="about">{{ .Description | truncate 300 }}</p>
             {{ else }}
-            <!-- <h2 class="content" itemprop="description"> -->
             <p itemprop="about">
-                {{ .Summary }}
+                {{ .Summary | truncate 100 }}
             </p>
             <!-- </h2> -->
             {{ end }}
