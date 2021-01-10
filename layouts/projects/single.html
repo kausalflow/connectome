@@ -42,32 +42,7 @@
 
                     {{ if .Params.sections }}
                     <div class="is-divider" data-content="PAGES"></div>
-                    <div class="content blog-post section" itemprop="articleBody">
-                        {{ range .Params.sections }}
-                        <h3>{{ ($.GetPage (printf "/%s" .)).Title }} ({{ len (where $.Site.Pages "Section" .) }} pages)</h3>
-                        <ul>
-                            {{ $sec := where $.Site.Pages "Section" . }}
-                                {{ range $sec.GroupBy "Dir" }}
-                                    <li>
-                                        {{ range .Pages.ByParam "Parent" }}
-                                            {{ if eq .Kind "section" }}
-                                                <a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
-                                            {{ end }}
-                                        {{ end }}
-                                        <ul>
-                                            {{ range .Pages.ByParam "Parent" }}
-                                                {{ if ne .Kind "section" }}
-                                                <li>
-                                                    <a href="{{ .Permalink }}" itemprop="headline">{{ .Title }}</a>
-                                                </li>
-                                                {{ end }}
-                                            {{ end }}
-                                        </ul>
-                                    </li>
-                                {{ end }}
-                        </ul>
-                        {{ end }}
-                    </div>
+                    {{ partial "list/tree" . }}
                     {{ end }}
 
                     <!-- <p>{{ partial "post/meta" . }}</p> -->

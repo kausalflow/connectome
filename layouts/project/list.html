@@ -13,6 +13,10 @@
             <h2 class="subtitle is-3">
                 {{ .Page.Description }}
             </h2>
+            {{ $projectpage := (printf "/%s/%s" .Site.Params.projects.section .Section) }}
+            {{ with .Site.GetPage $projectpage }}
+            <a href="{{ .Permalink }}" style="margin-right: 0.5em;"><span class="tag is-warning is-large is-light"><i class="far fa-list-alt"></i></span></a>
+            {{ end }}
           </div>
     </div>
 </div>
@@ -25,7 +29,7 @@
             <div class="hero-body">
                 <div class="container">
                     {{ partial "breadcrumb" . }}
-                    {{ range (.Paginate ( .Pages.ByWeight.Reverse )).Pages }} {{ partial "page-summary" . }} {{ end }}
+                    {{ partial "list-pages-by-cards" . }}
                 </div>
                 <br>
                 <div class="container">
