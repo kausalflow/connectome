@@ -1,12 +1,17 @@
 {{ $nodes := slice }}
+{{ $stash := slice }}
 {{ range $taxonomy_term, $taxonomy := $.Site.Taxonomies }}
 	{{ if eq $taxonomy_term "links" }}
 		{{ with $.Site.GetPage (printf "/%s" $taxonomy_term) }}
 			{{ range $key, $value := $taxonomy }}
-				{{ $nodes = $nodes | append $key }}
+				{{ if not (in $nodes $key)}}
+					{{ $nodes = $nodes | append $key }}
 					{{ range $value.Pages }}
-						{{ $nodes = $nodes | append .File }}
+						{{ if not (in $nodes .File)}}
+							{{ $nodes = $nodes | append .File }}
+						{{ end }}
 					{{ end }}
+				{{ end }}
 			{{ end }}
 		{{ end }}
 	{{ end }}
@@ -17,7 +22,7 @@
     "version": "",
     "revision": null,
     "metric": "eBGP",
-	"nodes": [{{ range $i, $node := $nodes }}
+	"nodes": [{{ range $i, $node := $nodes }} {{ if not (in (delimit $stash ',') $node) }}
 		{{ if $i }}, {{ end }}{
 			"id": "{{ $node }}",
 			"label": {{ $nodepage := $.Site.GetPage (printf "/%s" $node) }} {{ if $nodepage }}"{{ $nodepage.Title }}" {{ else }} "" {{ end }},
@@ -25,7 +30,7 @@
 				"link": {{ $nodepage := $.Site.GetPage (printf "/%s" $node) }} {{ if $nodepage }}"{{ $nodepage.Permalink }}" {{ else }} "" {{ end }}
 			}
 		}
-	{{ end }}],
+		{{ $stash =  $stash | append $node }}{{ end }}{{ end }}],
 	"links": [
 		{{ range $taxonomy_term, $taxonomy := $.Site.Taxonomies }}
 			{{ if eq $taxonomy_term "links" }}
