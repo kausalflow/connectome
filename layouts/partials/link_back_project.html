@@ -1,0 +1,14 @@
+{{ if .Page.Params.project }}
+{{ with .Site.GetPage (.Page.Params.project) }}
+<h3 class="title is-5" style="margin-top: 2em;">
+    <a href="{{ .Permalink }}" class="has-text-light"><i class="fas fa-link"></i> Introduction: {{ .Title }} </a>
+</h3>
+{{ end }}
+{{ else }}
+{{ $projectpage := (printf "/%s/%s" .Site.Params.projects.section .Section) }}
+{{ with .Site.GetPage $projectpage }}
+<h3 class="title is-5" style="margin-top: 2em;">
+    <a href="{{ .Permalink }}" class="has-text-light"><i class="fas fa-link"></i> Introduction: {{ .Title }} </a>
+</h3>
+{{ end }}
+{{ end }}

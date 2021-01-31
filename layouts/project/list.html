@@ -6,17 +6,15 @@
 <section>
 <div class="hero is-primary is-medium">
     <div class="hero-body">
-        <div class="container has-text-centered">
+        <div class="container has-text-left">
             <h1 class="title is-1">
                 {{ .Page.Title }}
             </h1>
             <h2 class="subtitle is-3">
                 {{ .Page.Description }}
             </h2>
-            {{ $projectpage := (printf "/%s/%s" .Site.Params.projects.section .Section) }}
-            {{ with .Site.GetPage $projectpage }}
-            <a href="{{ .Permalink }}" style="margin-right: 0.5em;"><span class="tag is-warning is-large is-light"><i class="far fa-list-alt"></i></span></a>
-            {{ end }}
+            {{ partial "link_back_project" . }}
+
           </div>
     </div>
 </div>
