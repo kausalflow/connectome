@@ -6,11 +6,10 @@
 <link rel="stylesheet" href="/css/custom.css">
 
 <link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
-
+{{ partial "extensions/plotlyjs.html" . }}
 {{ end }}
 
 {{ define "header"}} {{ partial "menu" .}}
-{{ partial "extensions/plotlyjs.html" . }}
 {{ end }}
 
 {{ define "main" }}
