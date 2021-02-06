@@ -9,11 +9,14 @@
 /* preview--card text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
+  max-height: 400px;
+  overflow: hidden;
   background-color: antiquewhite;
   color: #555;
   text-align: left;
-  padding: 5px 0;
+  padding: 5px 5px 5px 5px;
   border-radius: 6px;
   border-color: firebrick;
 
@@ -21,9 +24,9 @@
   position: absolute;
   z-index: 1;
   /* left: 0 ; right: 0; bottom: 0; */
-  bottom: 125%;
+  top: 125%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -150px;
 
   /* Fade in tooltip */
   opacity: 0;
@@ -44,6 +47,7 @@
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
+  display: block;
   visibility: visible;
   opacity: 1;
 }
