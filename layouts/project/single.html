@@ -154,19 +154,7 @@
 
                         <div class="is-divider" data-content="CONNECTUME"></div>
                         {{ $fileReference := lower (replace $.File "\\" "/") }}
-                        <div class="box is-size-7">
-                            <article class="media">
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-                                            <strong>Current Ref: </strong><br>
-                                            <ul><li style="list-style: none;"><span class="tag is-primary is-light has-text-weight-bold">{{ $fileReference }}</span></li>
-                                            </ul>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
+                        {{ partial "network/currentref" . }}
 
                         {{ with .Params.links }}
                         <div class="box is-size-7">
