@@ -16,8 +16,15 @@
         style="position:fixed;bottom: 60px;right: 10px;border-radius: 9999px;width:35px;height:35px;">
         <i class="far fa-comments"></i>
     </a>
-    <style>applause-button .count-container {top: -60%!important;}</style>
-    <applause-button color="red" multiclap="true" style="width: 35px; height: 35px;position:fixed;bottom: 100px;right: 10px;"/>
+    <a class="button is-primary is-light is-outlined"
+    data-lyket-type="{{ $.Site.Params.lyket.lyket_type}}"
+    data-lyket-id='{{ $File.BaseFileName }}'
+    data-lyket-namespace="{{ $.Site.Title }}"
+    data-lyket-template="reddit"
+    style="width: 35px; height: 35px;position:fixed;bottom: 120px;right: 10px;border-radius: 9999px;"
+    ></a>
+    <!-- <style>applause-button .count-container {top: -60%!important;}</style>
+    <applause-button color="red" multiclap="true" style="width: 35px; height: 35px;position:fixed;bottom: 100px;right: 10px;"/> -->
 
 
 </div>

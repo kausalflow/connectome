@@ -70,6 +70,9 @@
   <!-- {{ partial "network/graph" }} -->
 
   <script async type="text/javascript" src="/js/bulma.js"></script>
+  {{ with $.Site.Params.lyket.api_key }}
+  <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey={{ . }}&disableSessionId"></script>
+  {{ end }}
 
 
 </body>

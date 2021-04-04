@@ -61,21 +61,10 @@
                     <div class="column is-4">
                         {{ partial "toc" .}}
 
-                        {{ if .Params.author }}
-                        <div class="is-divider" data-content="AUTHORS"></div>
-                        {{ $author := .Params.author }}
-                        <div class="box is-size-7">
-                            <article class="media">
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-                                            <strong>{{ $author }}</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        {{end}}
+
+
+                        <div class="is-divider" data-content="Cite Me"></div>
+                        {{ partial "profile/citethis.html"  . }}
 
                         {{ if .Params.references }}
                         <div class="is-divider" data-content="REFERENCES"></div>

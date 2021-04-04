@@ -1,0 +1,15 @@
+{{ $fileReference := lower (replace $.File "\\" "/") }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content" style="width: 100%;">
+            <div class="content">
+                <p>
+                    <strong>Current Ref: </strong><br>
+                    <ul><li style="list-style: none;">
+                        <div class="" style="overflow-x: scroll;">{{ $fileReference }}</div></li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </article>
+</div>

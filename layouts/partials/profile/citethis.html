@@ -1,0 +1,18 @@
+
+{{ $year := .PublishDate.Format "2006" }}
+{{ $date := .PublishDate.Format "01 April"}}
+<div class="box is-size-7 has-text-white has-background-black">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    {{ if .Params.authors }}
+                    {{ $authors := .Params.authors }}{{ delimit $authors ", " }} {{else}}
+                    {{ $.Site.Params.author }}
+                    {{ end }} ({{ $year }}). '{{ .Title }}', {{ $.Site.Title }}, {{ $date }}. Available at: {{ .Permalink }}.
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
+

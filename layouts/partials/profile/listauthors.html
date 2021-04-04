@@ -1,0 +1,12 @@
+{{ $authors := .Params.authors }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>Authors: </strong> {{ delimit $authors ", " }}
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
