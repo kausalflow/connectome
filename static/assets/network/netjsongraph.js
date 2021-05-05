@@ -273,7 +273,7 @@
               "<p><b>source</b>: " + (l.source.label || l.source.id) + "</p>";
           html +=
             "<p><b>target</b>: " + (l.target.label || l.target.id) + "</p>";
-          html += "<p><b>cost</b>: " + l.cost + "</p>";
+
           if (l.properties) {
             for (var key in l.properties) {
               if (!l.properties.hasOwnProperty(key)) {

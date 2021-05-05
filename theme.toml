@@ -11,7 +11,7 @@ features = [
   "articles with backlinks",
   "multi-notebooks"
 ]
-min_version = 0.59.0
+min_version = "0.59.0"
 
 [author]
   name = "kausalflow"
