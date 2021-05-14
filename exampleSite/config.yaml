@@ -1,4 +1,4 @@
-baseurl: "https://example.com" # Controls base URL
+baseurl: "/" # Controls base URL
 languageCode: "en-US" # Controls html lang attribute
 title: "Connectome" # Homepage title and page title suffix
 paginate: 12 # Number of posts to show before paginating
@@ -55,11 +55,18 @@ params:
     repo: "kausalflow/hugo-connectome-theme-demo"  # repo="[ENTER REPO HERE]", the comments will appear as issues in this repository on github.
     term: pathname               # issue-term="pathname"
     theme: github-light          # theme="github-light"
-
+  lyket:
+    api_key: "4df20b7e32f469fed5dc53f5ab39d8"
+    lyket_type: "updown"
 
 outputFormats:
   data:
     baseName: "data"
+    isPlainText: true
+    mediaType: "application/json"
+    notAlternative: true
+  network:
+    baseName: "network"
     isPlainText: true
     mediaType: "application/json"
     notAlternative: true
@@ -69,3 +76,4 @@ outputs:
     - "HTML"
     - "RSS"
     - "data"
+    - "network"

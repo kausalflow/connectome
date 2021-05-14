@@ -2,7 +2,8 @@
 layout: notes
 title: "Spiking Neuron Models Reading Club"
 date: 2016-03-18
-author: ErbB4
+authors:
+  - ErbB4
 summary: Introduction to reading club of spiking neuron models, schedule, and notice
 type: project
 links:

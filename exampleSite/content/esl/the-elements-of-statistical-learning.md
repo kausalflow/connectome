@@ -1,7 +1,8 @@
 ---
 title: "The Elements of Statistical Learning"
 date: 2016-03-18
-author: OctoMiao
+authors:
+  - OctoMiao
 summary: Introduction to the reading club of The Elements of Statistical Learning, schedule, and notice
 type: project
 weight: 1

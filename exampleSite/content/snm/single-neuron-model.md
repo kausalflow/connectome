@@ -2,7 +2,8 @@
 layout: notes
 title: "Single Neuron Models"
 date: 2016-03-18
-author: ErbB4
+authors:
+  - ErbB4
 summary: Neuron biological properties
 type: project
 links:

@@ -1,7 +1,8 @@
 ---
 title: "Guass-Markov Theorem and Multiple Regression"
 date: 2016-09-01
-author: OctoMiao
+authors:
+  - OctoMiao
 summary: Gauss-Markov Theorem
 type: project
 tags:
