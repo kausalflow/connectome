@@ -1,0 +1,13 @@
+{{ $key := .Get "key" }}
+{{ $refs := .Page.Params.references }}
+
+{{ range $refs }}
+    {{ if eq $key .key }}
+        {{ if .key }}
+            <a name="{{ .key }}" href="#{{ .key }}" style="text-decoration:none;">
+                        <span class="tag is-link is-light">{{.key}}</span>
+            </a>
+        {{ end }}
+        <a href="{{ .link }}" style="text-decoration:none;">{{ .name }}</a>
+    {{ end }}
+{{ end }}
