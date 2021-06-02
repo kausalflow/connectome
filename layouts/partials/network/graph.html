@@ -22,7 +22,14 @@
         linkClassProperty: "type",
         nodeClassProperty: "style",
         labelDy: "-1.8em",
+        onInit: function(n) {
+          d3.select(".njg-overlay").style("visibility", "hidden")
+        },
+        onLoad: function(n) {
+          d3.select(".njg-overlay").style("visibility", "hidden")
+        },
         onClickNode: function(n) {
+          d3.select(".njg-overlay").style("visibility", "visible")
           var overlay = d3.select(".njg-overlay"),
             overlayInner = d3.select(".njg-overlay > .njg-inner"),
             html = "<p><b>id</b>: " + n.id + "</p>";
