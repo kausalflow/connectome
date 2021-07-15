@@ -10,6 +10,7 @@
         padding-left: 1em;
     }
 </style>
+{{ if gt (len .TableOfContents) 32}}
 <div class="is-divider" data-content="ToC"></div>
 <div class="box is-size-7">
     <article class="media">
@@ -27,6 +28,7 @@
         </div>
     </article>
 </div>
+{{ end }}
 <script>
     const el = document.querySelector('details summary')
     el.onclick = () => {
