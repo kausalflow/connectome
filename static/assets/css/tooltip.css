@@ -10,15 +10,16 @@
 .tooltip .tooltiptext {
   visibility: hidden;
   min-width: 300px;
-  max-width: 300px;
-  max-height: 400px;
+  max-width: 400px;
+  max-height: 500px;
   overflow: hidden;
-  background-color: antiquewhite;
-  color: #555;
+  background-color: white;
+  color: black;
   text-align: left;
-  padding: 5px 5px 5px 5px;
   border-radius: 6px;
-  border-color: firebrick;
+  border-color: ;
+  border: 1px solid black;
+  line-height: 1.2;
 
   /* Position the tooltip text */
   position: absolute;
@@ -31,6 +32,20 @@
   /* Fade in tooltip */
   opacity: 0;
   transition: opacity 0.3s;
+}
+
+.tooltiptext > .tooltip_title {
+  font-size: 80%;
+  background-color: black;
+  color: white;
+  display: block;
+  padding: 7px 10px 7px 10px;
+}
+
+.tooltip_content {
+  font-size: 75%;
+  display: block;
+  padding: 5px 10px 5px 10px;
 }
 
 /* Tooltip arrow */

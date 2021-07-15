@@ -11,14 +11,13 @@
         {{ end }}
     </a>
     <span class="tooltiptext">
+        {{ if .Params.title }}
+        <span class="tooltip_title">{{ .Title | truncate 500 }}</span>
+        {{ end }}
         {{ if .Params.description }}
-        <span style="font-size:90%;">
-            {{ .Params.description | truncate 500 }}
-        </span>
+        <span class="tooltip_content">{{ .Params.description | truncate 500 }}</span>
         {{ else }}
-        <span style="font-size:90%;">
-            {{ .Summary | truncate 500 }}
-        </span>
+        <span class="tooltip_content">{{ .Summary | truncate 500 }}</span>
         {{ end }}
     </span>
 </span>
