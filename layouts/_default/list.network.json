@@ -16,12 +16,15 @@
 		{{ end }}
 	{{ end }}
 {{ end }}
+{{range .Site.RegularPages}}
+	{{ if not (in $nodes .File)}}
+		{{ $nodes = $nodes | append .File }}
+	{{ end }}
+{{end}}
 {
 	"type": "NetworkGraph",
-    "protocol": "BGP",
     "version": "",
     "revision": null,
-    "metric": "eBGP",
 	"nodes": [{{ range $i, $node := $nodes }} {{ if not (in (delimit $stash ',') $node) }}
 		{{ if $i }}, {{ end }}{
 			"id": "{{ $node }}",
