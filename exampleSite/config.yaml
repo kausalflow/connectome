@@ -51,10 +51,17 @@ params:
   twitter: "" # Optional, to display link to twitter account in menu bar
   author: "KausalFlow" # Default author name and the name to be shown in the footer
   editURL: "https://github.com/kausalflow/hugo-connectome-theme-demo/edit/master/content/"
-  utterances: # comment system: utterances (https://utteranc.es/) parameters
-    repo: "kausalflow/hugo-connectome-theme-demo"  # repo="[ENTER REPO HERE]", the comments will appear as issues in this repository on github.
-    term: pathname               # issue-term="pathname"
-    theme: github-light          # theme="github-light"
+  comments:
+    use: "utterances"
+    giscus:
+      repo: ""
+      repo_id: ""
+      category: ""
+      category_id: ""
+    utterances: # comment system: utterances (https://utteranc.es/) parameters
+      repo: "kausalflow/hugo-connectome-theme-demo"  # repo="[ENTER REPO HERE]", the comments will appear as issues in this repository on github.
+      term: pathname               # issue-term="pathname"
+      theme: github-light          # theme="github-light"
   lyket:
     api_key: "4df20b7e32f469fed5dc53f5ab39d8"
     lyket_type: "updown"

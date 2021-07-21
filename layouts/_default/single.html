@@ -188,7 +188,11 @@
                         {{ end }}
                         {{ end }}
 
-                        {{ partial "utterances-comments.html" . }}
+                        {{ if eq $.Site.Params.comments.use "giscus" }}
+                            {{ partial "comments/giscus-comments" . }}
+                        {{ else if eq $.Site.Params.comments.use "utterances" }}
+                            {{ partial "utterances-comments.html" . }}
+                        {{ end }}
 
                     </div>
 
