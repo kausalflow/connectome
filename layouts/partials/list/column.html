@@ -24,9 +24,9 @@
         </span>
     </div>
 
-    {{ if .Params.category }}
+    {{ if .Params.categories }}
     <div style="margin-left:2em;">
-        <span style="display:block;font-size:90%;"><i class="far fa-folder" aria-hidden="true"></i> Category: { {{ delimit .Params.category " } { " }} }
+        <span style="display:block;font-size:90%;"><i class="far fa-folder" aria-hidden="true"></i> Category: { {{ delimit .Params.categories " } { " }} }
         </span>
     </div>
     {{ end }}
