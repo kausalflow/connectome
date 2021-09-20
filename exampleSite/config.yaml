@@ -15,6 +15,11 @@ menu:
       weight: 1
       identifier: about
       url: /about/
+  topleft:
+    - name: "Probability Estimation"
+      weight: 6
+      identifier: pe
+      url: "https://neuronstar.kausalflow.com/cpe-docs/"
   topright:
     - name: Posts
       weight: 1

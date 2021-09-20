@@ -39,6 +39,20 @@
         </div>
       </div>
 
+      <div class="navbar-item has-dropdown is-hoverable">
+
+        {{ $currentPage := . }}
+
+        {{ if .Site.Menus.topleft }}
+        {{ range .Site.Menus.topleft }}
+        <a class="navbar-item" href="{{ .URL }}">
+          {{ with .Pre }} {{ . }} {{ end }}  {{ with .Name }} {{ . }} {{ end }}
+        </a>
+        {{ end }}
+        {{ end }}
+
+      </div>
+
 
 
     </div>
