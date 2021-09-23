@@ -207,7 +207,9 @@
 {{ end }}
 
 {{ define "footer"}}
+{{ if .Params.charts }}
 {{ partial "extensions/plotly.html" . }}
+{{ end }}
 {{ partial "footer.html" .}}
 
 <script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
