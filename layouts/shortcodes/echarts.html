@@ -1,0 +1,12 @@
+{{ $id := (cond (ne (.Get "id") nil) (.Get "id") (.Get 0)) }}
+{{ $height := (cond (ne (.Get "height") nil) (.Get "height") (.Get 1)) }}
+
+<div id="echarts-{{ $id }}" style="width: 100%;height: {{ $height }}px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/5.2.1/echarts.common.min.js"></script>
+<script type="text/javascript">
+    var myeChart = echarts.init(document.getElementById('echarts-{{ $id }}'));
+    var option = {{ .Inner | safeJS }}
+    myeChart.setOption(option);
+</script>
+
+
