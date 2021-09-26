@@ -1,6 +1,12 @@
 {{ $filename := (cond (ne (.Get "ref") nil) (.Get "ref") (.Get 0)) }}
 {{ $showname := (cond (ne (.Get "title") nil) (.Get "title") (.Get 1)) }}
-{{ $class := (cond (ne (.Get "class") nil) (.Get "class") (.Get 2)) }}
+{{ $isfull := (cond (ne (.Get "isfull") nil) (.Get "isfull") (.Get 2)) }}
+{{ $truncate := (cond (ne (.Get "truncate") nil) (.Get "truncate") (.Get 3)) | default 500 }}
+{{ $class := (cond (ne (.Get "class") nil) (.Get "class") (.Get 4)) }}
+
+{{ if $truncate = -1 }}
+{{ $truncate = 999999 }}
+{{ end }}
 
 {{ with $.Site.GetPage $filename }}
 
@@ -13,13 +19,15 @@
                 {{ else }}
                 {{ .Title }}
                 {{ end }}</h6>
-            <p>
-                {{ if .Params.description }}
+            <div style="font-size: 80%;">
+                {{ if $isfull}}
+                {{ .Content | safeHTML | truncate ($truncate) }}
+                {{ else if .Params.description }}
                 {{ .Params.description | safeHTML | truncate 500 }}
                 {{ else }}
                 {{ .Summary | safeHTML | truncate 500 }}
                 {{ end }}
-            </p>
+            </div>
         </div>
     </div>
 </a>
