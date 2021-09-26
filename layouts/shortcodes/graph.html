@@ -1,0 +1,80 @@
+{{ $data := (cond (ne (.Get "data") nil) (.Get "data") (.Get 0)) }}
+
+<div>
+    <div id="network-graph" style="width: 100%;height: 80vh;"></div>
+  </div>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <link href="/assets/network/netjsongraph.css" rel="stylesheet">
+  <link href="/assets/network/netjsongraph-theme.css" rel="stylesheet">
+  <script src="/assets/network/netjsongraph.js"></script>
+
+  <script>
+      d3.netJsonGraph({{ $data }}, {
+          el: "#network-graph",
+          metadata: false,
+          linkDistance: 100,
+          linkStrength: 1,
+          charge: -1000,
+          circleRadius: 12,
+          defaultStyle: false,
+          linkClassProperty: "type",
+          nodeClassProperty: "style",
+          labelDy: "-1.8em",
+          onInit: function(n) {
+            d3.select(".njg-overlay").style("visibility", "hidden")
+          },
+          onLoad: function(n) {
+            d3.select(".njg-overlay").style("visibility", "hidden")
+          },
+          onClickNode: function(n) {
+            d3.select(".njg-overlay").style("visibility", "visible")
+            var overlay = d3.select(".njg-overlay"),
+              overlayInner = d3.select(".njg-overlay > .njg-inner"),
+              html = "<p><b>id</b>: " + n.id + "</p>";
+            if (n.label) {
+              html += "<p><b>label</b>: " + n.label + "</p>";
+            }
+            if (n.properties) {
+              for (var key in n.properties) {
+                if (!n.properties.hasOwnProperty(key)) {
+                  continue;
+                }
+                if (k = "link") {
+                  html +=
+                  "<p><b>URL" +
+                  "</b>: <a href=\"" +
+                  n.properties["link"] +
+                  "\">" + n.properties["link"] + "</a></p>";
+                    continue;
+                }
+                html +=
+                  "<p><b>" +
+                  key.replace(/_/g, " ") +
+                  "</b>: " +
+                  n.properties[key] +
+                  "</p>";
+              }
+            }
+            if (n.linkCount) {
+              html += "<p><b>Connected Notes</b>: " + n.linkCount + "</p>";
+            }
+            if (n.local_addresses) {
+              html +=
+                "<p><b>local addresses</b>:<br>" +
+                n.local_addresses.join("<br>") +
+                "</p>";
+            }
+            overlayInner.html(html);
+            overlay.classed("njg-hidden", false);
+            overlay.style("display", "block");
+            // set "open" class to current node
+            removeOpenClass();
+            d3.select(this).classed("njg-open", true);
+          }
+      });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
