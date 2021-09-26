@@ -1,0 +1,27 @@
+{{ $filename := (cond (ne (.Get "ref") nil) (.Get "ref") (.Get 0)) }}
+{{ $showname := (cond (ne (.Get "title") nil) (.Get "title") (.Get 1)) }}
+{{ $class := (cond (ne (.Get "class") nil) (.Get "class") (.Get 2)) }}
+
+{{ with $.Site.GetPage $filename }}
+
+
+<a class="box is-{{ if $class }}{{$class}}{{else}}light{{ end }} is-light" href="{{ .Permalink }}" style="width: 90%; margin-left: auto; margin-right: auto;margin-top: 2em;margin-bottom: 2em;">
+    <div class="media-content">
+        <div class="content">
+            <h6>{{ if $showname }}
+                {{ $showname }}
+                {{ else }}
+                {{ .Title }}
+                {{ end }}</h6>
+            <p>
+                {{ if .Params.description }}
+                {{ .Params.description | safeHTML | truncate 500 }}
+                {{ else }}
+                {{ .Summary | safeHTML | truncate 500 }}
+                {{ end }}
+            </p>
+        </div>
+    </div>
+</a>
+
+{{ end }}
