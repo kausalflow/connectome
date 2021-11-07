@@ -9,7 +9,7 @@ links:
   -
 summary: Reading club for the book Spiking Neuron Models
 images:
-  - "/projects/srm.png"
+  - "/projects/undraw_design_thinking_re_644h.svg"
 members: # the makers of the tool
   - name: Member AA
     link: https://google.com

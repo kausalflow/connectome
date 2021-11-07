@@ -1,7 +1,7 @@
 ---
 title: "The Elements of Statistical Learning"
 images:
-  - "/projects/esl.png"
+  - "/projects/undraw_dark_analytics_re_2kvy.svg"
 categories:
   - Statistical Learning
 tags:

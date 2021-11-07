@@ -15,11 +15,6 @@ menu:
       weight: 1
       identifier: about
       url: /about/
-  topleft:
-    - name: "Probability Estimation"
-      weight: 6
-      identifier: pe
-      url: "https://neuronstar.kausalflow.com/cpe-docs/"
   topright:
     - name: Posts
       weight: 1
@@ -41,14 +36,14 @@ taxonomies:
     link: "links"
 
 params:
-  theme_variant: "lumen" # possible value for the theme_variant `cerulean,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,yeti`
+  theme_variant: "united" # possible value for the theme_variant `cerulean,cosmo,cyborg,darkly,flatly,journal,litera,lumen,lux,materia,minty,pulse,sandstone,simplex,slate,solar,spacelab,superhero,united,yeti`
   description: "Connectume is a hugo theme for online communities such as reading clubs."
   favicon: "/logos/logo-square.png" # Path to favicon
   logo: "/logos/logo-square.png" # logo of the website
   projects: # This is the menu item for the list of projects and the title of project list page
     section: projects # The section where we list all the projects
     indicator: "Notebooks"
-  splash: "/img/splash/undraw_to_the_moon_v1mv.svg" # This is the splash image for the landing page. The image is shown in the top left of the page.
+  splash: "/home/undraw_creative_woman_re_u5tk.svg" # This is the splash image for the landing page. The image is shown in the top left of the page.
   powered_by: "love" # Optional, controls name display on footer
   hide_author: false # Optional, set true to hide author name on posts
   images: # Suggested, controls default OpenGraph images controls author name display on meta tag
@@ -56,17 +51,10 @@ params:
   twitter: "" # Optional, to display link to twitter account in menu bar
   author: "KausalFlow" # Default author name and the name to be shown in the footer
   editURL: "https://github.com/kausalflow/hugo-connectome-theme-demo/edit/master/content/"
-  comments:
-    use: "utterances"
-    giscus:
-      repo: ""
-      repo_id: ""
-      category: ""
-      category_id: ""
-    utterances: # comment system: utterances (https://utteranc.es/) parameters
-      repo: "kausalflow/hugo-connectome-theme-demo"  # repo="[ENTER REPO HERE]", the comments will appear as issues in this repository on github.
-      term: pathname               # issue-term="pathname"
-      theme: github-light          # theme="github-light"
+  utterances: # comment system: utterances (https://utteranc.es/) parameters
+    repo: "kausalflow/hugo-connectome-theme-demo"  # repo="[ENTER REPO HERE]", the comments will appear as issues in this repository on github.
+    term: pathname               # issue-term="pathname"
+    theme: github-light          # theme="github-light"
   lyket:
     api_key: "4df20b7e32f469fed5dc53f5ab39d8"
     lyket_type: "updown"
