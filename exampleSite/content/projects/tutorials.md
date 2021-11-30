@@ -1,7 +1,7 @@
 ---
 title: "Connectome Tutorials"
 images:
-  - "https://kausalflow.com/logo/facebook_cover_photo_2.png"
+  - "/projects/undraw_video_influencer_-9-oyy.svg"
 categories:
   - Tutorials
 tags:
