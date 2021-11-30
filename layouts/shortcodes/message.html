@@ -1,4 +1,5 @@
 {{ $class := (.Get "class") }}
+{{ $markdownify := (.Get "markdownify") | default "y" }}
 <article class="message is-{{ if $class }}{{$class}}{{else}}light{{ end }} is-light">
     {{ with (.Get "title") | markdownify }}
     <div class="message-header">
@@ -6,6 +7,11 @@
     </div>
     {{ end }}
     <div class="message-body ">
-      {{ .Inner | markdownify}}
+      {{ if eq $markdownify "y"}}
+      {{ .Inner | markdownify }}
+      {{ else }}
+      {{ .Inner }}
+      {{ end }}
     </div>
   </article>
+
