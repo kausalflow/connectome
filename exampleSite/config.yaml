@@ -70,6 +70,11 @@ outputFormats:
     isPlainText: true
     mediaType: "application/json"
     notAlternative: true
+  networkg6:
+    baseName: "networkg6"
+    isPlainText: true
+    mediaType: "application/json"
+    notAlternative: true
 
 outputs:
   home:
@@ -77,3 +82,4 @@ outputs:
     - "RSS"
     - "data"
     - "network"
+    - "networkg6"
