@@ -1,5 +1,7 @@
 {{-  $nodes := slice  -}}
 {{-  $stash := slice  -}}
+{{-  $cats := slice  -}}
+{{-  $catsstash := slice  -}}
 {{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
 	{{-  if eq $taxonomy_term "links"  -}}
 		{{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
@@ -16,6 +18,20 @@
 		{{-  end  -}}
 	{{-  end  -}}
 {{-  end  -}}
+
+{{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
+	{{-  if eq $taxonomy_term "categories"  -}}
+		{{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
+			{{-  range $key, $value := $taxonomy  -}}
+				{{-  if not (in $cats $key) -}}
+					{{-  $cats = $cats | append $key  -}}
+				{{-  end  -}}
+			{{-  end  -}}
+		{{-  end  -}}
+	{{-  end  -}}
+{{-  end  -}}
+
+
 {{- range .Site.RegularPages -}}
 	{{-  if not (in $nodes .File) -}}
 		{{-  $nodes = $nodes | append .File  -}}
@@ -39,7 +55,7 @@
 			},
 			"properties":{
 				"link": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Permalink  -}}" {{-  else  -}} "" {{-  end  -}},
-				"categories": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Params.categories  -}}" {{-  else  -}} "" {{-  end  -}},
+				"categories": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{if $nodepage.Params.categories }}{{- index $nodepage.Params.categories 0 -}}{{end}}" {{-  else  -}} "" {{-  end  -}},
 				"tags": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Params.tags  -}}" {{-  else  -}} "" {{-  end  -}}
 			}
 		}

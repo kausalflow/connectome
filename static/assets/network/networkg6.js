@@ -13,11 +13,25 @@ const tooltip = new G6.Tooltip({
     outDiv.style.height = 'fit-content';
     const model = e.item.getModel();
     if (e.item.getType() === 'node') {
-      outDiv.innerHTML = `Title: ${model.label}<br>Categories: ${model.properties.categories}<br>Tags: ${model.properties.tags}<br>Link: ${model.properties.link}`;
+      outDiv.innerHTML = `Title: ${model.label}<br>Categories: ${model.properties.categories}<br>Tags: ${model.properties.tags}<br>Link: <a href="${model.properties.link}">${model.properties.link}</a>`;
     }
     return outDiv;
   },
 });
+
+const minimap = new G6.Minimap({
+  size: [150, 100],
+});
+
+const toolbar = new G6.ToolBar({
+  position: { x: 10, y: 10 },
+});
+
+let fisheye = new G6.Fisheye({
+  r: 200,
+  showLabel: true,
+});
+
 
 const graph = new G6.Graph({
     container: 'network-graph',
@@ -44,7 +58,7 @@ const graph = new G6.Graph({
         autoRotate: true,
       },
     },
-    plugins: [tooltip],
+    plugins: [tooltip, toolbar],
     layout: {
         // type: 'gForce',
         // preventOverlap: true,
@@ -78,5 +92,15 @@ const graph = new G6.Graph({
     });
     graph.data(remoteData);
     graph.render();
+
+    if (typeof window !== 'undefined')
+    window.onresize = () => {
+      if (!graph || graph.get('destroyed')) return;
+      if (!container || !container.scrollWidth || !container.scrollHeight) return;
+      graph.changeSize(container.scrollWidth, container.scrollHeight - 110);
+    };
+
+
+
   };
   main();
