@@ -1,0 +1,26 @@
+{{ with .Params.links }}
+    {{-  $linksTo := slice  -}}
+    {{ range . }}
+        {{ with $.Site.GetPage . }}
+            {{-  if not (in $linksTo .File) -}}
+                {{-  $linksTo = $linksTo | append .File  -}}
+            {{-  end  -}}
+        {{ end }}
+    {{ end }}
+    {{ with $linksTo }}
+        {{  $linksTo }}
+    {{ end }}
+{{ end }}
+
+
+
+{{ $fileReference := lower (replace $.File "\\" "/") }}
+
+{{ with .Site.Taxonomies.links }}
+    {{ $linkedFrom := index . $fileReference }}
+        {{ with $linkedFrom }}
+            {{ range . }}
+                {{ . }}
+            {{ end }}
+    {{ end }}
+{{ end }}
