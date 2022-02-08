@@ -28,21 +28,13 @@
 	"nodes": [{{-  range $i, $node := $nodes  -}} {{-  if not (in (delimit $stash ',') $node)  -}}
 		{{-  if $i  -}}, {{-  end  -}}{
 			"id": "{{-  $node  -}}",
-			"type": "circle",
-			"size": 5,
 			"label": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Title  -}}" {{-  else  -}} "" {{-  end  -}},
-			"labelCfg": {
-				"positions": "center",
-				"style": {
-				  "fontSize": 5
-				}
-			},
 			"properties":{
 				"link": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Permalink  -}}" {{-  else  -}} "" {{-  end  -}}
 			}
 		}
 		{{-  $stash =  $stash | append $node  -}}{{-  end  -}}{{-  end  -}}],
-	"edges": [
+	"links": [
 		{{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
 			{{-  if eq $taxonomy_term "links"  -}}
 				{{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}

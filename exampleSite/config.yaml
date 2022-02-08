@@ -70,8 +70,8 @@ outputFormats:
     isPlainText: true
     mediaType: "application/json"
     notAlternative: true
-  networkg6:
-    baseName: "networkg6"
+  networkjq:
+    baseName: "networkjq"
     isPlainText: true
     mediaType: "application/json"
     notAlternative: true
@@ -82,4 +82,4 @@ outputs:
     - "RSS"
     - "data"
     - "network"
-    - "networkg6"
+    - "networkjq"
