@@ -1,0 +1,8 @@
+{{ if .Site.Params.applausebotton }}
+<link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
+<script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+
+<style>applause-button .count-container {top: -60%!important;}</style>
+    <applause-button color="red" multiclap="true" style="width: 35px; height: 35px;position:fixed;bottom: 100px;right: 10px;"/>
+
+{{ end }}

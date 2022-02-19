@@ -5,9 +5,9 @@
 
 <span class="tooltip"><a href="{{ .Permalink }}">
         {{ if $showname }}
-        {{ $showname }}
+        [[{{ $showname }}]]
         {{ else }}
-        {{ .Title }}
+        [[{{ .Title }}]]
         {{ end }}
     </a>
     <span class="tooltiptext">

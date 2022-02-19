@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="/css/code-highlighting/dark.css">
 <link rel="stylesheet" href="/css/custom.css">
 
-<link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
 
 {{ end }}
 
@@ -157,6 +156,6 @@
 {{ define "footer"}}
 {{ partial "footer.html" .}}
 
+{{ partial "extensions/applausebutton.html" . }}
 
-<script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
 {{ end }}

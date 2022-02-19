@@ -14,11 +14,13 @@
 <a class="box is-{{ if $class }}{{$class}}{{else}}light{{ end }} is-light" href="{{ .Permalink }}" style="width: 90%; margin-left: auto; margin-right: auto;margin-top: 2em;margin-bottom: 2em;">
     <div class="media-content">
         <div class="content">
-            <h6>{{ if $showname }}
+            <div class="title is-6" style="padding-bottom: 0.8em;border-bottom: 1px dotted #999;">{{ if $showname }}
                 {{ $showname }}
                 {{ else }}
                 {{ .Title }}
-                {{ end }}</h6>
+                {{ end }}
+                <span style="float: right;"><i class="fa-solid fa-bookmark" style="color: #999;"></i></span>
+            </div>
             <div style="font-size: 80%;">
                 {{ if $isfull}}
                 {{ .Content | safeHTML | truncate ($truncate) }}

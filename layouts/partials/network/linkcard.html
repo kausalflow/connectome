@@ -1,14 +1,18 @@
+{{ $truncate := 100 }}
+
 <a class="box" href="{{ .Permalink }}">
     <div class="media-content">
         <div class="content">
-            <h6>{{ .Title }}</h6>
-            <p>
+            <div class="title is-6" style="padding-bottom: 0.8em;border-bottom: 1px dotted #999;">{{ .Title }}
+            <span style="float: right;"><i class="fa-solid fa-bookmark" style="color: #999;"></i></span>
+            </div>
+            <div style="font-size: 80%;">
                 {{ if .Params.description }}
-                {{ .Params.description | safeHTML | truncate 100 }}
+                {{ .Params.description | safeHTML | truncate ($truncate) }}
                 {{ else }}
-                {{ .Summary | safeHTML | truncate 100 }}
+                {{ .Summary | safeHTML | truncate ($truncate) }}
                 {{ end }}
-            </p>
+            </div>
         </div>
     </div>
 </a>

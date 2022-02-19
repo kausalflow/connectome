@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/css/code-highlighting/dark.css">
 <link rel="stylesheet" href="/css/custom.css">
 
-<link rel="stylesheet" href="https://unpkg.com/applause-button/dist/applause-button.css">
+
 {{ partial "extensions/plotlyjs.html" . }}
 {{ end }}
 
@@ -212,5 +212,6 @@
 {{ end }}
 {{ partial "footer.html" .}}
 
-<script src="https://unpkg.com/applause-button/dist/applause-button.js"></script>
+{{ partial "extensions/applausebutton.html" . }}
+
 {{ end }}
