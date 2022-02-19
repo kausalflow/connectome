@@ -1,0 +1,122 @@
+<div id="local-graph"></div>
+
+<script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.3.11/dist/g6.min.js"></script>
+
+{{ $current := lower (replace $.File "\\" "/") }}
+{{-  $linksTo := slice  -}}
+
+
+{{ with .Params.links }}
+    {{ range . }}
+        {{ with $.Site.GetPage . }}
+            {{-  if not (in $linksTo .File) -}}
+                {{-  $linksTo = $linksTo | append (lower (replace .File "\\" "/"))  -}}
+            {{-  end  -}}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+
+
+{{ with $.Site.Taxonomies.links }}
+    {{ $linkedFrom := index . $current }}
+    {{ range $linkedFrom }}
+        {{ .File }}
+        {{ end }}
+{{ end }}
+
+
+
+
+<script>
+    console.log(G6.Global.version);
+
+    const localGraphData = {
+        nodes: [
+            {
+                id: '{{ $current }}',
+                label: '{{ ($.Site.GetPage $current).Title }}',
+                },
+            {{ with $linksTo }}
+                {{ range $linksTo }}
+                    {
+                        id: '{{ . }}',
+                        label: '{{ ($.Site.GetPage . ).Title }}',
+                        },
+                {{ end }}
+            {{ end }}
+            {{ with $.Site.Taxonomies.links }}
+                {{ $linkedFrom := index . $current }}
+                {{ range $linkedFrom }}
+                    {{ $lf := lower (replace .File "\\" "/") }}
+                    {
+                        id: '{{ $lf }}',
+                        label: '{{ .Title }}',
+                    },
+                {{ end }}
+            {{ end }}
+        ],
+        // 边集
+        edges: [
+            {{ with $linksTo }}
+                {{ range $linksTo }}
+                    {
+                        source: '{{ $current }}',
+                        target: '{{ . }}',
+                    },
+                {{ end }}
+            {{ end }}
+            {{ with $.Site.Taxonomies.links }}
+                {{ $linkedFrom := index . $current }}
+                {{ range $linkedFrom }}
+                    {{ $lf := lower (replace .File "\\" "/") }}
+                    {
+                        target: '{{ $current }}',
+                        source: '{{ $lf }}',
+                    },
+                {{ end }}
+            {{ end }}
+        ],
+      };
+
+    const graph = new G6.Graph({
+        container: 'local-graph',
+        width: 300,
+        height: 300,
+        fitView: true,
+        fitViewPadding: [10, 10, 10, 10],
+        defaultNode: {
+            size: [5, 5],
+            labelCfg: {
+              style: {
+                fill: '#000',
+                fontSize: 3
+              },
+            },
+          },
+          defaultEdge: {
+            /* style for the keyShape */
+            style: {
+              stroke: '#aaa',
+              lineAppendWidth: 2,
+              opacity: 0.3,
+            },
+            labelCfg: {
+              autoRotate: true,
+            },
+          },
+          layout: {
+            type: 'fruchterman',
+            gravity: 5,
+            speed: 5,
+            clustering: true,
+            gpuEnabled: true,
+        },
+        modes: {
+            default: ['drag-canvas', 'zoom-canvas', 'drag-node', 'activate-relations'],
+          },
+      });
+
+      graph.data(localGraphData);
+      graph.render();
+  </script>

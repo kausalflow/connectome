@@ -4,7 +4,7 @@ const tooltip = new G6.Tooltip({
   fixToNode: [1, 0.5],
   // the types of items that allow the tooltip show up
   // 允许出现 tooltip 的 item 类型
-  itemTypes: ['node', 'edge'],
+  itemTypes: ['node'],
   // custom the tooltip's content
   // 自定义 tooltip 内容
   getContent: (e) => {
