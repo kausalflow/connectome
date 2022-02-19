@@ -1,0 +1,19 @@
+{{ if .Params.supplementary }}
+<div class="is-divider" data-content="SUPPLEMENTARY"></div>
+<div class="box is-size-7">
+    <article class="media is-link">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong><i class="fa-solid fa-paperclip"></i> Supplementary: </strong><br>
+                    <ol>
+                        {{ range $supp := .Params.supplementary }}
+                        <li class="has-text-weight-bold"><a href="{{ $supp.link }}" style="text-decoration:none;">{{ $supp.name }}</a></li>
+                        {{ end }}
+                    </ol>
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
+{{ end }}
