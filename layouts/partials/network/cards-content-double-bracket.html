@@ -1,8 +1,21 @@
 {{ $dbLinks := slice }}
+{{ $apparentLinks := .Params.links }}
 
-{{ with (findRE "{{<\\s{1}e\\s+(.+?)>}}" .RawContent) }}
+{{ with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" .RawContent) }}
     {{ range . }}
-        {{ $dbLinks = $dbLinks | append ($.Site.GetPage (substr . 7 -5)) }}
+        {{ if not (in $apparentLinks (substr . 7 -2) )}}
+            {{ $dbLinks = $dbLinks | append (substr . 7 -2) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" .RawContent) }}
+    {{ range . }}
+        {{ if not (in $apparentLinks (substr . 7 -2) )}}
+            {{ if not (in $dbLinks (substr . 7 -2)) }}
+                {{ $dbLinks = $dbLinks | append (substr . 7 -2) }}
+            {{ end }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
@@ -12,11 +25,10 @@
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong><i class="fa-solid fa-arrow-right-from-bracket"></i> Double Backet Links: </strong>
+                    <strong><i class="fa-solid fa-arrow-right-from-bracket"></i> Additional Double Backet Links: </strong>
                         <div>
-
                         {{ range . }}
-                            {{ partial "network/linkcard" . }}
+                            {{ partial "network/linkcard" ($.Site.GetPage .) }}
                         {{ end }}
                         </div>
                 </p>
