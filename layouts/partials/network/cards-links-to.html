@@ -1,0 +1,23 @@
+{{ if .Params.links }}
+{{ with .Params.links }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                <strong><i class="fa-solid fa-turn-up"></i> Links to: </strong>
+                    <div>
+                    {{ range . }}
+                    {{ with $.Site.GetPage . }}
+                        {{ partial "network/linkcard" . }}
+                    {{ end }}
+                    {{ end }}
+                    </div>
+
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
+{{ end }}
+{{ end }}

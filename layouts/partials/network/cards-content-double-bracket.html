@@ -1,0 +1,27 @@
+{{ $dbLinks := slice }}
+
+{{ with (findRE "{{<\\s{1}e\\s+(.+?)>}}" .RawContent) }}
+    {{ range . }}
+        {{ $dbLinks = $dbLinks | append ($.Site.GetPage (substr . 7 -5)) }}
+    {{ end }}
+{{ end }}
+
+{{ with $dbLinks }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong><i class="fa-solid fa-arrow-right-from-bracket"></i> Double Backet Links: </strong>
+                        <div>
+
+                        {{ range . }}
+                            {{ partial "network/linkcard" . }}
+                        {{ end }}
+                        </div>
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
+{{ end }}

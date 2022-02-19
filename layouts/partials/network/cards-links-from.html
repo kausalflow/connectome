@@ -1,0 +1,23 @@
+{{ $fileReference := .ref }}
+
+{{ with .context.Site.Taxonomies.links }}
+{{ $linkedFrom := index . $fileReference }}
+{{ with $linkedFrom }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong><i class="fa-solid fa-turn-down"></i> Links from: </strong>
+                        <div>
+                        {{ range . }}
+                            {{ partial "network/linkcard" . }}
+                        {{ end }}
+                        </div>
+                </p>
+            </div>
+        </div>
+    </article>
+</div>
+{{ end }}
+{{ end }}
