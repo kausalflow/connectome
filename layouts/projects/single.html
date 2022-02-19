@@ -42,33 +42,24 @@
 
                     {{ if .Params.sections }}
                     <div class="is-divider" data-content="PAGES"></div>
-                    {{ partial "list/tree" . }}
+                    {{ partial "list/tree-menu-style" . }}
                     {{ end }}
-
-                    <!-- <p>{{ partial "post/meta" . }}</p> -->
-                    <!-- {{ partial "post/byauthor" . }} -->
-
 
                 </div>
                 <div class="column is-4">
 
                     {{ if .Params.sections }}
                     <div class="is-divider" data-content="NOTES"></div>
-
-
                     <div class="box is-size-7">
                         <article class="media">
-                            <div class="media-left is-vcentered" style="vertical-align: middle;">
-                                <i class="fas fa-feather fa-2x has-text-primary" style="margin-right: 0.5em;"></i>
-                              </div>
                             <div class="media-content">
                                 <div class="content">
+                                    <div class="buttons">
                                     {{ range $note := .Params.sections }}
-                                    {{ $note := $.GetPage (printf "/%s" .) }}
-                                    <p>
-                                           <a href="{{ $note.Permalink }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $note.Title }} </a>
-                                        </p>
+                                        {{ $note := $.GetPage (printf "/%s" .) }}
+                                        <a href="{{ $note.Permalink }}" class="button is-primary">All {{ $note.Title }} Pages</a>
                                     {{end}}
+                                    </div>
                                 </div>
                             </div>
                         </article>
@@ -80,14 +71,11 @@
                     {{ $author := .Params.author }}
                     <div class="box is-size-7">
                         <article class="media">
-                            <div class="media-left is-vcentered" style="vertical-align: middle;">
-                                <i class="fas fa-at fa-2x has-text-primary" style="margin-right: 0.5em;"></i>
-                            </div>
                             <div class="media-content">
                                 <div class="content">
                                     {{ range $author := .Params.author }}
                                     <p>
-                                           <a href="{{ $author.link }}" class="button is-primary is-outlined is-bold has-text-weight-bold is-small"> {{ $author.name }} </a>
+                                           <a href="{{ $author.link }}" class="button is-info is-bold has-text-weight-bold is-small">Author: {{ $author.name }} </a>
                                         </p>
                                     {{end}}
                                 </div>
@@ -96,20 +84,15 @@
                     </div>
                     {{end}}
 
-                    {{ if .Params.coordinators }}
-                    <div class="is-divider" data-content="MEMBERS"></div>
-
-
+                    {{ if .Params.contributors }}
+                    <div class="is-divider" data-content="CONTRIBUTORS"></div>
                     <div class="box is-size-7">
                         <article class="media">
-                            <div class="media-left is-vcentered" style="vertical-align: middle;">
-                                <i class="fas fa-user-secret fa-2x has-text-primary" style="margin-right: 0.5em;"></i>
-                              </div>
                             <div class="media-content">
                                 <div class="content">
-                                    {{ range $coordinator := .Params.coordinators }}
+                                    {{ range $contributor := .Params.contributors }}
                                     <p> <a
-                                           href="{{ $coordinator.link }}" class="button is-info is-outlined is-bold has-text-weight-bold is-small">{{ $coordinator.name }}</a> </p>
+                                           href="{{ $contributor.link }}" class="button is-link is-bold has-text-weight-bold is-small">Contributor: {{ $contributor.name }}</a> </p>
                                     {{end}}
                                 </div>
                             </div>

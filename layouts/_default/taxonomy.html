@@ -4,7 +4,13 @@
     <div class="hero-body">
         <div class="container">
             <div class="container has-text-centered">
-                <a href="{{ .Parent.Permalink }}"><i class="fas fa-tags" style="margin-right: 0.5em;"></i></a>
+                <a href="{{ .Parent.Permalink }}">
+                    {{ if in (print .Parent.Permalink) "/tags" }}
+                        <i class="fas fa-tags" style="margin-right: 0.5em;"></i>
+                    {{ else if in (print .Parent.Permalink) "/categories" }}
+                        <i class="fas fa-folder" style="margin-right: 0.5em;"></i>
+                    {{ end }}
+                </a>
                 <h1 class="title is-2 has-text-centered">{{ .Title }}</h1>
             </div>
         </div>

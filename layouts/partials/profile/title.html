@@ -2,19 +2,19 @@
   <article class="media">
     <div class="media-content">
       <div class="content">
-        <p>
-          <h1 class="title is-3">{{ .Title }}</h1>
-          <div><i class="fas fa-quote-left" style="margin-right: 0.5em;"></i>{{ .Params.summary }}</div>
-          <!-- <h2 class="title is-6"><i class="far fa-folder-open"
+        <div>
+          <h1 class="title is-3" style="margin-top: 0.5em;">{{ .Title }}</h1>
+          <div class="title is-6"><i class="fas fa-quote-left" style="margin-right: 0.5em;"></i>{{ .Params.summary }}</div>
+          <div class="title is-6"><i class="far fa-folder-open"
               style="margin-right: 0.5em;"></i>{{ range $cat := .Params.categories }}
-            <span class="tag is-link is-light">{{$cat}}</span>
-            {{ end }}</h2> -->
-          <h2 class="title is-6"><i class="fas fa-tags"
+              <a href="{{ "/categories/" | relLangURL }}{{ $cat | urlize }}"><span class="tag is-link is-light">{{$cat}}</span></a>
+            {{ end }}</div>
+          <div class="title is-6"><i class="fas fa-tags"
               style="margin-right: 0.5em;"></i>{{ range $tag := .Params.tags }}
               <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}"><span class="tag is-warning is-light">#{{$tag}}</span></a>
-            {{ end }}</h2>
-          <p class="title is-6"><i class="far fa-bell" style="margin-right: 0.5em;"></i> <span class="tag is-warning is-light">{{.Params.status}}</span> </p>
-        </p>
+            {{ end }}</div>
+          <div class="title is-6"><i class="far fa-bell" style="margin-right: 0.5em;"></i> <span class="tag is-warning is-light">{{.Params.status}}</span> </div>
+          </div>
       </div>
 
     </div>
