@@ -92,50 +92,9 @@
 
                         {{ partial "toc" .}}
 
+                        {{ partial "refererences/card-references" . }}
 
-                        {{ if .Params.references }}
-                        <div class="is-divider" data-content="REFERENCES"></div>
-                        <div class="box is-size-7">
-                            <article class="media">
-                                <div class="media-content" style="width: 100%;word-break: break-word;">
-                                    <div class="content">
-                                        <p>
-                                            <strong><i class="fa-solid fa-quote-left"></i> References: </strong><br>
-                                            <ol>
-                                                {{ range $ref := .Params.references }}
-                                                <li class="has-text-weight-bold">{{ if $ref.key }}
-                                                    <a name="{{ $ref.key }}" href="#{{ $ref.key }}" style="text-decoration:none;">
-                                                      <span class="tag is-link is-light">{{$ref.key}}</span>
-                                                    </a>
-                                                    {{ end }}<a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
-                                                {{ end }}
-                                            </ol>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        {{ end }}
-
-                        {{ if .Params.supplementary }}
-                        <div class="is-divider" data-content="SUPPLEMENTARY"></div>
-                        <div class="box is-size-7">
-                            <article class="media is-link">
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-                                            <strong><i class="fa-solid fa-paperclip"></i> Supplementary: </strong><br>
-                                            <ol>
-                                                {{ range $supp := .Params.supplementary }}
-                                                <li class="has-text-weight-bold"><a href="{{ $supp.link }}" style="text-decoration:none;">{{ $supp.name }}</a></li>
-                                                {{ end }}
-                                            </ol>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        {{ end }}
+                        {{ partial "refererences/card-supplementary" . }}
 
                         <div class="is-divider" data-content="CONNECTUME"></div>
                         {{ $fileReference := lower (replace $.File "\\" "/") }}
@@ -147,7 +106,9 @@
 
                         {{ partial "network/cards-content-double-bracket" . }}
 
+                        {{ if $.Site.Params.localgraph }}
                         {{ partial "network/local-graph-g6" . }}
+                        {{ end }}
 
                         {{ if eq $.Site.Params.comments.use "giscus" }}
                             {{ partial "comments/giscus-comments" . }}

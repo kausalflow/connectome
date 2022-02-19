@@ -1,4 +1,13 @@
-<div id="local-graph"></div>
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content" style="overflow-x: hidden;">
+                <div id="local-graph" style="100%"></div>
+            </div>
+        </div>
+    </article>
+</div>
+
 
 <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.3.11/dist/g6.min.js"></script>
 
@@ -18,17 +27,9 @@
 
 
 
-{{ with $.Site.Taxonomies.links }}
-    {{ $linkedFrom := index . $current }}
-    {{ range $linkedFrom }}
-        {{ .File }}
-        {{ end }}
-{{ end }}
-
-
-
 
 <script>
+
     console.log(G6.Global.version);
 
     const localGraphData = {
@@ -79,11 +80,33 @@
         ],
       };
 
+      const tooltip = new G6.Tooltip({
+        offsetX: 10,
+        offsetY: 10,
+        fixToNode: [1, 0.5],
+        // the types of items that allow the tooltip show up
+        // 允许出现 tooltip 的 item 类型
+        itemTypes: ['node'],
+        // custom the tooltip's content
+        // 自定义 tooltip 内容
+        getContent: (e) => {
+          const outDiv = document.createElement('div');
+          outDiv.style.width = 'fit-content';
+          outDiv.style.height = 'fit-content';
+          const model = e.item.getModel();
+          if (e.item.getType() === 'node') {
+            outDiv.innerHTML = `Title: ${model.label}<br>Categories: ${model.properties.categories}<br>Tags: ${model.properties.tags}<br>Link: <a href="${model.properties.link}">${model.properties.link}</a>`;
+          }
+          return outDiv;
+        },
+      });
+
     const graph = new G6.Graph({
         container: 'local-graph',
-        width: 300,
+        width: 350,
         height: 300,
         fitView: true,
+        fitCenter: true,
         fitViewPadding: [10, 10, 10, 10],
         defaultNode: {
             size: [5, 5],
@@ -112,11 +135,19 @@
             clustering: true,
             gpuEnabled: true,
         },
+        plugins: [tooltip],
         modes: {
-            default: ['drag-canvas', 'zoom-canvas', 'drag-node', 'activate-relations'],
+            default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
           },
       });
 
       graph.data(localGraphData);
       graph.render();
+
+      if (typeof window !== 'undefined')
+        window.onresize = () => {
+        if (!graph || graph.get('destroyed')) return;
+        if (!container || !container.scrollWidth || !container.scrollHeight) return;
+        graph.changeSize(container.scrollWidth, container.scrollHeight - 110);
+        };
   </script>
