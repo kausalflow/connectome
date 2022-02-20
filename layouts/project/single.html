@@ -165,26 +165,14 @@
                         </div>
                         {{ end }}
 
-                        {{ with .Site.Taxonomies.links }}
-                        {{ $linkedFrom := index . $fileReference }}
-                                                {{ with $linkedFrom }}
-                        <div class="box is-size-7">
-                            <article class="media">
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-                                            <strong>Links from: </strong>
-                                            <div>
-                                                {{ range . }}
-                                                    {{ partial "network/linkcard" . }}
-                                                {{ end }}
-                                            </div>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        {{ end }}
+                        {{ if isset $.Site.Params "nativebacklink" }}
+                            {{ if $.Site.Params.nativebacklink }}
+                                {{ partial "network/cards-links-from" (dict "context" . "ref" $fileReference) }}
+                            {{ else }}
+                                {{ partial "network/dynamic-backlink.html" . }}
+                            {{ end }}
+                        {{ else }}
+                            {{ partial "network/dynamic-backlink.html" . }}
                         {{ end }}
 
 

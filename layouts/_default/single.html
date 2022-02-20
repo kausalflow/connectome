@@ -106,6 +106,8 @@
                             {{ else }}
                                 {{ partial "network/dynamic-backlink.html" . }}
                             {{ end }}
+                        {{ else }}
+                            {{ partial "network/dynamic-backlink.html" . }}
                         {{ end }}
 
                         {{ partial "network/cards-links-to" . }}
