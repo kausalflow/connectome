@@ -100,8 +100,6 @@
                         {{ $fileReference := lower (replace .File "\\" "/") }}
                         {{ partial "network/currentref" . }}
 
-                        {{ partial "network/cards-links-to" . }}
-
                         {{ if isset $.Site.Params "nativebacklink" }}
                             {{ if $.Site.Params.nativebacklink }}
                                 {{ partial "network/dynamic-backlink.html" . }}
@@ -110,8 +108,7 @@
                             {{ end }}
                         {{ end }}
 
-
-
+                        {{ partial "network/cards-links-to" . }}
                         {{ partial "network/cards-content-double-bracket" . }}
 
                         {{ if isset $.Site.Params "localgraph" }}
