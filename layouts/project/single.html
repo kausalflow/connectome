@@ -142,28 +142,8 @@
                         {{ $fileReference := lower (replace $.File "\\" "/") }}
                         {{ partial "network/currentref" . }}
 
-                        {{ with .Params.links }}
-                        <div class="box is-size-7">
-                            <article class="media">
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-
-                                        <strong>Links to: </strong>
-                                            <div>
-                                            {{ range . }}
-                                            {{ with $.Site.GetPage . }}
-                                                {{ partial "network/linkcard" . }}
-                                            {{ end }}
-                                            {{ end }}
-                                            </div>
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        {{ end }}
+                        {{ partial "network/cards-links-to" . }}
+                        {{ partial "network/cards-content-double-bracket" . }}
 
                         {{ if isset $.Site.Params "nativebacklink" }}
                             {{ if $.Site.Params.nativebacklink }}

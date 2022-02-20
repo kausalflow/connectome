@@ -4,7 +4,9 @@
 {{ with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" .RawContent) }}
     {{ range . }}
         {{ if not (in $apparentLinks (substr . 7 -2) )}}
-            {{ $dbLinks = $dbLinks | append (substr . 7 -2) }}
+            {{ if not (in $dbLinks (substr . 7 -2)) }}
+                {{ $dbLinks = $dbLinks | append (substr . 7 -2) }}
+            {{ end }}
         {{ end }}
     {{ end }}
 {{ end }}

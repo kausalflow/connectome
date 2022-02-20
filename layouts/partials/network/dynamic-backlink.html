@@ -4,23 +4,30 @@
 {{ $dataNetwork := getJSON $urlPre "/network.json" }}
 
 {{ $sources := slice }}
+{{ $rawSources := slice }}
 
+{{ range $dataNetwork.edges }}
+    {{ if eq .target $fileReference }}
+        {{ $source := lower (replace .source "\\" "/") }}
+        {{ with ($.Site.GetPage $source) }}
+            {{ if not (in $sources $source) }}
+                {{ $sources = $sources | append $source }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end}}
+
+{{ if $sources }}
 <div class="box is-size-7">
     <article class="media">
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong><i class="fa-solid fa-turn-down"></i> Dynamics Links from: </strong>
+                    <strong><i class="fa-solid fa-turn-down"></i> Dynamic Links from: </strong>
                         <div>
-                            {{ range $dataNetwork.edges }}
-                                {{ if eq .target $fileReference }}
-                                    {{ $source := lower (replace .source "\\" "/") }}
-                                    {{ with ($.Site.GetPage $source) }}
-                                        {{ if not (in $sources $source) }}
-                                            {{ partial "network/linkcard" . }}
-                                            {{ $sources = $sources | append $source}}
-                                        {{ end }}
-                                    {{ end }}
+                            {{ range $sources }}
+                                {{ with ($.Site.GetPage .) }}
+                                    {{ partial "network/linkcard" . }}
                                 {{ end }}
                             {{ end }}
                         </div>
@@ -29,3 +36,4 @@
         </div>
     </article>
 </div>
+{{ end }}
