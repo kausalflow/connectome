@@ -188,7 +188,11 @@
                         {{ end }}
 
 
-                        {{ partial "network/local-graph-g6" . }}
+                        {{ if isset $.Site.Params "localgraph" }}
+                            {{ if $.Site.Params.localgraph }}
+                                {{ partial "network/local-graph-g6" . }}
+                            {{ end }}
+                        {{ end }}
 
                         {{ if eq $.Site.Params.comments.use "giscus" }}
                             {{ partial "comments/giscus-comments" . }}
