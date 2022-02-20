@@ -81,9 +81,9 @@
                                 {{- range . -}}
                                     {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
                                         {{- if not (in $valuePageRef (substr . 7 -2)) -}}
-                                            {{- if not (in $valueDoubleBacketLinks (substr . 7 -2)) -}}
+
                                                 {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
-                                            {{- end -}}
+
                                         {{- end -}}
                                     {{- end -}}
                                 {{- end -}}
@@ -93,14 +93,11 @@
                                 {{- range . -}}
                                     {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
                                         {{- if not (in $valuePageRef (substr . 7 -2)) -}}
-                                            {{- if not (in $valueDoubleBacketLinks (substr . 7 -2)) -}}
                                                 {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
-                                            {{- end -}}
                                         {{- end -}}
                                     {{- end -}}
                                 {{- end -}}
                             {{- end -}}
-
 
                             {{-  range $i, $page := $valuePageRef  -}}
                                 {{- if $i -}},{{- end -}}{
@@ -109,7 +106,7 @@
                                 }
                             {{-  end  -}}
                             {{-  range $i, $page := $valueDoubleBacketLinks  -}}
-                                {{- if $valuePageRef -}},{{- end -}}{
+                                {{- if (ge (len $valuePageRef) 1) -}},{{- end -}}{
                                     "source": "{{-  $key  -}}",
                                     "target": "{{- $page -}}"
                                 }

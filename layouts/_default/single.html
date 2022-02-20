@@ -97,17 +97,27 @@
                         {{ partial "refererences/card-supplementary" . }}
 
                         <div class="is-divider" data-content="CONNECTUME"></div>
-                        {{ $fileReference := lower (replace $.File "\\" "/") }}
+                        {{ $fileReference := lower (replace .File "\\" "/") }}
                         {{ partial "network/currentref" . }}
 
                         {{ partial "network/cards-links-to" . }}
 
-                        {{ partial "network/cards-links-from"  (dict "context" . "ref" $fileReference) }}
+                        {{ if isset $.Site.Params "nativebacklink" }}
+                            {{ if $.Site.Params.nativebacklink }}
+                                {{ partial "network/dynamic-backlink.html" . }}
+                            {{ else }}
+                                {{ partial "network/cards-links-from" (dict "context" . "ref" $fileReference) }}
+                            {{ end }}
+                        {{ end }}
+
+
 
                         {{ partial "network/cards-content-double-bracket" . }}
 
-                        {{ if $.Site.Params.localgraph }}
-                        {{ partial "network/local-graph-g6" . }}
+                        {{ if isset $.Site.Params "localgraph" }}
+                            {{ if $.Site.Params.localgraph }}
+                                {{ partial "network/local-graph-g6" . }}
+                            {{ end }}
                         {{ end }}
 
                         {{ if eq $.Site.Params.comments.use "giscus" }}
