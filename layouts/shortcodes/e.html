@@ -22,12 +22,20 @@
                 <span style="float: right;"><i class="fa-solid fa-bookmark" style="color: #999;"></i></span>
             </div>
             <div style="font-size: 80%;">
-                {{ if $isfull}}
-                {{ .Content | safeHTML | truncate ($truncate) }}
-                {{ else if .Params.description }}
-                {{ .Params.description | safeHTML | truncate ($truncate) }}
+                {{ if (findRE "{{<\\s{1}[c|e]\\s+(.+?)\\s+" .RawContent) }}
+                    {{ if .Params.description }}
+                    {{ .Params.description | safeHTML | truncate ($truncate) }}
+                    {{ else }}
+                    {{ .RawContent | markdownify | safeHTML | truncate ($truncate) }}
+                    {{ end }}
                 {{ else }}
-                {{ .Summary | safeHTML | truncate ($truncate) }}
+                    {{ if $isfull}}
+                    {{ .Content | safeHTML | truncate ($truncate) }}
+                    {{ else if .Params.description }}
+                    {{ .Params.description | safeHTML | truncate ($truncate) }}
+                    {{ else }}
+                    {{ .Summary | safeHTML | truncate ($truncate) }}
+                    {{ end }}
                 {{ end }}
             </div>
         </div>

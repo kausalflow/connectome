@@ -1,7 +1,9 @@
 {{ $dbLinks := slice }}
 {{ $apparentLinks := .Params.links }}
 
-{{ with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" .RawContent) }}
+{{ $content := replace .RawContent (lower (replace .File "\\" "/")) "" }}
+
+{{ with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" $content ) }}
     {{ range . }}
         {{ if not (in $apparentLinks (substr . 7 -2) )}}
             {{ if not (in $dbLinks (substr . 7 -2)) }}
@@ -11,7 +13,7 @@
     {{ end }}
 {{ end }}
 
-{{ with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" .RawContent) }}
+{{ with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $content) }}
     {{ range . }}
         {{ if not (in $apparentLinks (substr . 7 -2) )}}
             {{ if not (in $dbLinks (substr . 7 -2)) }}
