@@ -72,6 +72,7 @@
                     {{-  range $key, $value := $taxonomy  -}}
                             {{-  $keyPage := ($.GetPage $key) -}}
                             {{- $valuePageRef := slice -}}
+                            {{- $valueDoubleBacketLinks := slice -}}
                             {{- range $value.Pages -}}
                                 {{- $valuePageRef = $valuePageRef | append (lower (replace .File "\\" "/")) -}}
                             {{- end -}}
@@ -80,7 +81,9 @@
                                 {{- range . -}}
                                     {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
                                         {{- if not (in $valuePageRef (substr . 7 -2)) -}}
-                                            {{- $valuePageRef = $valuePageRef | append (substr . 7 -2) -}}
+                                            {{- if not (in $valueDoubleBacketLinks (substr . 7 -2)) -}}
+                                                {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
+                                            {{- end -}}
                                         {{- end -}}
                                     {{- end -}}
                                 {{- end -}}
@@ -90,18 +93,28 @@
                                 {{- range . -}}
                                     {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
                                         {{- if not (in $valuePageRef (substr . 7 -2)) -}}
-                                            {{- $valuePageRef = $valuePageRef | append (substr . 7 -2) -}}
+                                            {{- if not (in $valueDoubleBacketLinks (substr . 7 -2)) -}}
+                                                {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
+                                            {{- end -}}
                                         {{- end -}}
                                     {{- end -}}
                                 {{- end -}}
                             {{- end -}}
+
 
                             {{-  range $i, $page := $valuePageRef  -}}
                                 {{- if $i -}},{{- end -}}{
                                     "source": "{{-  $page  -}}",
                                     "target": "{{- $key -}}"
                                 }
-                            {{-  end  -}}{{-  if ne $key $last  -}},{{- end -}}
+                            {{-  end  -}}
+                            {{-  range $i, $page := $valueDoubleBacketLinks  -}}
+                                {{- if $valuePageRef -}},{{- end -}}{
+                                    "source": "{{-  $key  -}}",
+                                    "target": "{{- $page -}}"
+                                }
+                            {{-  end  -}}
+                            {{-  if ne $key $last  -}},{{- end -}}
                     {{-  end  -}}
                 {{-  end  -}}
             {{-  end  -}}
