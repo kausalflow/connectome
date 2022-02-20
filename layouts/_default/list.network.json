@@ -3,84 +3,110 @@
 {{-  $cats := slice  -}}
 {{-  $catsstash := slice  -}}
 {{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
-	{{-  if eq $taxonomy_term "links"  -}}
-		{{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
-			{{-  range $key, $value := $taxonomy  -}}
-				{{-  if not (in $nodes $key) -}}
-					{{-  $nodes = $nodes | append $key  -}}
-					{{-  range $value.Pages  -}}
-						{{-  if not (in $nodes .File) -}}
-							{{-  $nodes = $nodes | append .File  -}}
-						{{-  end  -}}
-					{{-  end  -}}
-				{{-  end  -}}
-			{{-  end  -}}
-		{{-  end  -}}
-	{{-  end  -}}
+    {{-  if eq $taxonomy_term "links"  -}}
+        {{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
+            {{-  range $key, $value := $taxonomy  -}}
+                {{-  if not (in $nodes $key) -}}
+                    {{-  $nodes = $nodes | append $key  -}}
+                    {{-  range $value.Pages  -}}
+                        {{-  if not (in $nodes .File) -}}
+                            {{-  $nodes = $nodes | append .File  -}}
+                        {{-  end  -}}
+                    {{-  end  -}}
+                {{-  end  -}}
+            {{-  end  -}}
+        {{-  end  -}}
+    {{-  end  -}}
 {{-  end  -}}
 
 {{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
-	{{-  if eq $taxonomy_term "categories"  -}}
-		{{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
-			{{-  range $key, $value := $taxonomy  -}}
-				{{-  if not (in $cats $key) -}}
-					{{-  $cats = $cats | append $key  -}}
-				{{-  end  -}}
-			{{-  end  -}}
-		{{-  end  -}}
-	{{-  end  -}}
+    {{-  if eq $taxonomy_term "categories"  -}}
+        {{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
+            {{-  range $key, $value := $taxonomy  -}}
+                {{-  if not (in $cats $key) -}}
+                    {{-  $cats = $cats | append $key  -}}
+                {{-  end  -}}
+            {{-  end  -}}
+        {{-  end  -}}
+    {{-  end  -}}
 {{-  end  -}}
 
 
 {{- range .Site.RegularPages -}}
-	{{-  if not (in $nodes .File) -}}
-		{{-  $nodes = $nodes | append .File  -}}
-	{{-  end  -}}
+    {{-  if not (in $nodes .File) -}}
+        {{-  $nodes = $nodes | append .File  -}}
+    {{-  end  -}}
 {{- end -}}
 {
-	"type": "NetworkGraph",
+    "type": "NetworkGraph",
     "version": "",
     "revision": null,
-	"nodes": [{{-  range $i, $node := $nodes  -}} {{-  if not (in (delimit $stash ',') $node)  -}}
-		{{-  if $i  -}}, {{-  end  -}}{
-			"id": "{{-  $node  -}}",
-			"type": "circle",
-			"size": 5,
-			"label": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Title  -}}" {{-  else  -}} "" {{-  end  -}},
-			"labelCfg": {
-				"positions": "center",
-				"style": {
-				  "fontSize": 5
-				}
-			},
-			"properties":{
-				"link": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Permalink  -}}" {{-  else  -}} "" {{-  end  -}},
-				"categories": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{if $nodepage.Params.categories }}{{- index $nodepage.Params.categories 0 -}}{{end}}" {{-  else  -}} "" {{-  end  -}},
-				"tags": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Params.tags  -}}" {{-  else  -}} "" {{-  end  -}}
-			}
-		}
-		{{-  $stash =  $stash | append $node  -}}{{-  end  -}}{{-  end  -}}],
-	"edges": [
-		{{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
-			{{-  if eq $taxonomy_term "links"  -}}
-				{{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
-					{{-  $keys := slice  -}}
-					{{-  range $key, $value := $taxonomy  -}}
-						{{-  $keys = $keys | append $key  -}}
-					{{-  end  -}}
-					{{-  $last := index $keys (sub (len $keys) 1)  -}}
-					{{-  range $key, $value := $taxonomy  -}}
-							{{-  range $i, $page := $value.Pages  -}}
-								{{- if $i -}},{{- end -}}{
-									"source": "{{-  $page.File  -}}",
-									"target": "{{- $key -}}"
-								}
-							{{-  end  -}}{{-  if ne $key $last  -}},{{- end -}}
-					{{-  end  -}}
-				{{-  end  -}}
-			{{-  end  -}}
-		{{-  end  -}}
-	]
+    "nodes": [{{-  range $i, $node := $nodes  -}} {{-  if not (in (delimit $stash ',') $node)  -}}
+        {{-  if $i  -}}, {{-  end  -}}{
+            "id": "{{-  $node  -}}",
+            "type": "circle",
+            "size": 5,
+            "label": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Title  -}}" {{-  else  -}} "" {{-  end  -}},
+            "labelCfg": {
+                "positions": "center",
+                "style": {
+                  "fontSize": 5
+                }
+            },
+            "properties":{
+                "link": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Permalink  -}}" {{-  else  -}} "" {{-  end  -}},
+                "categories": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{if $nodepage.Params.categories }}{{- index $nodepage.Params.categories 0 -}}{{end}}" {{-  else  -}} "" {{-  end  -}},
+                "tags": {{-  $nodepage := $.Site.GetPage (printf "/%s" $node)  -}} {{-  if $nodepage  -}}"{{-  $nodepage.Params.tags  -}}" {{-  else  -}} "" {{-  end  -}}
+            }
+        }
+        {{-  $stash =  $stash | append $node  -}}{{-  end  -}}{{-  end  -}}],
+    "edges": [
+        {{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
+            {{-  if eq $taxonomy_term "links"  -}}
+                {{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
+                    {{-  $keys := slice  -}}
+                    {{-  range $key, $value := $taxonomy  -}}
+                        {{-  $keys = $keys | append $key  -}}
+                    {{-  end  -}}
+                    {{-  $last := index $keys (sub (len $keys) 1)  -}}
+                    {{-  range $key, $value := $taxonomy  -}}
+                            {{-  $keyPage := ($.GetPage $key) -}}
+                            {{- $valuePageRef := slice -}}
+                            {{- range $value.Pages -}}
+                                {{- $valuePageRef = $valuePageRef | append (lower (replace .File "\\" "/")) -}}
+                            {{- end -}}
+                            {{- $keyPageApparentLinks := $keyPage.Params.links -}}
+                            {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
+                                {{- range . -}}
+                                    {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
+                                        {{- if not (in $valuePageRef (substr . 7 -2)) -}}
+                                            {{- $valuePageRef = $valuePageRef | append (substr . 7 -2) -}}
+                                        {{- end -}}
+                                    {{- end -}}
+                                {{- end -}}
+                            {{- end -}}
+
+                            {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
+                                {{- range . -}}
+                                    {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
+                                        {{- if not (in $valuePageRef (substr . 7 -2)) -}}
+                                            {{- $valuePageRef = $valuePageRef | append (substr . 7 -2) -}}
+                                        {{- end -}}
+                                    {{- end -}}
+                                {{- end -}}
+                            {{- end -}}
+
+                            {{-  range $i, $page := $valuePageRef  -}}
+                                {{- if $i -}},{{- end -}}{
+                                    "source": "{{-  $page  -}}",
+                                    "target": "{{- $key -}}"
+                                }
+                            {{-  end  -}}{{-  if ne $key $last  -}},{{- end -}}
+                    {{-  end  -}}
+                {{-  end  -}}
+            {{-  end  -}}
+        {{-  end  -}}
+    ]
 }
 
 
