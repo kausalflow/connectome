@@ -6,6 +6,8 @@ tags:
   - Tutorial
 authors:
   - KausalFlow
+links:
+  - tutorials/_index.md
 weight: 0
 ---
 

@@ -7,11 +7,17 @@ tags:
 authors:
   - KausalFlow
 links:
-  - snm/single-neuron-model.md
-  - snm/limitations-srm-contd-and-coding.md
-  - tags/gauss-markov-theorem
+  - tutorials/_index.md
 weight: 4
 ---
+
+There are three different ways to link notes:
+
+- use `links` in the note metadata, this will be covered in the current note,
+- use shortcode `c` to add a hyperlink in the texts, see {{< c "tutorials/link-to-other-page.md" >}},
+- use shortcode `e` to embed another note in the current note, see {{< c "tutorials/embed-articles.md" >}}.
+
+All three methods will generate backlinks for the notes linked to.
 
 Articles can be linked by adding a the reference of the target post to the meta data of the current post, e.g.,
 
