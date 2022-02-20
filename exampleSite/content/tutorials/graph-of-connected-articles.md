@@ -11,6 +11,6 @@ links:
 weight: 1
 ---
 
-All articles that are connected by {{< c "tutorials/link-articles.md" "using links in metadata">}} will show up in the graph. Articles that are not connected will be hidden.
+All articles that are connected by {{< c "tutorials/link-articles.md" "using links in metadata" >}} will show up in the graph. Articles that are not connected will be hidden.
 
 {{< figure src="../assets/graph-of-connected-articles/graph.png" >}}

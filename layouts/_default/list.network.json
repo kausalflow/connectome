@@ -64,55 +64,87 @@
         {{-  range $taxonomy_term, $taxonomy := $.Site.Taxonomies  -}}
             {{-  if eq $taxonomy_term "links"  -}}
                 {{-  with $.Site.GetPage (printf "/%s" $taxonomy_term)  -}}
+
                     {{-  $keys := slice  -}}
-                    {{-  range $key, $value := $taxonomy  -}}
+
+                    {{ $taxonomyBoubleBracket := $taxonomy }}
+
+                    {{- range $i, $node := $nodes -}}
+                        {{- if not (in $keys $node)  -}}
+                            {{- $taxonomyBoubleBracket = merge $taxonomyBoubleBracket (dict (print $node) nil) -}}
+                            {{-  $keys = $keys | append $node  -}}
+                        {{- end -}}
+                    {{- end -}}
+
+                    {{-  range $key, $value := $taxonomy -}}
                         {{-  $keys = $keys | append $key  -}}
                     {{-  end  -}}
-                    {{-  $last := index $keys (sub (len $keys) 1)  -}}
-                    {{-  range $key, $value := $taxonomy  -}}
-                            {{-  $keyPage := ($.GetPage $key) -}}
-                            {{- $valuePageRef := slice -}}
-                            {{- $valueDoubleBacketLinks := slice -}}
+
+                    {{ $edgeCounter := 0 }}
+
+                    {{/* taxonomy */}}
+                    {{-  range $key, $value := $taxonomy -}}
+                        {{-  $keyPage := ($.GetPage $key) -}}
+                        {{- $valuePageRef := slice -}}
+                        {{- if $value -}}
                             {{- range $value.Pages -}}
                                 {{- $valuePageRef = $valuePageRef | append (lower (replace .File "\\" "/")) -}}
                             {{- end -}}
-                            {{- $keyPageApparentLinks := $keyPage.Params.links -}}
-                            {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
-                                {{- range . -}}
-                                    {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
-                                        {{- if not (in $valuePageRef (substr . 7 -2)) -}}
+                        {{- end -}}
 
-                                                {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
+                        {{-  range $i, $page := $valuePageRef  -}}
+                            {{- if (ne $edgeCounter 0) -}},{{- end -}}{
+                                "source": "{{-  $page  -}}",
+                                "target": "{{- $key -}}"
+                            }
+                            {{- $edgeCounter = add $edgeCounter 1 -}}
+                        {{-  end  -}}
 
-                                        {{- end -}}
-                                    {{- end -}}
-                                {{- end -}}
-                            {{- end -}}
-
-                            {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
-                                {{- range . -}}
-                                    {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
-                                        {{- if not (in $valuePageRef (substr . 7 -2)) -}}
-                                                {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
-                                        {{- end -}}
-                                    {{- end -}}
-                                {{- end -}}
-                            {{- end -}}
-
-                            {{-  range $i, $page := $valuePageRef  -}}
-                                {{- if $i -}},{{- end -}}{
-                                    "source": "{{-  $page  -}}",
-                                    "target": "{{- $key -}}"
-                                }
-                            {{-  end  -}}
-                            {{-  range $i, $page := $valueDoubleBacketLinks  -}}
-                                {{- if (ge (len $valuePageRef) 1) -}},{{- end -}}{
-                                    "source": "{{-  $key  -}}",
-                                    "target": "{{- $page -}}"
-                                }
-                            {{-  end  -}}
-                            {{-  if ne $key $last  -}},{{- end -}}
                     {{-  end  -}}
+                    {{/* END taxonomy */}}
+
+                    {{/* taxonomyBoubleBracket */}}
+                    {{-  range $key, $value := $taxonomyBoubleBracket -}}
+                        {{-  $keyPage := ($.GetPage $key) -}}
+                        {{- $valuePageRef := slice -}}
+                        {{- $valueDoubleBacketLinks := slice -}}
+                        {{- if $value -}}
+                            {{- range $value.Pages -}}
+                                {{- $valuePageRef = $valuePageRef | append (lower (replace .File "\\" "/")) -}}
+                            {{- end -}}
+                        {{- end -}}
+
+                        {{- $keyPageApparentLinks := $keyPage.Params.links -}}
+                        {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
+                            {{- range . -}}
+                                {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
+                                    {{- if not (in $valuePageRef (substr . 7 -2)) -}}
+                                        {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
+                                    {{- end -}}
+                                {{- end -}}
+                            {{- end -}}
+                        {{- end -}}
+
+                        {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
+                            {{- range . -}}
+                                {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
+                                    {{- if not (in $valuePageRef (substr . 7 -2)) -}}
+                                            {{- $valueDoubleBacketLinks = $valueDoubleBacketLinks | append (substr . 7 -2) -}}
+                                    {{- end -}}
+                                {{- end -}}
+                            {{- end -}}
+                        {{- end -}}
+
+
+                        {{-  range $i, $page := $valueDoubleBacketLinks  -}}
+                            {{- if (ne $edgeCounter 0) -}},{{- end -}}{
+                                "source": "{{-  $key  -}}",
+                                "target": "{{- $page -}}"
+                            }
+                            {{- $edgeCounter = add $edgeCounter 1 -}}
+                        {{-  end  -}}
+                    {{-  end  -}}
+                    {{/* END taxonomyBoubleBracket */}}
                 {{-  end  -}}
             {{-  end  -}}
         {{-  end  -}}

@@ -102,9 +102,9 @@
 
                         {{ if isset $.Site.Params "nativebacklink" }}
                             {{ if $.Site.Params.nativebacklink }}
-                                {{ partial "network/dynamic-backlink.html" . }}
-                            {{ else }}
                                 {{ partial "network/cards-links-from" (dict "context" . "ref" $fileReference) }}
+                            {{ else }}
+                                {{ partial "network/dynamic-backlink.html" . }}
                             {{ end }}
                         {{ end }}
 

@@ -3,19 +3,23 @@
 {{ $urlPre := $.Site.BaseURL }}
 {{ $dataNetwork := getJSON $urlPre "/network.json" }}
 
+{{ $sources := slice }}
 
 <div class="box is-size-7">
     <article class="media">
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong><i class="fa-solid fa-turn-down"></i> Links from: </strong>
+                    <strong><i class="fa-solid fa-turn-down"></i> Dynamics Links from: </strong>
                         <div>
                             {{ range $dataNetwork.edges }}
                                 {{ if eq .target $fileReference }}
                                     {{ $source := lower (replace .source "\\" "/") }}
                                     {{ with ($.Site.GetPage $source) }}
-                                        {{ partial "network/linkcard" . }}
+                                        {{ if not (in $sources $source) }}
+                                            {{ partial "network/linkcard" . }}
+                                            {{ $sources = $sources | append $source}}
+                                        {{ end }}
                                     {{ end }}
                                 {{ end }}
                             {{ end }}
