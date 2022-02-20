@@ -26,7 +26,7 @@
                     {{ if .Params.description }}
                     {{ .Params.description | safeHTML | truncate ($truncate) }}
                     {{ else }}
-                    {{ .RawContent | markdownify | safeHTML | truncate ($truncate) }}
+                    {{ .RawContent | replaceRE "{{<.*?>}}" "" | markdownify | safeHTML | truncate ($truncate) }}
                     {{ end }}
                 {{ else }}
                     {{ if $isfull}}
