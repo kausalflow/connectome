@@ -1,0 +1,72 @@
+{{ if or (not (isset .Site.Params "command" )) .Site.Params.command }}
+<script type="module" src="https://unpkg.com/ninja-keys?module"></script>
+<link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+
+<ninja-keys placeholder="Type a command">
+    <slot name="footer"></slot>
+</ninja-keys>
+
+{{ $list_sections := slice }}
+{{ range (where $.Site.RegularPages.ByTitle "Section" $.Site.Params.projects.section ) }}
+{{ if .Params.sections }}
+{{ range .Params.sections }}
+    {{ $list_sections = $list_sections | append . }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+
+<script>
+    const hotkeys = [{
+            id: "Home",
+            title: "Go to Home",
+            hotkey: "cmd+h",
+            mdIcon: "home",
+            handler: () => {
+                console.log("navigation to home");
+                window.open("{{ print $.Site.BaseURL }}", "_self")
+            }
+        },
+        {
+            id: "Graph",
+            title: "View Graph",
+            hotkey: "cmd+g",
+            mdIcon: "blur_circular",
+            handler: () => {
+                console.log("navigation to home");
+                window.open("{{ print $.Site.BaseURL }}/graph", "_self")
+            }
+        },
+        {
+            id: "Open Notebooks",
+            title: "Open Notebooks",
+            mdIcon: "book",
+            handler: () => {
+                console.log("navigation to the list of notebooks");
+                window.open("{{ $.Site.BaseURL }}/{{ $.Site.Params.projects.section }}", "_self")
+            }
+        },
+        {
+            id: "Goto Notebook",
+            title: "Goto Notebooks",
+            mdIcon: "book_online",
+            children: [
+                {{ range $.Site.Sections.ByTitle }}
+                    {{ if and (or (in $list_sections .Section) (in $.Site.Params.projects.add_section_in_projects_menu .Section ) ) (eq .Kind "section") }}
+                    {
+                        id: '{{ .Page.Title }}',
+                        title: '{{ .Page.Title }}',
+                        handler: () => {
+                            console.log("opening notebook {{ .Page.Permalink }}")
+                            window.open("{{ .Page.Permalink }}", "_self")
+                        }
+                    },
+                    {{ end }}
+                {{ end }}
+            ]
+        }
+    ];
+    const ninja = document.querySelector("ninja-keys");
+    ninja.data = hotkeys;
+</script>
+{{ end }}
