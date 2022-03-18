@@ -71,7 +71,9 @@
 
                     {{- range $i, $node := $nodes -}}
                         {{- if not (in $keys $node)  -}}
-                            {{- $taxonomyBoubleBracket = merge $taxonomyBoubleBracket (dict (print $node) nil) -}}
+                            {{ if not (isset $taxonomyBoubleBracket (print $node)) }}
+                                {{- $taxonomyBoubleBracket = merge $taxonomyBoubleBracket (dict (print $node) nil) -}}
+                            {{ end }}
                             {{-  $keys = $keys | append $node  -}}
                         {{- end -}}
                     {{- end -}}
@@ -125,7 +127,7 @@
                             {{- end -}}
                         {{- end -}}
 
-                        {{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $keyPage.RawContent) -}}
+                        {{- with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" $keyPage.RawContent) -}}
                             {{- range . -}}
                                 {{- if not (in $keyPageApparentLinks (substr . 7 -2) ) -}}
                                     {{- if not (in $valuePageRef (substr . 7 -2)) -}}
