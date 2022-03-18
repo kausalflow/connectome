@@ -15,9 +15,11 @@
 {{ end }}
 {{ end }}
 
+{{/*  <button onclick="window.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', metaKey: true}))">Press to dispatch event </button>  */}}
 
 <script>
-    const hotkeys = [{
+    const hotkeys = [
+        {
             id: "Home",
             title: "Go to Home",
             hotkey: "cmd+h",
@@ -38,33 +40,29 @@
             }
         },
         {
-            id: "Open Notebooks",
-            title: "Open Notebooks",
+            id: "All Notebooks",
+            title: "All Notebooks",
             mdIcon: "book",
             handler: () => {
-                console.log("navigation to the list of notebooks");
                 window.open("{{ $.Site.BaseURL }}/{{ $.Site.Params.projects.section }}", "_self")
             }
         },
         {
-            id: "Goto Notebook",
-            title: "Goto Notebooks",
-            mdIcon: "book_online",
+            id: "Search by Title",
+            title: "Search by Title",
+            mdIcon: "search",
             children: [
-                {{ range $.Site.Sections.ByTitle }}
-                    {{ if and (or (in $list_sections .Section) (in $.Site.Params.projects.add_section_in_projects_menu .Section ) ) (eq .Kind "section") }}
+                {{ range $.Site.RegularPages }}
                     {
-                        id: '{{ .Page.Title }}',
+                        id: 'search-{{ .Page.Title }}',
                         title: '{{ .Page.Title }}',
                         handler: () => {
-                            console.log("opening notebook {{ .Page.Permalink }}")
                             window.open("{{ .Page.Permalink }}", "_self")
                         }
                     },
-                    {{ end }}
                 {{ end }}
             ]
-        }
+        },
     ];
     const ninja = document.querySelector("ninja-keys");
     ninja.data = hotkeys;
