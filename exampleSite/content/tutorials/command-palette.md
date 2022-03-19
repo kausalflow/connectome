@@ -29,7 +29,7 @@ On note pages, we can use note specific commands, e.g.,
 - `Links`: show all the notes that the current note linked to,
 - `References`: list all the references and go to the links if there is a url.
 
-{{ figure src="../assets/command-palette/command-palette-note-commands-demo.png" caption="Depending on the note, not every command is available." }}
+{{< figure src="../assets/command-palette/command-palette-note-commands-demo.png" caption="Depending on the note, not every command is available." >}}
 
 The command palette is enabled by default. If one would like to disable it,
 
