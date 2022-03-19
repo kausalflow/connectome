@@ -32,7 +32,7 @@ Simply fork [this repo](https://github.com/kausalflow/hugo-connectome-theme-demo
 
 ## Acknowledgement
 
-- This theme is developed on top of [the Hugo Bulma theme](https://github.com/jeblister/bulma/)
-- The network graph is visualized using [AntV G6](https://g6.antv.vision/)
-
+- This theme is developed on top of [the Hugo Bulma theme](https://github.com/jeblister/bulma/).
+- The network graph is visualized using [AntV G6](https://g6.antv.vision/).
+- We are using [ninja-keys](https://github.com/ssleptsov/ninja-keys) for our command palette.
 
