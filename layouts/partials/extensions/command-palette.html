@@ -7,15 +7,98 @@
 </ninja-keys>
 
 {{ $list_sections := slice }}
-{{ range (where $.Site.RegularPages.ByTitle "Section" $.Site.Params.projects.section ) }}
-{{ if .Params.sections }}
-{{ range .Params.sections }}
-    {{ $list_sections = $list_sections | append . }}
-{{ end }}
-{{ end }}
+{{- range (where $.Site.RegularPages.ByTitle "Section" $.Site.Params.projects.section ) -}}
+    {{ if .Params.sections }}
+        {{ range .Params.sections }}
+            {{ $list_sections = $list_sections | append . }}
+        {{ end }}
+    {{ end }}
+{{- end -}}
+
+
+{{/*  Begin Links to  */}}
+{{ $linksto := slice }}
+{{- if .Params.links -}}
+    {{ with .Params.links }}
+        {{ range . }}
+            {{ with $.Site.GetPage . }}
+                {{ $linksto = $linksto | append . }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{- end -}}
+
+{{- if .RawContent -}}
+{{ $content := replace .RawContent (lower (replace .File "\\" "/")) "" }}
+{{ with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" $content ) }}
+    {{ range . }}
+        {{ if not (in $linksto ($.Site.GetPage (substr . 7 -2)) )}}
+            {{ if not (in $linksto ($.Site.GetPage (substr . 7 -2))) }}
+                {{ $linksto = $linksto | append ($.Site.GetPage (substr . 7 -2)) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
 {{ end }}
 
-{{/*  <button onclick="window.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', metaKey: true}))">Press to dispatch event </button>  */}}
+{{- with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $content) -}}
+    {{ range . }}
+        {{ if not (in $linksto ($.Site.GetPage (substr . 7 -2)) )}}
+            {{ if not (in $linksto ($.Site.GetPage (substr . 7 -2))) }}
+                {{ $linksto = $linksto | append ($.Site.GetPage (substr . 7 -2)) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{- end -}}
+
+{{- end -}}
+{{/*  End links to  */}}
+
+{{/*  Prepare backlinks  */}}
+{{ $backlinks := slice }}
+
+{{ if .File }}
+{{ $fileReference := lower (replace .File "\\" "/") }}
+
+{{ $urlPre := $.Site.BaseURL }}
+{{ $dataNetwork := getJSON $urlPre "/network.json" }}
+
+{{ $sources := slice }}
+{{ $rawSources := slice }}
+
+
+{{- range $dataNetwork.edges -}}
+    {{ if eq .target $fileReference }}
+        {{ $source := lower (replace .source "\\" "/") }}
+        {{ with ($.Site.GetPage $source) }}
+            {{ if not (in $sources $source) }}
+                {{ $sources = $sources | append $source }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{- end -}}
+
+{{- if $sources -}}
+    {{ range $sources }}
+        {{ with ($.Site.GetPage .) }}
+            {{ $backlinks = $backlinks | append . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{- end -}}
+{{/*  End of backlinks  */}}
+
+
+{{/*  Begin References  */}}
+{{- $references := slice -}}
+{{ if .Params.references }}
+    {{ range $ref := .Params.references }}
+        {{ $references = $references | append . }}
+    {{ end }}
+{{- end -}}
+
+{{/*  End References  */}}
+
 
 <script>
     const hotkeys = [
@@ -55,7 +138,8 @@
                 {{ range $.Site.RegularPages }}
                     {
                         id: 'search-{{ .Page.Title }}',
-                        title: '{{ .Page.Title }}',
+                        title: 'Search: {{ .Page.Title }}',
+                        parent: 'Search by Title',
                         handler: () => {
                             window.open("{{ .Page.Permalink }}", "_self")
                         }
@@ -63,6 +147,78 @@
                 {{ end }}
             ]
         },
+        {{ if $backlinks }}
+        {
+            id: "backlinks",
+            title: "Backlinks",
+            parent: "Current Note",
+            mdIcon: "keyboard_return",
+            children: [
+                {{ range $backlinks }}
+                    {
+                        id: 'backlinks-{{ .Title }}',
+                        title: 'Backlink: {{ .Title }}',
+                        parent: 'backlinks',
+                        handler: () => {
+                            window.open("{{ .Permalink }}", "_self")
+                        }
+                    },
+                {{ end }}
+            ]
+        },
+        {{ end }}
+        {{ if $linksto }}
+        {
+            id: "linksto",
+            title: "Links",
+            parent: "Current Note",
+            mdIcon: "logout",
+            children: [
+                {{ range $linksto }}
+                    {
+                        id: 'linksto-{{ .Title }}',
+                        title: 'Links: {{ .Title }}',
+                        parent: 'linksto',
+                        handler: () => {
+                            window.open("{{ .Permalink }}", "_self")
+                        }
+                    },
+                {{ end }}
+            ]
+        },
+        {{ end }}
+        {{ if $references }}
+        {
+            id: "references",
+            title: "References",
+            parent: "Current Note",
+            mdIcon: "format_quote",
+            children: [
+                {{ range $references }}
+                    {
+                        id: 'references-{{ .name }}',
+                        title: 'Reference: {{ .name }}',
+                        parent: 'references',
+                        handler: () => {
+                            window.open("{{ .link }}", "_self")
+                        }
+                    },
+                {{ end }}
+            ]
+        },
+        {{ end }}
+        {{ if .File }}
+            {{ $fileReference := lower (replace .File "\\" "/") }}
+            {
+                id: "current-note-ref-id",
+                title: "Current Note ID",
+                parent: "Current Note",
+                mdIcon: "fingerprint",
+                handler: () => {
+                    navigator.clipboard.writeText("{{ $fileReference }}");
+                }
+            },
+        {{ end }}
     ];
     const ninja = document.querySelector("ninja-keys");
     ninja.data = hotkeys;
