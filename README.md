@@ -2,9 +2,18 @@
 
 A [Hugo](http://gohugo.io/) theme for online community notes with backlinks.
 
-| graph | links and backlinks | preview links | Multiple Topics/Notebooks |
-|----|----|----|----|
-| ![](images/hugo-connectome-graph.png)  |  ![](images/hugo-connectome-article-page-links.png) |  ![](images/hugo-connectome-preview-double-bracket-links.png)  |  ![](images/hugo-connectome-multiple-notebooks.png) |
+
+| graph | links and backlinks | command palette |
+|----|----|----|
+| ![](images/hugo-connectome-graph.png)  |  ![](images/hugo-connectome-article-page-links.png) |  ![](images/hugo-connectome-command-palette-demo.png) ![](images/hugo-connectome-command-palette-note-commands-demo.png) |
+
+
+
+| preview links | Multiple Topics/Notebooks |
+|----|----|
+| ![](images/hugo-connectome-preview-double-bracket-links.png)  |  ![](images/hugo-connectome-multiple-notebooks.png) |
+
+
 
 
 ## How to Use
