@@ -8,7 +8,7 @@ authors:
   - KausalFlow
 links:
   - tutorials/_index.md
-weight: 3
+weight: 8
 ---
 
 To use the command palette, press <kbd>Command</kbd> + <kbd>k</kbd> (on Mac) or <kbd>Windows</kbd> + <kbd>k</kbd> (on Windows).
