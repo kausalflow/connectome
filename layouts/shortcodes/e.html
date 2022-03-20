@@ -4,9 +4,9 @@
 {{ $truncate := (cond (ne (.Get "truncate") nil) (.Get "truncate") (.Get 3)) | default 500 }}
 {{ $class := (cond (ne (.Get "class") nil) (.Get "class") (.Get 4)) }}
 
-{{ if $truncate = -1 }}
-{{ $truncate = 999999 }}
-{{ end }}
+{{/*  {{ if $truncate = -1 }}
+    {{ $truncate = 999999 }}
+{{ end }}  */}}
 
 {{ with $.Site.GetPage $filename }}
 
@@ -23,10 +23,11 @@
             </div>
             <div style="font-size: 80%;">
                 {{ if (findRE "{{<\\s{1}[c|e]\\s+(.+?)\\s+" .RawContent) }}
+                    {{/*  {{ $truncate = 500 }}  */}}
                     {{ if .Params.description }}
                     {{ .Params.description | safeHTML | truncate ($truncate) }}
                     {{ else }}
-                    {{ .RawContent | replaceRE "{{<.*?>}}" "" | markdownify | safeHTML | truncate ($truncate) }}
+                    {{ .RawContent | replaceRE "{{<.*?>}}" "" | replaceRE "#.*?\\s+" "" | replaceRE "\\[.*?\\]" "" | markdownify | safeHTML | truncate ($truncate) }}
                     {{ end }}
                 {{ else }}
                     {{ if $isfull}}
