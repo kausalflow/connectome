@@ -25,6 +25,13 @@
     style="width: 35px; height: 35px;position:fixed;bottom: 120px;right: 10px;border-radius: 9999px;"
     ></a>
     {{ end }}
+    {{ if or (not (isset $.Site.Params "command" )) $.Site.Params.command }}
+    <a class="button is-primary is-light is-outlined"
+    style="width: 35px; height: 35px;position:fixed;bottom: 100px;right: 10px;border-radius: 9999px;"
+    onclick="document.querySelector('ninja-keys').open()"
+    ><i class="fa-solid fa-terminal"></i></a>
+    {{ end }}
+
 
 
 
