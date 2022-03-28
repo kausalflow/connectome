@@ -1,0 +1,27 @@
+{{ if isset .Params "garden" }}
+<div class="box is-size-7">
+    <article class="media">
+        <div class="media-content">
+            <div class="content">
+                <p style="color: #7abc38;">
+                    {{ range .Params.garden }}
+                        {{ $phase := . }}
+                        {{ range $.Site.Params.garden.phases }}
+                            {{ if eq $phase .name }}
+                            <span class="tooltip"><a>{{ .icon | safeHTML }}</a>
+                            <span class="tooltiptext">
+                                <span class="tooltip_title">{{ .name }}</span>
+                                <span class="tooltip_content">{{ .description }}</span>
+                            </span>
+                            </span>
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                {{ else }}
+                    {{ $.Site.Params.garden.default.icon | safeHTML }}
+                {{ end }}
+</p>
+</div>
+</div>
+</article>
+</div>

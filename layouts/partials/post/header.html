@@ -1,0 +1,37 @@
+<header class="post-header">
+    {{ partial "breadcrumb" . }}
+
+
+
+    {{ if isset .Params "garden" }}
+    <div class="title is-6 has-text-left" style="margin-bottom: -1em;">
+        {{ range .Params.garden }}
+            {{ $phase := . }}
+            {{ range $.Site.Params.garden.phases }}
+                {{ if eq $phase .name }}
+                <span title="{{ .description }}" style="color: {{ .color }};" class="tag is-warning is-small is-light"><b>{{ .icon | safeHTML }} {{ .name | upper }}</b></span>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </div>
+    {{ else }}
+    <div class="title is-6 has-text-left" style="margin-bottom: -1em;"><span title="{{ $.Site.Params.garden.default.description }}" style="color: {{ $.Site.Params.garden.default.color }};" class="tag is-warning is-small is-light">{{ $.Site.Params.garden.default.icon | safeHTML }} {{ $.Site.Params.garden.default.name | upper }}</span>
+    </div>
+    {{ end }}
+
+    <h1 class="post-title has-text-left is-size-1" itemprop="name headline">
+        {{ .Params.Title }}
+    </h1>
+
+
+
+    <div class="title is-6 has-text-left" style="margin-top: 1em;">
+        <i class="fas fa-tags" style="margin-right: 0.5em;"></i>
+        {{ range $tag := .Params.tags }}
+        <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}"><span class="tag is-warning is-small is-light">#{{$tag}}</span></a>
+        {{ end }}
+    </div>
+
+
+
+</header>

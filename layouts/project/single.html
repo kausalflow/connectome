@@ -22,21 +22,7 @@
         <div class="container">
             <article class="post">
 
-                <header class="post-header">
-                    {{ partial "breadcrumb" . }}
-                    <h1 class="post-title has-text-centered is-size-1" itemprop="name headline">
-                        {{ .Params.Title }}
-                    </h1>
-                    <h2 class="title is-6 has-text-centered">
-                            <i class="fas fa-tags" style="margin-right: 0.5em;"></i>
-                            {{ range $tag := .Params.tags }}
-                            <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}"><span class="tag is-warning is-small is-light">#{{$tag}}</span></a>
-                            {{ end }}
-                    </h2>
-
-
-
-                </header>
+                {{ partial "post/header" . }}
 
                 <div class="columns">
                     <div class="column is-8">

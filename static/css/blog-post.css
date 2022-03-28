@@ -7,5 +7,13 @@ body {
 }
 
 .blog-post>p {
-    font-size: 19px;
+    font-size: 1.6em;
+}
+
+.blog-post>ul {
+    font-size: 1.6em;
+}
+
+.blog-post>ol {
+    font-size: 1.6em;
 }

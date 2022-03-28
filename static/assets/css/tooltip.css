@@ -17,7 +17,7 @@
   color: black;
   text-align: left;
   border-radius: 6px;
-  border-color: ;
+  border-color: black;
   border: 1px solid black;
   line-height: 1.2;
 
@@ -62,6 +62,51 @@
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* Align Left */
+
+.tooltip .tooltiptext-right {
+  visibility: hidden;
+  min-width: 300px;
+  max-width: 400px;
+  max-height: 500px;
+  overflow: hidden;
+  background-color: white;
+  color: black;
+  text-align: left;
+  border-radius: 6px;
+  border-color: black;
+  border: 1px solid black;
+  line-height: 1.2;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  /* left: 0 ; right: 0; bottom: 0; */
+  top: 125%;
+  left: 0%;
+  margin-left: -150px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext-right > .tooltip_title {
+  font-size: 80%;
+  background-color: black;
+  color: white;
+  display: block;
+  padding: 7px 10px 7px 10px;
+}
+
+
+.tooltip:hover .tooltiptext-right {
   display: block;
   visibility: visible;
   opacity: 1;
