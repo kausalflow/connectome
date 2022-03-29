@@ -140,7 +140,7 @@
                     {{ if eq $.Site.Params.comments.use "giscus" }}
                         {{ partial "comments/giscus-comments" . }}
                     {{ else if eq $.Site.Params.comments.use "utterances" }}
-                        {{ partial "utterances-comments.html" . }}
+                        {{ partial "comments/utterances-comments.html" . }}
                     {{ end }}
                 </div>
 

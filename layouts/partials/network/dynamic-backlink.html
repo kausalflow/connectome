@@ -18,22 +18,36 @@
 {{ end}}
 
 {{ if $sources }}
-<div class="box is-size-7">
+<div class="box is-size-8">
     <article class="media">
         <div class="media-content">
             <div class="content">
                 <p>
-                    <strong><i class="fa-solid fa-turn-down"></i> Dynamic Links from: </strong>
-                        <div>
+                    <strong><i class="fa-solid fa-turn-down"></i> Dynamic Backlinks: </strong>
+                        <div class="columns is-multiline is-mobile">
+                            {{ $bl := slice }}
                             {{ range $sources }}
                                 {{ with ($.Site.GetPage .) }}
-                                    {{ partial "network/linkcard" . }}
+                                    {{ $bl = $bl | append . }}
+
                                 {{ end }}
                             {{ end }}
+                            {{ if not (eq $bl slice) }}
+                                {{ range $bl }}
+                                    <div class="column is-half">
+                                        {{ partial "network/linkcard" . }}
+                                    </div>
+                                {{ end }}
+                            {{ end }}
+
                         </div>
                 </p>
             </div>
         </div>
     </article>
 </div>
+{{ else }}
+<div class="notification is-warning is-light is-size-8">
+    No backlinks identified. Reference this note using the Note ID <code>{{ $fileReference }}</code> in other notes to connect them.
+  </div>
 {{ end }}

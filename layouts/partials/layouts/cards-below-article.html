@@ -1,0 +1,68 @@
+<div id="connectome" class="is-divider" data-content="CONNECTUME"></div>
+
+
+<div class="columns">
+
+        <div class="column is-8">
+
+            {{ $fileReference := lower (replace .File "\\" "/") }}
+
+
+            {{ if isset $.Site.Params "nativebacklink" }}
+                {{ if $.Site.Params.nativebacklink }}
+                    {{ partial "network/cards-links-from" (dict "context" . "ref" $fileReference) }}
+                {{ else }}
+                    {{ partial "network/dynamic-backlink.html" . }}
+                {{ end }}
+            {{ else }}
+                {{ partial "network/dynamic-backlink.html" . }}
+            {{ end }}
+        </div>
+
+        <div class="column is-4">
+
+
+            {{ partial "network/currentref" . }}
+
+
+            {{ partial "network/cards-links-to" . }}
+            {{ partial "network/cards-content-double-bracket" . }}
+
+            {{ if isset $.Site.Params "localgraph" }}
+                {{ if $.Site.Params.localgraph }}
+                    {{ partial "network/local-graph-g6" . }}
+                {{ end }}
+            {{ end }}
+
+        </div>
+
+</div>
+
+
+<div class="columns">
+
+
+<div class="column is-8">
+    {{ if eq $.Site.Params.comments.use "giscus" }}
+    {{ partial "comments/giscus-comments" . }}
+    {{ else if eq $.Site.Params.comments.use "utterances" }}
+    {{ partial "comments/utterances-comments.html" . }}
+    {{ end }}
+</div>
+
+<div class="column is-4">
+
+    <div class="is-divider" data-content="Cite"></div>
+    {{ partial "profile/citethis.html"  . }}
+
+    {{ partial "refererences/card-references" . }}
+
+    {{ partial "refererences/card-supplementary" . }}
+
+
+
+</div>
+
+
+</div>
+

@@ -1,0 +1,41 @@
+<div class="column is-4">
+
+    <div class="is-divider" data-content="Cite"></div>
+    {{ partial "profile/citethis.html"  . }}
+
+    {{ partial "toc" .}}
+
+    {{ partial "refererences/card-references" . }}
+
+    {{ partial "refererences/card-supplementary" . }}
+
+    <div class="is-divider" data-content="CONNECTUME"></div>
+    {{ $fileReference := lower (replace .File "\\" "/") }}
+    {{ partial "network/currentref" . }}
+
+    {{ if isset $.Site.Params "nativebacklink" }}
+        {{ if $.Site.Params.nativebacklink }}
+            {{ partial "network/cards-links-from" (dict "context" . "ref" $fileReference) }}
+        {{ else }}
+            {{ partial "network/dynamic-backlink.html" . }}
+        {{ end }}
+    {{ else }}
+        {{ partial "network/dynamic-backlink.html" . }}
+    {{ end }}
+
+    {{ partial "network/cards-links-to" . }}
+    {{ partial "network/cards-content-double-bracket" . }}
+
+    {{ if isset $.Site.Params "localgraph" }}
+        {{ if $.Site.Params.localgraph }}
+            {{ partial "network/local-graph-g6" . }}
+        {{ end }}
+    {{ end }}
+
+    {{ if eq $.Site.Params.comments.use "giscus" }}
+        {{ partial "comments/giscus-comments" . }}
+    {{ else if eq $.Site.Params.comments.use "utterances" }}
+        {{ partial "comments/utterances-comments.html" . }}
+    {{ end }}
+
+</div>

@@ -2,28 +2,44 @@
     {{ partial "breadcrumb" . }}
 
 
-
-    {{ if isset .Params "garden" }}
-    <div class="title is-6 has-text-left" style="margin-bottom: -1em;">
-        {{ range .Params.garden }}
-            {{ $phase := . }}
-            {{ range $.Site.Params.garden.phases }}
-                {{ if eq $phase .name }}
-                <span title="{{ .description }}" style="color: {{ .color }};" class="tag is-warning is-small is-light"><b>{{ .icon | safeHTML }} {{ .name | upper }}</b></span>
-                {{ end }}
-            {{ end }}
-        {{ end }}
-    </div>
-    {{ else }}
-    <div class="title is-6 has-text-left" style="margin-bottom: -1em;"><span title="{{ $.Site.Params.garden.default.description }}" style="color: {{ $.Site.Params.garden.default.color }};" class="tag is-warning is-small is-light">{{ $.Site.Params.garden.default.icon | safeHTML }} {{ $.Site.Params.garden.default.name | upper }}</span>
-    </div>
-    {{ end }}
-
     <h1 class="post-title has-text-left is-size-1" itemprop="name headline">
         {{ .Params.Title }}
     </h1>
 
 
+    {{ $phase_color := $.Site.Params.garden.default.color }}
+    {{ if isset .Params "garden" }}
+    <div class="title is-6 has-text-left" style="margin-top: 1em;">
+        {{ range .Params.garden }}
+            {{ $phase := . }}
+            {{ range $.Site.Params.garden.phases }}
+                {{ if eq $phase .name }}
+                <i class="{{ .icon }}" style="margin-right: 0.5em;color: {{ .color }};"></i>
+                <a class="tooltip"><span style="color: {{ .color }};" class="tag is-warning is-small is-light"><b>{{ .name | upper }}</b></span>
+                    <span class="tooltiptext">{{ .description }}</span>
+                </a>
+                {{ $phase_color := .color }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </div>
+    {{ else }}
+    <div class="title is-6 has-text-left" style="margin-top: 1em;">
+        <i class="{{ $.Site.Params.garden.default.icon }}" style="margin-right: 0.5em;color: {{ $.Site.Params.garden.default.color }};"></i>
+        <a class="tooltip"><span style="color: {{ $.Site.Params.garden.default.color }};" class="tag is-warning is-small is-light">{{ $.Site.Params.garden.default.name | upper }}</span>
+            <span class="tooltiptext">{{ $.Site.Params.garden.default.description }}</span>
+        </a>
+    </div>
+    {{ end }}
+
+
+    <div class="title is-6 has-text-left" style="margin-top: 1em;">
+        {{ $fileReference := lower (replace $.File "\\" "/") }}
+        <i class="fa-solid fa-fingerprint" style="margin-right: 0.5em;"></i>
+        <a class="tooltip"><span title="{{ $fileReference }}" class="tag is-success is-small is-light" style="color: {{ $phase_color }};"><b>{{ $fileReference }}</b></span>
+            <span class="tooltiptext">Current Note ID: The unique ID of this note.</span>
+        </a>
+    </div>
 
     <div class="title is-6 has-text-left" style="margin-top: 1em;">
         <i class="fas fa-tags" style="margin-right: 0.5em;"></i>

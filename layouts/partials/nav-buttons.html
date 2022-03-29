@@ -16,18 +16,24 @@
         style="position:fixed;bottom: 60px;right: 10px;border-radius: 9999px;width:35px;height:35px;">
         <i class="far fa-comments"></i>
     </a>
+    <a class="button is-primary is-light is-outlined"
+        href="#connectome"
+        alt="Connectome"
+        style="position:fixed;bottom: 100px;right: 10px;border-radius: 9999px;width:35px;height:35px;">
+        <i class="fa-solid fa-brain"></i>
+    </a>
     {{ with $.Site.Params.lyket.api_key }}
     <a class="button is-primary is-light is-outlined"
     data-lyket-type="{{ $.Site.Params.lyket.lyket_type}}"
     data-lyket-id='{{ $File.BaseFileName }}'
     data-lyket-namespace="{{ $.Site.Title }}"
     data-lyket-template="reddit"
-    style="width: 35px; height: 35px;position:fixed;bottom: 140px;right: 10px;border-radius: 9999px;"
+    style="width: 35px; height: 35px;position:fixed;bottom: 180px;right: 10px;border-radius: 9999px;"
     ></a>
     {{ end }}
     {{ if or (not (isset $.Site.Params "command" )) $.Site.Params.command }}
     <a class="button is-primary is-light is-outlined"
-    style="width: 35px; height: 35px;position:fixed;bottom: 100px;right: 10px;border-radius: 9999px;"
+    style="width: 35px; height: 35px;position:fixed;bottom: 140px;right: 10px;border-radius: 9999px;"
     onclick="document.querySelector('ninja-keys').open()"
     ><i class="fa-solid fa-terminal"></i></a>
     {{ end }}
