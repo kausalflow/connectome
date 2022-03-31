@@ -26,8 +26,8 @@
   z-index: 1;
   /* left: 0 ; right: 0; bottom: 0; */
   top: 125%;
-  left: 95%;
-  margin-left: -100px;
+  left: 5%;
+  margin-left: 10px;
 
   /* Fade in tooltip */
   opacity: 0;
