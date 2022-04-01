@@ -12,7 +12,7 @@ weight: 2
 ## Some Interesting Points
 
 
-1. Geometrically speaking, linear regression methods finds the closest path from the true data to a hypersuface spanned by the data vectors. By definition, each set of data is viewed as a basis vector. The so called closed path to the hypersuface is basically the path that is perpendicular to the surface. Thus we know the prediction we are looking for is a projection of true data onto the hypersuface.
+1. Geometrically speaking, linear regression methods finds the closest path from the true data to a hypersurface spanned by the data vectors. By definition, each set of data is viewed as a basis vector. The so called closed path to the hypersurface is basically the path that is perpendicular to the surface. Thus we know the prediction we are looking for is a projection of true data onto the hypersurface.
 2. The argument above also indicates that degenerate data set, which contains data of the same direction, could cause problems since we have a redundant basis.
 3. Distribution of the parameters can be obtained for some categories of data. It might be a normal distribution.
 4. t-distribution, aka [student's t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution), is a category of distributions describing the deviation of estimated mean in a normal distribution from the true mean.
