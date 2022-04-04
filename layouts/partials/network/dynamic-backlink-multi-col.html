@@ -1,0 +1,45 @@
+{{ $fileReference := lower (replace .File "\\" "/") }}
+
+{{ $urlPre := $.Site.BaseURL }}
+{{ $dataNetwork := getJSON $urlPre "/network.json" }}
+
+{{ $sources := slice }}
+{{ $rawSources := slice }}
+
+{{ range $dataNetwork.edges }}
+    {{ if eq .target $fileReference }}
+        {{ $source := lower (replace .source "\\" "/") }}
+        {{ with ($.Site.GetPage $source) }}
+            {{ if not (in $sources $source) }}
+                {{ $sources = $sources | append $source }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end}}
+
+{{ if $sources }}
+
+<div style="margin-bottom: 1em;"><span style="font-weight: bold;"><i class="fa-solid fa-turn-down"></i> Dynamic Backlinks: </span></div>
+<div class="columns is-multiline is-mobile">
+    {{ $bl := slice }}
+    {{ range $sources }}
+        {{ with ($.Site.GetPage .) }}
+            {{ $bl = $bl | append . }}
+
+        {{ end }}
+    {{ end }}
+    {{ if not (eq $bl slice) }}
+        {{ range $bl }}
+            <div class="column is-half">
+                {{ partial "network/linkcard" . }}
+            </div>
+        {{ end }}
+    {{ end }}
+
+</div>
+
+{{ else }}
+<div class="notification is-warning is-light">
+    No backlinks identified. Reference this note using the Note ID <code>{{ $fileReference }}</code> in other notes to connect them.
+</div>
+{{ end }}

@@ -1,0 +1,20 @@
+{{ if .Params.links }}
+{{ with .Params.links }}
+
+<div style="margin-bottom: 1em;">
+    <span style="font-weight: bold;"><i class="fa-solid fa-turn-up"></i> Links to: </span>
+</div>
+
+<div class="columns is-multiline is-mobile">
+    {{ range . }}
+    {{ with $.Site.GetPage . }}
+        <div class="column is-half">
+        {{ partial "network/linkcard" . }}
+        </div>
+    {{ end }}
+    {{ end }}
+</div>
+
+
+{{ end }}
+{{ end }}

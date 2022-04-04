@@ -1,0 +1,19 @@
+{{ if .Params.supplementary }}
+<div class="is-divider" data-content="SUPPLEMENTARY"></div>
+<div style="margin-bottom: 1em;">
+    <span style="font-weight: bold;">
+        <i class="fa-solid fa-paperclip"></i> Supplementary: </span>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column content blog-post section">
+        <section class="footnotes">
+            <ol>
+                {{ range $supp := .Params.supplementary }}
+                <li class="has-text-weight-bold"><a href="{{ $supp.link }}" style="text-decoration:none;">{{ $supp.name }}</a></li>
+                {{ end }}
+            </ol>
+        </section>
+    </div>
+</div>
+{{ end }}

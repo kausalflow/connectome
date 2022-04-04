@@ -1,0 +1,38 @@
+{{ $dbLinks := slice }}
+{{ $apparentLinks := .Params.links }}
+
+{{ $content := replace .RawContent (lower (replace .File "\\" "/")) "" }}
+
+{{ with (findRE "{{<\\s{1}e\\s+(.+?)\\s+" $content ) }}
+    {{ range . }}
+        {{ if not (in $apparentLinks (substr . 7 -2) )}}
+            {{ if not (in $dbLinks (substr . 7 -2)) }}
+                {{ $dbLinks = $dbLinks | append (substr . 7 -2) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ with (findRE "{{<\\s{1}c\\s+(.+?)\\s+" $content) }}
+    {{ range . }}
+        {{ if not (in $apparentLinks (substr . 7 -2) )}}
+            {{ if not (in $dbLinks (substr . 7 -2)) }}
+                {{ $dbLinks = $dbLinks | append (substr . 7 -2) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ with $dbLinks }}
+
+<div style="margin-bottom: 1em;"><span style="font-weight: bold;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Additional Double Backet Links: </span></div>
+<div class="columns is-multiline is-mobile">
+    {{ range . }}
+    <div class="column is-half">
+        {{ partial "network/linkcard" ($.Site.GetPage .) }}
+    </div>
+    {{ end }}
+</div>
+
+
+{{ end }}

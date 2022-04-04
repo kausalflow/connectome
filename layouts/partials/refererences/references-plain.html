@@ -1,0 +1,25 @@
+{{ if .Params.references }}
+<div class="is-divider" data-content="REFERENCES"></div>
+
+
+<div style="margin-bottom: 1em;">
+    <span style="font-weight: bold;"><i class="fa-solid fa-quote-left"></i> References: </span>
+</div>
+
+<div class="columns is-mobile">
+    <div class="column content blog-post section">
+        <section class="footnotes">
+        <ol>
+            {{ range $ref := .Params.references }}
+            <li class="has-text-weight-bold" style="margin-bottom: 0.5em;">{{ if $ref.key }}
+                <a name="{{ $ref.key }}" href="#{{ $ref.key }}" style="text-decoration:none;">
+                    <span class="tag is-link is-light">{{$ref.key}}</span>
+                </a>
+                {{ end }}<a href="{{ $ref.link }}" style="text-decoration:none;">{{ $ref.name }}</a></li>
+            {{ end }}
+        </ol>
+        </section>
+    </div>
+</div>
+
+{{ end }}
