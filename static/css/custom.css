@@ -167,3 +167,13 @@ code.has-jax {
 	font-family: 'Questrial', sans-serif;
 }
 /* headings END */
+
+/* add brackets to footnote links BEGIN */
+a.footnote-ref::before {
+  content: '[';
+}
+
+a.footnote-ref::after {
+  content: ']';
+}
+/* add brackets to footnote links END */
