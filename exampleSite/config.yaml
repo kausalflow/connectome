@@ -103,3 +103,7 @@ outputs:
     - "data"
     - "network"
     - "networkjq"
+
+
+ignoreErrors:
+  - "error-remote-getjson"
