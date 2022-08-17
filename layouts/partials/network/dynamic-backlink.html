@@ -29,7 +29,6 @@
                             {{ range $sources }}
                                 {{ with ($.Site.GetPage .) }}
                                     {{ $bl = $bl | append . }}
-
                                 {{ end }}
                             {{ end }}
                             {{ if not (eq $bl slice) }}
