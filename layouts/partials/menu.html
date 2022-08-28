@@ -82,6 +82,10 @@
         {{ end }}
         {{ end }}
 
+        {{ if or (not (isset $.Site.Params "command" )) $.Site.Params.command }}
+          <a class="navbar-item" title="Use Command+K or Windows+K" onclick="document.querySelector('ninja-keys').open()"><i class="fa-solid fa-terminal"></i></a>
+        {{end}}
+
         {{ if .Site.Params.graphbutton }}
         <a class="navbar-item" id="showModal">
           <span class="icon">
