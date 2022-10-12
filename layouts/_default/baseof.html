@@ -31,15 +31,22 @@
   <link rel="next" href="{{ .Params.next }}"> {{ end }} {{ partial "favicon" . }}
 
 
-  <link rel="stylesheet" href="/css/bulma.css">
-  <link rel="stylesheet" href="/css/bulma-divider.min.css">
-  <link rel="stylesheet" href="/assets/css/bulma-ribbon.min.css">
-  <link rel="stylesheet" href="/assets/css/tooltip.css">
+  {{ $css_bulma := resources.Get "css/bulma.min.css" }}
+  {{ $css_divider := resources.Get "css/bulma-divider.min.css" }}
+  {{ $css_ribbon := resources.Get "css/bulma-ribbon.min.css" }}
+  {{ $css_tooltip := resources.Get "css/tooltip.css" }}
+  {{ $css_custom := resources.Get "css/custom.css" }}
+  {{ $css_blog_post := resources.Get "css/blog-post.css" }}
+  {{ $css_code_dark := resources.Get "css/code-highlighting/dark.css" }}
+  {{ $css := slice $css_bulma $css_divider $css_ribbon $css_tooltip $css_blog_post $css_code_dark $css_custom | resources.Concat "css/bundle.css" }}
+
+  <link rel="stylesheet" href="{{ $css.Permalink }}">
+
   {{ if .Site.Params.theme_variant }}
-  <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/{{.Site.Params.theme_variant}}/bulmaswatch.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/{{.Site.Params.theme_variant}}/bulmaswatch.min.css">
   {{else}}
   {{end}}
-  <link rel="stylesheet" href="/css/custom.css">
+
   {{ block "style" .}} {{end}} {{ $lazylist := findRE "class=\".*?\\blazyload\\b.*?\"|class=lazyload\b" .Content }}
   <!-- http://regexr.com/3f9d1 -->
   {{ if ge (len $lazylist) 1 }}
@@ -53,29 +60,17 @@
 {{ partial "extensions/fontawesome" }}
 
 </head>
-<!--theme variation-->
 
 <body>
   <header>{{ block "header" . }}{{ end }}</header>
   <main>{{ block "main" . }}{{ end }}</main>
 
-  <!-- <div id="fastSearch">
-    <input id="searchInput" tabindex="0">
-    <ul id="searchResults">
-    </ul>
-  </div>
-  <script src="/js/fuse.min.js"></script>
-  <script src="/js/fastsearch.js"></script> -->
-
   <footer>{{ block "footer" . }}{{ end }}</footer>
-  <!-- {{ partial "network/graph" }} -->
 
-  {{ with $.Site.Params.lyket.api_key }}
-  <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey={{ . }}&disableSessionId"></script>
-  {{ end }}
   <script async type="text/javascript" src="/js/bulma.js"></script>
 
   {{ partial "extensions/hypothesis" . }}
+  {{ partial "extensions/lyket" . }}
 
 </body>
 
