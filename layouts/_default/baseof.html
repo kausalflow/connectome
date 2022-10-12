@@ -54,10 +54,7 @@
   {{ end }}
 
 
-{{ partial "extensions/command-palette" . }}
-{{ partial "extensions/mathjax" }}
-{{ partial "extensions/mermaid" }}
-{{ partial "extensions/fontawesome" }}
+
 
 </head>
 
@@ -68,6 +65,11 @@
   <footer>{{ block "footer" . }}{{ end }}</footer>
 
   <script async type="text/javascript" src="/js/bulma.js"></script>
+
+  {{ partial "extensions/command-palette" . }}
+  {{ partial "extensions/mathjax" }}
+  {{ partial "extensions/mermaid" }}
+  {{ partial "extensions/fontawesome" }}
 
   {{ partial "extensions/hypothesis" . }}
   {{ partial "extensions/lyket" . }}
