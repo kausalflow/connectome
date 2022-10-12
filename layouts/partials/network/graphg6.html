@@ -5,4 +5,5 @@
 </div>
 
 <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.3.11/dist/g6.min.js"></script>
-<script src="/assets/network/networkg6.js"></script>
+{{ $networkg6 := resources.Get "network/networkg6.js" }}
+<script src="{{ $networkg6.Permalink }}"></script>
