@@ -11,7 +11,7 @@
 {{ with $.Site.GetPage $filename }}
 
 
-<a class="box is-{{ if $class }}{{$class}}{{else}}light{{ end }} is-light" href="{{ .Permalink }}" style="width: 90%; margin-left: auto; margin-right: auto;margin-top: 2em;margin-bottom: 2em;">
+<a class="box is-{{ if $class }}{{$class}}{{else}}light{{ end }} is-light" href="{{ .Permalink }}" style="max-width: 1000px;width: 90%; margin-left: auto; margin-right: auto;margin-top: 2em;margin-bottom: 2em;">
     <div class="media-content">
         <div class="content">
             <div class="title is-6" style="padding-bottom: 0.8em;border-bottom: 1px dotted #999;">{{ if $showname }}
