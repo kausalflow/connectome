@@ -39,7 +39,5 @@
 </div>
 
 {{ else }}
-<div class="notification is-white">
-    No backlinks identified. Reference this note using the Note ID <code>{{ $fileReference }}</code> in other notes to connect them.
-</div>
+    {{ partial "network/related-articles" . }}
 {{ end }}
