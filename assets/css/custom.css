@@ -177,3 +177,15 @@ a.footnote-ref::after {
   content: ']';
 }
 /* add brackets to footnote links END */
+
+.giscus {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.citethis {
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}

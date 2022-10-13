@@ -8,12 +8,80 @@ body {
 
 .blog-post>p {
     font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .blog-post>ul {
     font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 
 .blog-post>ol {
     font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>h1 {
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>h2 {
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>h3 {
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>h4 {
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>h5 {
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>div {
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.blog-post>article.message {
+    margin-top: 2em;
+    margin-bottom: 3em;
+    font-size: 1.6em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+.footnotes>ol {
+    font-size: 1.4em;
+    max-width: 1000px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
