@@ -1,6 +1,7 @@
-<div style="margin-bottom: 1em;"><span style="font-weight: bold;"><i class="fa-solid fa-wand-magic-sparkles"></i> Similar Articles: </span></div>
-
 {{ $related := .Site.RegularPages.Related . | first 4 }}
+
+{{ if $related }}
+<div style="margin-bottom: 1em;"><span style="font-weight: bold;"><i class="fa-solid fa-wand-magic-sparkles"></i> Similar Articles: </span></div>
 
 {{ with $related }}
 <div class="columns is-multiline is-mobile">
@@ -10,4 +11,5 @@
     </div>
 	{{ end }}
 </div>
+{{ end }}
 {{ end }}
