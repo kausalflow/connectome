@@ -3,7 +3,7 @@
     <h3>{{ ($.GetPage (printf "/%s" .)).Title }} ({{ len (where $.Site.Pages "Section" .) }} pages)</h3>
     <ul>
         {{ $sec := where $.Site.Pages "Section" . }}
-            {{ range $sec.GroupBy "Dir" }}
+            {{ range $sec.GroupByParam "Dir" }}
                 <li>
                     {{ range .Pages.ByParam "Parent" }}
                         {{ if eq .Kind "section" }}
