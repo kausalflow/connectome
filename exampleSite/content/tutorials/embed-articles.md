@@ -10,9 +10,8 @@ tags:
 links:
   - tutorials/_index.md
   - tutorials/link-articles.md
-weight: 6
-links:
   - tutorials/graph-of-connected-articles.md
+weight: 6
 ---
 
 Embed an article using the shortcode

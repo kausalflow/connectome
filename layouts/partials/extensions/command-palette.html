@@ -21,7 +21,7 @@
 {{- if .Params.links -}}
     {{ with .Params.links }}
         {{ range . }}
-            {{ with $.Site.GetPage . }}
+            {{ with $.Site.GetPage (string .) }}
                 {{ $linksto = $linksto | append . }}
             {{ end }}
         {{ end }}

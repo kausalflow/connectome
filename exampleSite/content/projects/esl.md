@@ -7,8 +7,6 @@ categories:
 tags:
   - Introduction
   - Machine Learning
-links:
-  -
 summary: "Just read the book"
 members: # the makers of the tool
   - name: Member BB
