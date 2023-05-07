@@ -3,7 +3,7 @@
     <h3 class="menu-label is-size-6">{{ ($.GetPage (printf "/%s" .)).Title }} ({{ len (where $.Site.Pages "Section" .) }} pages)</h3>
     <ul class="menu-list">
         {{ $sec := where $.Site.Pages "Section" . }}
-            {{ range $sec.GroupByDate "2016-01" }}
+            {{ range $sec.GroupBy "File" }}
                 <li>
                     {{ range .Pages.ByParam "Parent" }}
                         {{ if eq .Kind "section" }}

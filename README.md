@@ -14,12 +14,11 @@ A [Hugo](http://gohugo.io/) theme for online community notes with backlinks.
 | ![](images/hugo-connectome-preview-double-bracket-links.png)  |  ![](images/hugo-connectome-multiple-notebooks.png) |
 
 
-
-
-
 ## How to Use
 
 > If one is not familiar with Hugo, the official website has a nice tutorial: [Hugo Quickstart and Basics](https://gohugo.io/getting-started/quick-start/).
+
+Tested on `hugo v0.111.3+extended darwin/amd64`
 
 ### Starting from Scratch
 
