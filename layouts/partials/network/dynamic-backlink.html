@@ -1,7 +1,7 @@
 {{ $fileReference := lower (replace .File "\\" "/") }}
 
 {{ $urlPre := $.Site.BaseURL }}
-{{ $dataNetwork := getJSON $urlPre "/network.json" }}
+{{ $dataNetwork := getJSON $urlPre "network.json" }}
 
 {{ $sources := slice }}
 {{ $rawSources := slice }}
