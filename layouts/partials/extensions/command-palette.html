@@ -1,4 +1,11 @@
 {{ if or (not (isset .Site.Params "command" )) .Site.Params.command }}
+<script type="importmap">
+    {
+        "imports": {
+            "https://unpkg.com/lit-html@latest/directives/ref.js?module": "https://unpkg.com/lit-html@2.2.6/directives/ref.js?module"
+        }
+    }
+</script>
 <script type="module" src="https://unpkg.com/ninja-keys?module"></script>
 <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
 
@@ -77,17 +84,6 @@
     {{ end }}
 {{- end -}}
 
-
-{{/*  {{- range $dataNetwork.edges -}}
-    {{ if eq .target $fileReference }}
-        {{ $source := lower (replace .source "\\" "/") }}
-        {{ with ($.Site.GetPage $source) }}
-            {{ if not (in $sources $source) }}
-                {{ $sources = $sources | append $source }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
-{{- end -}}  */}}
 
 {{- if $sources -}}
     {{ range $sources }}
