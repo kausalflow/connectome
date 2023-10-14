@@ -59,14 +59,26 @@
 {{ if .File }}
 {{ $fileReference := lower (replace .File "\\" "/") }}
 
-{{ $urlPre := $.Site.BaseURL }}
-{{ $dataNetwork := getJSON $urlPre "network.json" }}
-
 {{ $sources := slice }}
 {{ $rawSources := slice }}
 
+{{- range .Site.RegularPages -}}
+    {{ with .Params.links  }}
+        {{ range . }}
+            {{ if eq . $fileReference }}
+                {{ $source := lower (replace . "\\" "/") }}
+                {{ with ($.Site.GetPage $source) }}
+                    {{ if not (in $sources $source) }}
+                        {{ $sources = $sources | append $source }}
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{- end -}}
 
-{{- range $dataNetwork.edges -}}
+
+{{/*  {{- range $dataNetwork.edges -}}
     {{ if eq .target $fileReference }}
         {{ $source := lower (replace .source "\\" "/") }}
         {{ with ($.Site.GetPage $source) }}
@@ -75,7 +87,7 @@
             {{ end }}
         {{ end }}
     {{ end }}
-{{- end -}}
+{{- end -}}  */}}
 
 {{- if $sources -}}
     {{ range $sources }}

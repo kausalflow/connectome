@@ -1,21 +1,24 @@
 {{ $fileReference := lower (replace .File "\\" "/") }}
 
 {{ $urlPre := $.Site.BaseURL }}
-{{ $dataNetwork := getJSON $urlPre "network.json" }}
 
 {{ $sources := slice }}
 {{ $rawSources := slice }}
 
-{{ range $dataNetwork.edges }}
-    {{ if eq .target $fileReference }}
-        {{ $source := lower (replace .source "\\" "/") }}
-        {{ with ($.Site.GetPage $source) }}
-            {{ if not (in $sources $source) }}
-                {{ $sources = $sources | append $source }}
+{{- range .Site.RegularPages -}}
+    {{ with .links  }}
+        {{ range . }}
+            {{ if eq . $fileReference }}
+                {{ $source := lower (replace . "\\" "/") }}
+                {{ with ($.Site.GetPage $source) }}
+                    {{ if not (in $sources $source) }}
+                        {{ $sources = $sources | append $source }}
+                    {{ end }}
+                {{ end }}
             {{ end }}
         {{ end }}
     {{ end }}
-{{ end}}
+{{- end -}}
 
 {{ if $sources }}
 <div class="box is-size-8">
@@ -48,5 +51,5 @@
 {{ else }}
 <div class="notification is-warning is-light is-size-8">
     No backlinks identified. Reference this note using the Note ID <code>{{ $fileReference }}</code> in other notes to connect them.
-  </div>
+</div>
 {{ end }}
