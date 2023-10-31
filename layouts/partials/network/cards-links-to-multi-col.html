@@ -1,8 +1,10 @@
+{{ $fileReference := lower (replace .File "\\" "/") }}
+
 {{ if .Params.links }}
 {{ with .Params.links }}
 
 <div style="margin-bottom: 1em;">
-    <span style="font-weight: bold;"><i class="fa-solid fa-turn-up"></i> Links to: </span>
+    <span style="font-weight: bold;"><i class="fa-solid fa-turn-up"></i> <code>{{ replace $fileReference ".md" "" }} </code> Links to: </span>
 </div>
 
 <div class="columns is-multiline is-mobile">
